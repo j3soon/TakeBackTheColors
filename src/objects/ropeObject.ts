@@ -13,6 +13,7 @@ export default class RopeObject extends Phaser.Sprite {
   readonly jumpPower;
   readonly shrinkDelta = 0.1;
   readonly shrinkMax = 6;
+  readonly maxDistance = 800;
 
   public ropeAnchor!: Phaser.Sprite;
   public ropeState!: String; // idle, extend, shrink, burst
@@ -76,6 +77,9 @@ export default class RopeObject extends Phaser.Sprite {
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
         this.ropeAnchor.position.copyFrom(this.player.position);
+        // Compensate next frame position.
+        this.ropeAnchor.position.x += this.player.body.velocity.x * this.game.time.elapsed / 1000;
+        this.ropeAnchor.position.y += this.player.body.velocity.y * this.game.time.elapsed / 1000;
         // Get angle
         let rotation = Math.atan2(y - this.player.y, x - this.player.x);
         // shoot toward mouse pointer.
@@ -109,6 +113,9 @@ export default class RopeObject extends Phaser.Sprite {
     }
     this.ropeAnchor.visible = true;
     if (this.ropeState === 'extend') {
+      if (Phaser.Math.distance(this.ropeAnchor.x, this.ropeAnchor.y, this.player.x, this.player.y) > this.maxDistance) {
+        this.ropeState = 'idle';
+      }
       return;
     }
     if (this.ropeState === 'burst') {
