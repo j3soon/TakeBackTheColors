@@ -1,10 +1,80 @@
 /* AUTO GENERATED FILE. DO NOT MODIFY. YOU WILL LOSE YOUR CHANGES ON BUILD. */
 
 export namespace Images {
+    export class ImagesAnchor {
+        static getName(): string { return 'anchor'; }
+
+        static getPNG(): string { return require('assets/images/anchor.png'); }
+    }
     export class ImagesBackgroundTemplate {
         static getName(): string { return 'background_template'; }
 
         static getPNG(): string { return require('assets/images/background_template.png'); }
+    }
+    export class ImagesBgLayer0 {
+        static getName(): string { return 'layer0'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer0.png'); }
+    }
+    export class ImagesBgLayer1 {
+        static getName(): string { return 'layer1'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer1.png'); }
+    }
+    export class ImagesBgLayer10 {
+        static getName(): string { return 'layer10'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer10.png'); }
+    }
+    export class ImagesBgLayer2 {
+        static getName(): string { return 'layer2'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer2.png'); }
+    }
+    export class ImagesBgLayer3 {
+        static getName(): string { return 'layer3'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer3.png'); }
+    }
+    export class ImagesBgLayer4 {
+        static getName(): string { return 'layer4'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer4.png'); }
+    }
+    export class ImagesBgLayer5 {
+        static getName(): string { return 'layer5'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer5.png'); }
+    }
+    export class ImagesBgLayer6 {
+        static getName(): string { return 'layer6'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer6.png'); }
+    }
+    export class ImagesBgLayer7 {
+        static getName(): string { return 'layer7'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer7.png'); }
+    }
+    export class ImagesBgLayer8 {
+        static getName(): string { return 'layer8'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer8.png'); }
+    }
+    export class ImagesBgLayer9 {
+        static getName(): string { return 'layer9'; }
+
+        static getPNG(): string { return require('assets/images/bg/layer9.png'); }
+    }
+    export class ImagesCavesofgalletTiles {
+        static getName(): string { return 'cavesofgallet_tiles'; }
+
+        static getPNG(): string { return require('assets/images/cavesofgallet_tiles.png'); }
+    }
+    export class ImagesPlayer {
+        static getName(): string { return 'player'; }
+
+        static getPNG(): string { return require('assets/images/player.png'); }
     }
 }
 
@@ -137,6 +207,11 @@ export namespace JSON {
 }
 
 export namespace TilemapJSON {
+    export class TilemapsForest {
+        static getName(): string { return 'forest'; }
+
+        static getJSON(): string { return require('assets/tilemaps/forest.json'); }
+    }
     export class TilemapsTilemap {
         static getName(): string { return 'tilemap'; }
 
