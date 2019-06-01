@@ -11,7 +11,6 @@ export default class Game extends Phaser.State {
   private playerObj: PlayerObject;
   private ropeObj: RopeObject;
 
-  // TODO: Fix Tunneling (Bullet-Through-Paper) problem by CCD.
   public create(): void {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bgObj = new BackgroundObject(this.game);
@@ -20,6 +19,8 @@ export default class Game extends Phaser.State {
     this.ropeObj = new RopeObject(this.game, this.gravity, this.playerObj.player);
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 1, 1);
 
+    // Fix Tunneling (Bullet-Through-Paper) problem.
+    this.game.physics.arcade.TILE_BIAS = 128;
     // this.game.time.advancedTiming = true;
   }
   update(): void {
