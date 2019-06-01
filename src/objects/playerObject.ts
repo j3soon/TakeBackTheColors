@@ -1,16 +1,15 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
+import { timingSafeEqual } from 'crypto';
 
 export default class PlayerObject extends Phaser.Sprite {
   private readonly jumpPower = 1800 / 3;
   private gravity: number;
   private readonly jumpBoostCountMax = 64;
   private jumpBoostCount = 0;
-  private readonly wallReleaseCountMax = 64;
+  private readonly wallReleaseCountMax = 16;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
-
-  private moveX = 0;
 
   public player: Phaser.Sprite;
 
@@ -48,9 +47,6 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public update() {
     const keybd = this.game.input.keyboard;
-    if (this.player.body.blocked.left || this.player.body.blocked.right)
-      this.moveX = 0;
-    this.player.body.velocity.x -= this.moveX;
     let vx = 0;
     const gravity = (this.gravity * this.game.time.elapsed / 1000);
     if (keybd.isDown(Phaser.Keyboard.W)) {
@@ -81,24 +77,26 @@ export default class PlayerObject extends Phaser.Sprite {
     }
     if (keybd.isDown(Phaser.Keyboard.A)) {
       // Left
-      vx -= 50;
+      vx -= 10;
     }
     if (keybd.isDown(Phaser.Keyboard.D)) {
       // Right
-      vx += 50;
+      vx += 10;
     }
     if (this.wallReleaseCount > 0) {
-      if (this.jumpBoostCount === 0) {
-        if (this.player.body.velocity.y > 0) {
-          // const maxSlideSpeedY = 160;
-          this.player.body.velocity.y -= gravity * 0.8;
-          /*if (this.player.body.velocity.y > maxSlideSpeedY) {
-            this.player.body.velocity.y = maxSlideSpeedY;
-          }*/
-        }
-      }
-    } else if (this.wallReleaseCount > 0) {
       this.wallReleaseCount--;
+      if (this.jumpBoostCount === 0) {
+        const maxSlideSpeedY = 160;
+        if (this.player.body.velocity.y > maxSlideSpeedY) {
+          this.player.body.velocity.y = maxSlideSpeedY;
+        } else if (this.player.body.velocity.y < 0) {
+          this.player.body.velocity.y -= gravity;
+          this.player.body.velocity.y *= 0.8;
+        }
+        /*if (this.player.body.velocity.y > maxSlideSpeedY) {
+          this.player.body.velocity.y = maxSlideSpeedY;
+        }*/
+      }
     }
     // const maxMoveX = 400;
     /*if (Math.abs(this.player.body.velocity.x) > maxMoveSpeedX) {
@@ -106,7 +104,7 @@ export default class PlayerObject extends Phaser.Sprite {
     } else if (Math.abs(this.player.body.velocity.x + vx) > maxMoveSpeedX) {
       vx = Math.sign(vx) * (maxMoveSpeedX - Math.abs(this.player.body.velocity.x));
     }*/
-    this.moveX += vx;
+    this.player.body.velocity.x += vx;
     /*if (Math.abs(this.moveX) > maxMoveX) {
       this.moveX = Math.sign(this.moveX) * maxMoveX;
     }*/
@@ -123,13 +121,6 @@ export default class PlayerObject extends Phaser.Sprite {
     // TODO: Remove this.moveX anc combine to swing.
     this.player.body.velocity.x *= 0.99;
     this.player.body.velocity.y *= 0.99;
-    this.moveX *= 0.9;
-    if (this.player.body.velocity.x * (this.player.body.velocity.x + this.moveX) < 0) {
-      // Opposite direction if release horizontal key.
-      this.moveX = this.player.body.velocity.x + this.moveX;
-      this.player.body.velocity.x = 0;
-    }
-    this.player.body.velocity.x += this.moveX;
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
