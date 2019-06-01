@@ -71,6 +71,56 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/cavesofgallet_tiles.png'); }
     }
+    export class ImagesCollectiblesBronze {
+        static getName(): string { return 'bronze'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/bronze.png'); }
+    }
+    export class ImagesCollectiblesGold {
+        static getName(): string { return 'gold'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/gold.png'); }
+    }
+    export class ImagesCollectiblesSilver {
+        static getName(): string { return 'silver'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/silver.png'); }
+    }
+    export class ImagesEnemiesCloud {
+        static getName(): string { return 'cloud'; }
+
+        static getPNG(): string { return require('assets/images/enemies/cloud.png'); }
+    }
+    export class ImagesEnemiesPropeller {
+        static getName(): string { return 'propeller'; }
+
+        static getPNG(): string { return require('assets/images/enemies/propeller.png'); }
+    }
+    export class ImagesEnemiesSaw {
+        static getName(): string { return 'saw'; }
+
+        static getPNG(): string { return require('assets/images/enemies/saw.png'); }
+    }
+    export class ImagesEnemiesSpikeJump {
+        static getName(): string { return 'spike_jump'; }
+
+        static getPNG(): string { return require('assets/images/enemies/spike_jump.png'); }
+    }
+    export class ImagesEnemiesSpike {
+        static getName(): string { return 'spike'; }
+
+        static getPNG(): string { return require('assets/images/enemies/spike.png'); }
+    }
+    export class ImagesEnemiesSun {
+        static getName(): string { return 'sun'; }
+
+        static getPNG(): string { return require('assets/images/enemies/sun.png'); }
+    }
+    export class ImagesEnemiesWing {
+        static getName(): string { return 'wing'; }
+
+        static getPNG(): string { return require('assets/images/enemies/wing.png'); }
+    }
     export class ImagesPlayer {
         static getName(): string { return 'player'; }
 
@@ -79,6 +129,116 @@ export namespace Images {
 }
 
 export namespace Spritesheets {
+    export class SpritesheetsEnemiesExplosion64636 {
+        static getName(): string { return 'explosion.[64,63,6,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/explosion.[64,63,6,0,0].png'); }
+        static getFrameWidth(): number { return 64; }
+        static getFrameHeight(): number { return 63; }
+        static getFrameMax(): number { return 6; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesPropellerFly1221392 {
+        static getName(): string { return 'propeller_fly.[122,139,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_fly.[122,139,2,0,0].png'); }
+        static getFrameWidth(): number { return 122; }
+        static getFrameHeight(): number { return 139; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesPropellerIdle1221392 {
+        static getName(): string { return 'propeller_idle.[122,139,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_idle.[122,139,2,0,0].png'); }
+        static getFrameWidth(): number { return 122; }
+        static getFrameHeight(): number { return 139; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesPropellerJump1221392 {
+        static getName(): string { return 'propeller_jump.[122,139,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_jump.[122,139,2,0,0].png'); }
+        static getFrameWidth(): number { return 122; }
+        static getFrameHeight(): number { return 139; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesSawRoll1481482 {
+        static getName(): string { return 'saw_roll.[148,148,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/saw_roll.[148,148,2,0,0].png'); }
+        static getFrameWidth(): number { return 148; }
+        static getFrameHeight(): number { return 148; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesSpikeIdle1141552 {
+        static getName(): string { return 'spike_idle.[114,155,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/spike_idle.[114,155,2,0,0].png'); }
+        static getFrameWidth(): number { return 114; }
+        static getFrameHeight(): number { return 155; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesSpikeLeft1201592 {
+        static getName(): string { return 'spike_left.[120,159,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/spike_left.[120,159,2,0,0].png'); }
+        static getFrameWidth(): number { return 120; }
+        static getFrameHeight(): number { return 159; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesSpikeRight1201592 {
+        static getName(): string { return 'spike_right.[120,159,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/spike_right.[120,159,2,0,0].png'); }
+        static getFrameWidth(): number { return 120; }
+        static getFrameHeight(): number { return 159; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesSunRoll1481482 {
+        static getName(): string { return 'sun_roll.[148,148,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/sun_roll.[148,148,2,0,0].png'); }
+        static getFrameWidth(): number { return 148; }
+        static getFrameHeight(): number { return 148; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesWingFly2161475 {
+        static getName(): string { return 'wing_fly.[216,147,5,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/wing_fly.[216,147,5,0,0].png'); }
+        static getFrameWidth(): number { return 216; }
+        static getFrameHeight(): number { return 147; }
+        static getFrameMax(): number { return 5; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEnemiesWingIdle2161472 {
+        static getName(): string { return 'wing_idle.[216,147,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/wing_idle.[216,147,2,0,0].png'); }
+        static getFrameWidth(): number { return 216; }
+        static getFrameHeight(): number { return 147; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsMetalslugMummy374518 {
         static getName(): string { return 'metalslug_mummy.[37,45,18,0,0]'; }
 
