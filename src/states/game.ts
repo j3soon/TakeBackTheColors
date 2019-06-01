@@ -15,7 +15,7 @@ export default class Game extends Phaser.State {
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 1, 1);
   }
   update(): void {
-    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.layer);
+    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.layer, (s1, s2) => { this.playerObj.onCollideCallback(s1, s2); });
   }
   public postUpdate(): void {
   }

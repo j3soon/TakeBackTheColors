@@ -6,7 +6,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
   private readonly jumpBoostCountMax = 64;
   private jumpBoostCount = 0;
-  private readonly wallReleaseCountMax = 32;
+  private readonly wallReleaseCountMax = 64;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
 
@@ -35,8 +35,16 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.physics.arcade.enable(this.player);
     this.player.body.gravity.y = gravity;
     this.gravity = gravity;
+
     // Inject this object to event loop.
     this.game.add.existing(this);
+  }
+  public onCollideCallback(player: Phaser.Sprite, wall: Phaser.Sprite) {
+    if (player.body.blocked.left || player.body.blocked.right) {
+        // Wall slide.
+      this.wallReleaseCount = this.wallReleaseCountMax;
+      this.wallReleaseLeft = player.body.blocked.left;
+    }
   }
   public update() {
     const keybd = this.game.input.keyboard;
@@ -51,6 +59,7 @@ export default class PlayerObject extends Phaser.Sprite {
         if (!this.player.body.blocked.down) {
           // Wall jump
           this.player.body.velocity.x += this.jumpPower / Math.sqrt(2) * (this.wallReleaseLeft ? 1 : -1);
+          // this.moveX = 500 * (this.wallReleaseLeft ? 1 : -1);
         }
         this.player.body.velocity.y -= this.jumpPower;
         // Jump
@@ -78,17 +87,14 @@ export default class PlayerObject extends Phaser.Sprite {
       // Right
       vx += 50;
     }
-    if (this.player.body.blocked.left || this.player.body.blocked.right) {
+    if (this.wallReleaseCount > 0) {
       if (this.jumpBoostCount === 0) {
-        // Wall slide.
-        this.wallReleaseCount = this.wallReleaseCountMax;
-        this.wallReleaseLeft = this.player.body.blocked.left;
         if (this.player.body.velocity.y > 0) {
-          const maxSlideSpeedY = 160;
+          // const maxSlideSpeedY = 160;
           this.player.body.velocity.y -= gravity * 0.8;
-          if (this.player.body.velocity.y > maxSlideSpeedY) {
+          /*if (this.player.body.velocity.y > maxSlideSpeedY) {
             this.player.body.velocity.y = maxSlideSpeedY;
-          }
+          }*/
         }
       }
     } else if (this.wallReleaseCount > 0) {
