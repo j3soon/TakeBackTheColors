@@ -67,7 +67,7 @@ export default class BackgroundObject extends Phaser.Sprite {
       if (this.tilesMove[i] === 0)
         continue;
       // Some offset for better background parts in test level.
-      tile.tilePosition.y =  (-900 - this.game.camera.view.centerY) / tile.tileScale.y / this.yMove;
+      tile.tilePosition.y =  (-960 - this.game.camera.view.centerY) / tile.tileScale.y / this.yMove;
       tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i];
     }
   }
