@@ -6,11 +6,9 @@ export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
   private readonly jumpBoostCountMax = 64;
   private jumpBoostCount = 0;
-  private readonly wallReleaseCountMax = 32;
+  private readonly wallReleaseCountMax = 16;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
-
-  private moveX = 0;
 
   public player: Phaser.Sprite;
 
@@ -32,27 +30,27 @@ export default class PlayerObject extends Phaser.Sprite {
     // Init player.
     this.player = this.game.add.sprite(x, y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
-    this.game.physics.arcade.enable(this.player);
+    this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
     this.gravity = gravity;
+
     // Inject this object to event loop.
     this.game.add.existing(this);
   }
   public update() {
     const keybd = this.game.input.keyboard;
-    if (this.player.body.blocked.left || this.player.body.blocked.right)
-      this.moveX = 0;
-    this.player.body.velocity.x -= this.moveX;
     let vx = 0;
     const gravity = (this.gravity * this.game.time.elapsed / 1000);
     if (keybd.isDown(Phaser.Keyboard.W)) {
       // Up
-      if (this.player.body.blocked.down || this.wallReleaseCount > 0) {
+      if (this.player.body.blocked.down || (this.wallReleaseCount > 0 &&
+          (this.wallReleaseLeft && keybd.isDown(Phaser.Keyboard.D) ||
+          !this.wallReleaseLeft && keybd.isDown(Phaser.Keyboard.A)))) {
         if (!this.player.body.blocked.down) {
           // Wall jump
-          this.player.body.velocity.x += this.jumpPower / Math.sqrt(2) * (this.wallReleaseLeft ? 1 : -1);
+          this.player.body.velocity.x = this.jumpPower * (this.wallReleaseLeft ? 1 : -1);
         }
-        this.player.body.velocity.y -= this.jumpPower;
+        this.player.body.velocity.y = -this.jumpPower;
         // Jump
         this.jumpBoostCount = this.jumpBoostCountMax;
         this.wallReleaseCount = 0;
@@ -79,51 +77,35 @@ export default class PlayerObject extends Phaser.Sprite {
       vx += 50;
     }
     if (this.player.body.blocked.left || this.player.body.blocked.right) {
+      this.wallReleaseLeft = this.player.body.blocked.left;
+      this.wallReleaseCount = this.wallReleaseCountMax;
+    }
+    if (this.wallReleaseCount > 0) {
+      this.wallReleaseCount--;
       if (this.jumpBoostCount === 0) {
-        // Wall slide.
-        this.wallReleaseCount = this.wallReleaseCountMax;
-        this.wallReleaseLeft = this.player.body.blocked.left;
-        if (this.player.body.velocity.y > 0) {
-          const maxSlideSpeedY = 160;
-          this.player.body.velocity.y -= gravity * 0.8;
-          if (this.player.body.velocity.y > maxSlideSpeedY) {
-            this.player.body.velocity.y = maxSlideSpeedY;
-          }
+        const maxSlideSpeedY = 160;
+        if (this.player.body.velocity.y > maxSlideSpeedY) {
+          this.player.body.velocity.y *= 0.8;
+        } else if (this.player.body.velocity.y < 0) {
+          this.player.body.velocity.y -= gravity;
+          this.player.body.velocity.y *= 0.8;
         }
       }
-    } else if (this.wallReleaseCount > 0) {
-      this.wallReleaseCount--;
     }
-    // const maxMoveX = 400;
-    /*if (Math.abs(this.player.body.velocity.x) > maxMoveSpeedX) {
+    const maxMoveSpeedX = 400;
+    if (Math.abs(this.player.body.velocity.x) > maxMoveSpeedX) {
       vx = 0;
     } else if (Math.abs(this.player.body.velocity.x + vx) > maxMoveSpeedX) {
       vx = Math.sign(vx) * (maxMoveSpeedX - Math.abs(this.player.body.velocity.x));
-    }*/
-    this.moveX += vx;
-    /*if (Math.abs(this.moveX) > maxMoveX) {
-      this.moveX = Math.sign(this.moveX) * maxMoveX;
-    }*/
+    }
+    this.player.body.velocity.x += vx;
     // Friction
     if (this.player.body.blocked.down) {
-      /*let sign = Math.sign(this.player.body.velocity.x);
-      this.player.body.velocity.x -= 20 * sign;
-      if (sign !== Math.sign(this.player.body.velocity.x)) {
-        this.player.body.velocity.x = 0;
-      }*/
-      // this.player.body.velocity.x *= 0.9;
+      this.player.body.velocity.x *= 0.9;
     }
     // Air friction
-    // TODO: Remove this.moveX anc combine to swing.
     this.player.body.velocity.x *= 0.99;
     this.player.body.velocity.y *= 0.99;
-    this.moveX *= 0.9;
-    if (this.player.body.velocity.x * (this.player.body.velocity.x + this.moveX) < 0) {
-      // Opposite direction if release horizontal key.
-      this.moveX = this.player.body.velocity.x + this.moveX;
-      this.player.body.velocity.x = 0;
-    }
-    this.player.body.velocity.x += this.moveX;
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
