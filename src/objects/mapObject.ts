@@ -36,5 +36,7 @@ export default class MapObject extends Phaser.Sprite {
     this.layer.renderSettings.enableScrollDelta = false;
     // this.map.setCollision(1, true, this.layer);
     this.map.setCollisionByExclusion([], true, this.layer);
+
+    this.game.physics.p2.convertTilemap(this.map, this.layer);
   }
 }
