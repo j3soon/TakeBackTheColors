@@ -39,7 +39,8 @@ function startApp(): void {
     let gameConfig: Phaser.IGameConfig = {
         width: gameWidth,
         height: gameHeight,
-        renderer: Phaser.AUTO,
+        // Use Canvas instead of WebGL to improve scrolling performance.
+        renderer: Phaser.CANVAS,
         parent: '',
         resolution: 1
     };
