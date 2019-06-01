@@ -2,11 +2,11 @@
 import * as Assets from '../assets';
 
 export default class PlayerObject extends Phaser.Sprite {
-  private readonly jumpPower = 1800 / 3;
   private gravity: number;
+  private readonly jumpPower;
   private readonly jumpBoostCountMax = 64;
   private jumpBoostCount = 0;
-  private readonly wallReleaseCountMax = 16;
+  private readonly wallReleaseCountMax = 8;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
 
@@ -33,7 +33,8 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
     this.gravity = gravity;
-
+    // Setup Constants.
+    this.jumpPower = this.gravity / 3;
     // Inject this object to event loop.
     this.game.add.existing(this);
   }
