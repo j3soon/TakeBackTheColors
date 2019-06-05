@@ -11,6 +11,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private wallReleaseLeft = false;
 
   public player: Phaser.Sprite;
+  public spawnPoint: Phaser.Point;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -25,10 +26,11 @@ export default class PlayerObject extends Phaser.Sprite {
   * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
   * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
   */
-  constructor(game: Phaser.Game, p: Phaser.Point, gravity: number) {
+  constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
     // Init player.
-    this.player = this.game.add.sprite(p.x, p.y, Assets.Images.ImagesPlayer.getName());
+    this.spawnPoint = spawnPoint;
+    this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
@@ -76,6 +78,11 @@ export default class PlayerObject extends Phaser.Sprite {
     if (keybd.isDown(Phaser.Keyboard.D)) {
       // Right
       vx += 50;
+    }
+    if (keybd.isDown(Phaser.Keyboard.R)) {
+      // Reset to spawn point. (Can be used as checkpoint)
+      this.player.x = this.spawnPoint.x;
+      this.player.y = this.spawnPoint.y;
     }
     if (this.player.body.blocked.left || this.player.body.blocked.right) {
       this.wallReleaseLeft = this.player.body.blocked.left;
