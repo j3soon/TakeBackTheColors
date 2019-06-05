@@ -15,7 +15,7 @@ export default class Game extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bgObj = new BackgroundObject(this.game);
     this.mapObj = new MapObject(this.game);
-    this.playerObj = new PlayerObject(this.game, 64, 3072, this.gravity);
+    this.playerObj = new PlayerObject(this.game, this.mapObj.spawnPoint, this.gravity);
     this.ropeObj = new RopeObject(this.game, this.gravity, this.playerObj.player);
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 1, 1);
 
@@ -24,9 +24,9 @@ export default class Game extends Phaser.State {
     // this.game.time.advancedTiming = true;
   }
   update(): void {
-    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.layer);
+    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.obstacleLayer);
     if (this.ropeObj.ropeState !== 'idle') {
-      this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.layer);
+      this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.obstacleLayer);
     }
   }
   render(): void {
