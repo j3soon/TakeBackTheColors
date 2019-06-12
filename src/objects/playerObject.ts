@@ -1,5 +1,6 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
+import * as PlayerAnimation from '../playerAnimation';
 
 export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
@@ -9,6 +10,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private readonly wallReleaseCountMax = 8;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
+  private animState = 'idle';
 
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
@@ -30,7 +32,14 @@ export default class PlayerObject extends Phaser.Sprite {
     super(game, 0, 0);
     // Init player.
     this.spawnPoint = spawnPoint;
-    this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
+    this.player = this.game.add.sprite(spawnPoint.x+20, spawnPoint.y-80, Assets.Spritesheets.SpritesheetsRabbit20020020.getName());
+    this.player.animations.add('idle', [0], 1, true, true);
+    this.player.animations.add('run', [0, 1, 2, 3, 4], 10, true, true);
+    this.player.animations.add('up', [5, 6, 7, 8, 9], 15, true, true);
+    this.player.animations.add('down', [10, 11, 12, 13, 14], 15, true, true);
+    for(let i = 0; i < 5; i++)
+      this.player.animations.add(`air${i}`, [15 + i], 15, true, true);
+    //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
@@ -100,6 +109,7 @@ export default class PlayerObject extends Phaser.Sprite {
         }
       }
     }
+    const moveSpeedFractionX = [0.92, 0.96, 1.1, 0.93, 0.91];
     const maxMoveSpeedX = 400;
     if (Math.abs(this.player.body.velocity.x) > maxMoveSpeedX) {
       vx = 0;
@@ -114,8 +124,39 @@ export default class PlayerObject extends Phaser.Sprite {
     // Air friction
     this.player.body.velocity.x *= 0.99;
     this.player.body.velocity.y *= 0.99;
+    // Motion
+    if((this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) && (this.player.body.blocked.down))
+      this.player.body.velocity.x *= moveSpeedFractionX[this.player.animations.frame % 5];
+    this.AnimationUpdate();
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
+  }
+  private AnimationUpdate() {
+    console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
+    var onground = this.player.body.blocked.down;
+    var moving = this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D);
+    if(moving && this.animState != 'run' && onground){
+      this.animState = "run";
+      this.player.animations.play(this.animState);
+    } else if(!moving && onground && this.animState != 'idle') {
+      this.animState = "idle";
+      this.player.animations.play(this.animState);
+    } else if (!onground) {
+      const threshold = 180;
+      let tooFast = Math.abs(this.player.body.velocity.y) > threshold;
+      if(tooFast)
+        this.animState = this.player.body.velocity.y < 0 ? "up" : "down";
+      else if(Math.abs(this.player.body.velocity.y) < 0.2 * threshold)
+        this.animState = "air2";
+      else if(Math.abs(this.player.body.velocity.y) < 0.5 * threshold)
+        this.animState = this.player.body.velocity.y < 0 ? "air1" : "air3";
+      else
+        this.animState = this.player.body.velocity.y < 0 ? "air0" : "air4";
+      this.player.animations.play(this.animState);
+    }
+
+    this.player.scale.setTo(this.player.body.velocity.x > 0 ? -.4 : .4, .4);
+
   }
 }
