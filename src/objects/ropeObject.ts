@@ -164,7 +164,9 @@ export default class RopeObject extends Phaser.Sprite {
         this.ropeAnchor.body.blocked.left ||
         this.ropeAnchor.body.blocked.down ||
         this.ropeAnchor.body.blocked.right) {
-      this.ropeLocked_();
+      if (this.ropeState === 'extend') {
+        this.ropeLocked_();
+      }
     }
   }
   public postUpdate() {
