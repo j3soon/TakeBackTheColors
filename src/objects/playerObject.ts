@@ -1,5 +1,6 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
+import RopeObject from '../objects/ropeObject';
 
 export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
@@ -9,6 +10,8 @@ export default class PlayerObject extends Phaser.Sprite {
   private readonly wallReleaseCountMax = 8;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
+
+  private ropeObj: RopeObject;
 
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
@@ -116,11 +119,15 @@ export default class PlayerObject extends Phaser.Sprite {
   public getPlayer(): Phaser.Sprite {
     return this.player;
   }
+  public setRopeObject(ropeObject: RopeObject) {
+    this.ropeObj = ropeObject;
+  }
   public respawn() {
     // Reset to spawn point. (Can be used as checkpoint)
     this.player.x = this.spawnPoint.x;
     this.player.y = this.spawnPoint.y;
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
+    this.ropeObj.ropeState = 'idle';
   }
 }
