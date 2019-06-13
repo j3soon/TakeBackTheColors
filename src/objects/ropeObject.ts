@@ -20,6 +20,7 @@ export default class RopeObject extends Phaser.Sprite {
   public ropeState!: String; // idle, extend, shrink, burst
 
   private shrinkCoef: number;
+  private cheating = false;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -84,6 +85,17 @@ export default class RopeObject extends Phaser.Sprite {
         this.ropeAnchor.body.velocity.x = Math.cos(rotation) * this.speedAnchor;
         this.ropeAnchor.body.velocity.y = Math.sin(rotation) * this.speedAnchor;
       }
+    }
+    // Move to clicked spot.
+    // TODO: remove this cheat.
+    if (ms.rightButton.isDown && !this.cheating) {
+      this.player.position.x = ms.x;
+      this.player.position.y = ms.y;
+      this.player.body.velocity.x = 0;
+      this.player.body.velocity.y = 0;
+      this.cheating = true;
+    } else if (!ms.rightButton.isDown) {
+      this.cheating = false;
     }
     // Burst
     if (this.ropeState === 'shrink' && keybd.isDown(Phaser.Keyboard.SPACEBAR)) {

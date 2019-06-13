@@ -80,11 +80,7 @@ export default class PlayerObject extends Phaser.Sprite {
       vx += 50;
     }
     if (keybd.isDown(Phaser.Keyboard.R)) {
-      // Reset to spawn point. (Can be used as checkpoint)
-      this.player.x = this.spawnPoint.x;
-      this.player.y = this.spawnPoint.y;
-      this.player.body.velocity.x = 0;
-      this.player.body.velocity.y = 0;
+      this.respawn();
     }
     if (this.player.body.blocked.left || this.player.body.blocked.right) {
       this.wallReleaseLeft = this.player.body.blocked.left;
@@ -119,5 +115,12 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
+  }
+  public respawn() {
+    // Reset to spawn point. (Can be used as checkpoint)
+    this.player.x = this.spawnPoint.x;
+    this.player.y = this.spawnPoint.y;
+    this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 0;
   }
 }

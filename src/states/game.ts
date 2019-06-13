@@ -24,6 +24,11 @@ export default class Game extends Phaser.State {
 
     // Fix Tunneling (Bullet-Through-Paper) problem.
     this.game.physics.arcade.TILE_BIAS = 38;
+    // Disable right click context menu.
+    document.body.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+        return false;
+    });
     // this.game.time.advancedTiming = true;
 
     this.enemyObjs.push(new EnemyObject(this.game, new Phaser.Point(100, 1000), this.gravity));
@@ -36,6 +41,20 @@ export default class Game extends Phaser.State {
       for (let enemy of this.enemyObjs) {
         this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, enemy.enemy);
       }
+      // Rope disappear if hit instant death tiles.
+      this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.instantDeathLayer, () => {
+        this.ropeObj.ropeState = 'idle';
+      });
+    }
+    // Die if hit instant death tiles.
+    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.instantDeathLayer, () => {
+      this.playerObj.respawn();
+    });
+    // Die if hit enemy.
+    for (let enemy of this.enemyObjs) {
+      this.game.physics.arcade.collide(this.playerObj.player, enemy.enemy, () => {
+        this.playerObj.respawn();
+      });
     }
   }
   render(): void {

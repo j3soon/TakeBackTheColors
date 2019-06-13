@@ -6,6 +6,7 @@ export default class MapObject extends Phaser.Sprite {
 
   public decorationLayer: Phaser.TilemapLayer;
   public obstacleLayer: Phaser.TilemapLayer;
+  public instantDeathLayer: Phaser.TilemapLayer;
   public layers: Phaser.TilemapLayer[] = [];
 
   public spawnPoint: Phaser.Point;
@@ -34,8 +35,10 @@ export default class MapObject extends Phaser.Sprite {
     this.map.addTilesetImage(Assets.Images.ImagesCavesofgalletTiles.getName());
     this.decorationLayer = this.map.createLayer('Decorations');
     this.obstacleLayer = this.map.createLayer('Obstacles');
+    this.instantDeathLayer = this.map.createLayer('InstantDeath');
     this.layers.push(this.decorationLayer);
     this.layers.push(this.obstacleLayer);
+    this.layers.push(this.instantDeathLayer);
     for (let layer of this.layers) {
       // this.layer.debug = true;
       layer.setScale(this.mapScale);
@@ -49,6 +52,7 @@ export default class MapObject extends Phaser.Sprite {
     }
     // this.map.setCollision(1, true, this.layer);
     this.map.setCollisionByExclusion([], true, this.obstacleLayer);
+    this.map.setCollisionByExclusion([], true, this.instantDeathLayer);
     // Object layers.
     // console.log(this.map.objects);
     let objPlayerSpawn = this.map.objects['Player'][0];

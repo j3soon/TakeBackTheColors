@@ -19,4 +19,10 @@ export default class EnemyObject extends Phaser.Sprite {
     // Inject this object to event loop.
     this.game.add.existing(this);
   }
+  public respawn() {
+    this.enemy.x = this.spawnPoint.x;
+    this.enemy.y = this.spawnPoint.y;
+    this.enemy.body.velocity.x = 0;
+    this.enemy.body.velocity.y = 0;
+  }
 }
