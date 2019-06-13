@@ -83,6 +83,8 @@ export default class PlayerObject extends Phaser.Sprite {
       // Reset to spawn point. (Can be used as checkpoint)
       this.player.x = this.spawnPoint.x;
       this.player.y = this.spawnPoint.y;
+      this.player.body.velocity.x = 0;
+      this.player.body.velocity.y = 0;
     }
     if (this.player.body.blocked.left || this.player.body.blocked.right) {
       this.wallReleaseLeft = this.player.body.blocked.left;

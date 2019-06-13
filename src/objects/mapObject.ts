@@ -1,4 +1,5 @@
 import * as Assets from '../assets';
+import EnemyObject from './enemyObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
@@ -8,6 +9,7 @@ export default class MapObject extends Phaser.Sprite {
   public layers: Phaser.TilemapLayer[] = [];
 
   public spawnPoint: Phaser.Point;
+  // public enemySpawnPoints: Phaser.Point[] = [];
   public readonly mapScale: number = 4;
 
   /**
@@ -57,5 +59,16 @@ export default class MapObject extends Phaser.Sprite {
     this.spawnPoint.x *= this.mapScale;
     this.spawnPoint.y *= this.mapScale;
     console.log(this.spawnPoint);
+  }
+  public createEnemies(game: Phaser.Game, gravity: number): EnemyObject[] {
+    let enemies: EnemyObject[] = [];
+    for (let obj of this.map.objects['Enemies']) {
+      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+      pnt.x *= this.mapScale;
+      pnt.y *= this.mapScale;
+      let ene = new EnemyObject(game, pnt, gravity);
+      enemies.push(ene);
+    }
+    return enemies;
   }
 }
