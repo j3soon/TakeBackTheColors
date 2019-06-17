@@ -1,5 +1,6 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
+import RopeObject from '../objects/ropeObject';
 import * as PlayerAnimation from '../playerAnimation';
 
 export default class PlayerObject extends Phaser.Sprite {
@@ -10,6 +11,8 @@ export default class PlayerObject extends Phaser.Sprite {
   private readonly wallReleaseCountMax = 8;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
+
+  private ropeObj: RopeObject;
   private animState = 'idle';
 
   public player: Phaser.Sprite;
@@ -89,6 +92,7 @@ export default class PlayerObject extends Phaser.Sprite {
       vx += 50;
     }
     if (keybd.isDown(Phaser.Keyboard.R)) {
+      this.respawn();
       // Reset to spawn point. (Can be used as checkpoint)
       this.player.x = this.spawnPoint.x;
       this.player.y = this.spawnPoint.y;
@@ -131,6 +135,17 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
+  }
+  public setRopeObject(ropeObject: RopeObject) {
+    this.ropeObj = ropeObject;
+  }
+  public respawn() {
+    // Reset to spawn point. (Can be used as checkpoint)
+    this.player.x = this.spawnPoint.x;
+    this.player.y = this.spawnPoint.y;
+    this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 0;
+    this.ropeObj.ropeState = 'idle';
   }
   private AnimationUpdate() {
     console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
