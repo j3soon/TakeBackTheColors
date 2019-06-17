@@ -1,7 +1,6 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
 import RopeObject from '../objects/ropeObject';
-import * as PlayerAnimation from '../playerAnimation';
 
 export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
