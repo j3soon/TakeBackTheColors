@@ -93,9 +93,6 @@ export default class PlayerObject extends Phaser.Sprite {
     }
     if (keybd.isDown(Phaser.Keyboard.R)) {
       this.respawn();
-      // Reset to spawn point. (Can be used as checkpoint)
-      this.player.x = this.spawnPoint.x;
-      this.player.y = this.spawnPoint.y;
     }
     if (this.player.body.blocked.left || this.player.body.blocked.right) {
       this.wallReleaseLeft = this.player.body.blocked.left;
