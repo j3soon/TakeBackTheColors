@@ -34,7 +34,7 @@ export default class PlayerObject extends Phaser.Sprite {
     super(game, 0, 0);
     // Init player.
     this.spawnPoint = spawnPoint;
-    this.player = this.game.add.sprite(spawnPoint.x+20, spawnPoint.y-80, Assets.Spritesheets.SpritesheetsRabbit20020020.getName());
+    this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsRabbit20020020.getName());
     this.player.animations.add('idle', [0], 1, true, true);
     this.player.animations.add('run', [0, 1, 2, 3, 4], 10, true, true);
     this.player.animations.add('up', [5, 6, 7, 8, 9], 15, true, true);
@@ -43,8 +43,11 @@ export default class PlayerObject extends Phaser.Sprite {
       this.player.animations.add(`air${i}`, [15 + i], 15, true, true);
     //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
+    this.player.scale.setTo(0.4);
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
+    this.player.body.setSize(100, 100, 50, 100);
+    
     this.gravity = gravity;
     // Setup Constants.
     this.jumpPower = this.gravity / 3;
@@ -109,7 +112,7 @@ export default class PlayerObject extends Phaser.Sprite {
         }
       }
     }
-    const moveSpeedFractionX = [0.92, 0.96, 1.1, 0.93, 0.91];
+    const moveSpeedFractionX = [0.92, 0.96, 1.2, 0.93, 0.91];
     const maxMoveSpeedX = 400;
     if (Math.abs(this.player.body.velocity.x) > maxMoveSpeedX) {
       vx = 0;
@@ -145,7 +148,8 @@ export default class PlayerObject extends Phaser.Sprite {
     // TODO: respawn all enemies.
   }
   private AnimationUpdate() {
-    console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
+    //console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
+    console.log(this.player.body.center);
     var onground = this.player.body.blocked.down;
     var moving = this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D);
     if(moving && this.animState != 'run' && onground){
@@ -168,7 +172,8 @@ export default class PlayerObject extends Phaser.Sprite {
       this.player.animations.play(this.animState);
     }
 
-    this.player.scale.setTo(this.player.body.velocity.x > 0 ? -.4 : .4, .4);
+
+    this.player.scale.setTo((this.player.body.velocity.x > 0 ? -1 : 1) * Math.abs(this.player.scale.x), this.player.scale.y);
 
   }
 }
