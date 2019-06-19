@@ -24,7 +24,7 @@ export default class Game extends Phaser.State {
     this.playerObj.setRopeObject(this.ropeObj);
     this.enemyObjs = this.mapObj.createEnemies(this.game, this.gravity);
     this.checkpointObjs = this.mapObj.createCheckpoints(this.game);
-    this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 1, 1);
+    this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
     // Fix Tunneling (Bullet-Through-Paper) problem.
     this.game.physics.arcade.TILE_BIAS = 38;
