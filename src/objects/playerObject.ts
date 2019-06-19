@@ -142,6 +142,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     this.ropeObj.ropeState = 'idle';
+    // TODO: respawn all enemies.
   }
   private AnimationUpdate() {
     console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);

@@ -9,15 +9,15 @@ export default class EnemyObject extends Phaser.Sprite {
 
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
-    this.enemy = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesWingFly2161475.getName());
+    this.spawnPoint = spawnPoint;
+    this.enemy = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesWingFly2161475.getName());
     this.enemy.animations.add('anim');
     this.enemy.animations.play('anim', 12, true);
     this.enemy.anchor.setTo(0.5);
     this.enemy.scale.set(0.5, 0.5);
-    this.game.physics.enable(this.enemy);
-    this.debug = true;
+    game.physics.enable(this.enemy);
     // Inject this object to event loop.
-    this.game.add.existing(this);
+    game.add.existing(this);
   }
   public respawn() {
     this.enemy.x = this.spawnPoint.x;

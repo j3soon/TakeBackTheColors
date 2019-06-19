@@ -1,5 +1,6 @@
 import * as Assets from '../assets';
 import EnemyObject from './enemyObject';
+import CheckpointObject from '../objects/checkpointObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
@@ -74,5 +75,16 @@ export default class MapObject extends Phaser.Sprite {
       enemies.push(ene);
     }
     return enemies;
+  }
+  public createCheckpoints(game: Phaser.Game): CheckpointObject[] {
+    let checkpoints: CheckpointObject[] = [];
+    for (let obj of this.map.objects['Checkpoints']) {
+      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+      pnt.x *= this.mapScale;
+      pnt.y *= this.mapScale;
+      let check = new CheckpointObject(game, pnt);
+      checkpoints.push(check);
+    }
+    return checkpoints;
   }
 }
