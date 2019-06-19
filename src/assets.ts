@@ -249,6 +249,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsRabbit20020020 {
+        static getName(): string { return 'rabbit.[200,200,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,200,20,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 200; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
 }
 
 export namespace Atlases {
