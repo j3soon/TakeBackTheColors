@@ -239,6 +239,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsFlag20232410 {
+        static getName(): string { return 'flag.[202,324,10,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/flag.[202,324,10,0,0].png'); }
+        static getFrameWidth(): number { return 202; }
+        static getFrameHeight(): number { return 324; }
+        static getFrameMax(): number { return 10; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsMetalslugMummy374518 {
         static getName(): string { return 'metalslug_mummy.[37,45,18,0,0]'; }
 
@@ -246,6 +256,26 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 37; }
         static getFrameHeight(): number { return 45; }
         static getFrameMax(): number { return 18; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbit20020020 {
+        static getName(): string { return 'rabbit.[200,200,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,200,20,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 200; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRedflag20232410 {
+        static getName(): string { return 'redflag.[202,324,10,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/redflag.[202,324,10,0,0].png'); }
+        static getFrameWidth(): number { return 202; }
+        static getFrameHeight(): number { return 324; }
+        static getFrameMax(): number { return 10; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
