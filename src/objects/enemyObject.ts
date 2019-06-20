@@ -2,7 +2,7 @@
 import * as Assets from '../assets';
 
 export default class EnemyObject extends Phaser.Sprite {
-  public gravity: number;
+  private gravity: number;
 
   public enemy: Phaser.Sprite;
   public spawnPoint: Phaser.Point;

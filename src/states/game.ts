@@ -5,6 +5,7 @@ import PlayerObject from '../objects/playerObject';
 import RopeObject from '../objects/ropeObject';
 import EnemyObject from '../objects/enemyObject';
 import CheckpointObject from '../objects/checkpointObject';
+import PropellerEnemyObject from '../objects/propellerEnemyObject';
 
 export default class Game extends Phaser.State {
   public readonly gravity = 1800;
@@ -53,9 +54,7 @@ export default class Game extends Phaser.State {
     // # Enemies
     for (let i = 0; i < this.enemyObjs.length; i++) {
       let enemy = this.enemyObjs[i];
-      if (enemy.gravity !== 0) {
-        this.game.physics.arcade.collide(enemy.enemy, this.mapObj.obstacleLayer);
-      }
+      this.game.physics.arcade.collide(enemy.enemy, this.mapObj.obstacleLayer);
       /*for (let j = i + 1; j < this.enemyObjs.length; j++) {
         let enemy2 = this.enemyObjs[j];
         this.game.physics.arcade.collide(enemy.enemy, enemy2.enemy);
