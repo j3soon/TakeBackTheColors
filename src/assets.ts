@@ -101,6 +101,106 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/collectibles/crystal_white.png'); }
     }
+    export class ImagesCollectiblesCrystalCrystalBlack {
+        static getName(): string { return 'crystal_black'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack1 {
+        static getName(): string { return 'crystal_black1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack2 {
+        static getName(): string { return 'crystal_black2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack3 {
+        static getName(): string { return 'crystal_black3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue {
+        static getName(): string { return 'crystal_blue'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue1 {
+        static getName(): string { return 'crystal_blue1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue2 {
+        static getName(): string { return 'crystal_blue2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue3 {
+        static getName(): string { return 'crystal_blue3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen {
+        static getName(): string { return 'crystal_green'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen1 {
+        static getName(): string { return 'crystal_green1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen2 {
+        static getName(): string { return 'crystal_green2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen3 {
+        static getName(): string { return 'crystal_green3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed {
+        static getName(): string { return 'crystal_red'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed1 {
+        static getName(): string { return 'crystal_red1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed2 {
+        static getName(): string { return 'crystal_red2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed3 {
+        static getName(): string { return 'crystal_red3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite {
+        static getName(): string { return 'crystal_white'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite1 {
+        static getName(): string { return 'crystal_white1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite2 {
+        static getName(): string { return 'crystal_white2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite3 {
+        static getName(): string { return 'crystal_white3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white3.png'); }
+    }
     export class ImagesCollectiblesGold {
         static getName(): string { return 'gold'; }
 
@@ -151,14 +251,19 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/player.png'); }
     }
-    export class SpritesheetsEnemiesCloud {
-        static getName(): string { return 'cloud'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/cloud.png'); }
-    }
 }
 
 export namespace Spritesheets {
+    export class SpritesheetsCrystalsCrystal27336420 {
+        static getName(): string { return 'crystal.[273,364,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/crystals/crystal.[273,364,20,0,0].png'); }
+        static getFrameWidth(): number { return 273; }
+        static getFrameHeight(): number { return 364; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsEnemiesExplosion64636 {
         static getName(): string { return 'explosion.[64,63,6,0,0]'; }
 
@@ -256,6 +361,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 202; }
         static getFrameHeight(): number { return 324; }
         static getFrameMax(): number { return 10; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRespawn25625625 {
+        static getName(): string { return 'respawn.[256,256,25,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/respawn.[256,256,25,0,0].png'); }
+        static getFrameWidth(): number { return 256; }
+        static getFrameHeight(): number { return 256; }
+        static getFrameMax(): number { return 25; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
