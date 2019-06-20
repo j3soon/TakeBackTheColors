@@ -71,7 +71,7 @@ export default class Game extends Phaser.State {
     });
     // Die if hit enemy.
     for (let enemy of this.enemyObjs) {
-      this.game.physics.arcade.collide(this.playerObj.player, enemy.enemy, () => {
+      this.game.physics.arcade.overlap(this.playerObj.player, enemy.enemy, () => {
         this.playerObj.respawn();
       });
     }
