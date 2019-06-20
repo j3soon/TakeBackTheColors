@@ -2,8 +2,8 @@ import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 
 export default class WingEnemyObject extends EnemyObject {
-  private readonly speedXBase = 200;
-  private readonly speedYBase = 400;
+  private readonly speedXBase = 100;
+  private readonly speedYBase = 200;
 
   private leftBound: number;
   private rightBound: number;
