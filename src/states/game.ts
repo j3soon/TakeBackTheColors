@@ -45,7 +45,9 @@ export default class Game extends Phaser.State {
     if (this.ropeObj.ropeState !== 'idle') {
       // TODO: make this.enemyObjs to group.
       for (let enemy of this.enemyObjs) {
-        this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, enemy.enemy);
+        this.game.physics.arcade.overlap(this.ropeObj.ropeAnchor, enemy.enemy, () => {
+          this.ropeObj.ropeState = 'idle';
+        });
       }
       // Rope disappear if hit instant death tiles.
       this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.instantDeathLayer, () => {
