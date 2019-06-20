@@ -139,33 +139,13 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesPropellerFly1221392 {
-        static getName(): string { return 'propeller_fly.[122,139,2,0,0]'; }
+    export class SpritesheetsEnemiesPropeller1221396 {
+        static getName(): string { return 'propeller.[122,139,6,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_fly.[122,139,2,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/propeller.[122,139,6,0,0].png'); }
         static getFrameWidth(): number { return 122; }
         static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesPropellerIdle1221392 {
-        static getName(): string { return 'propeller_idle.[122,139,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_idle.[122,139,2,0,0].png'); }
-        static getFrameWidth(): number { return 122; }
-        static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesPropellerJump1221392 {
-        static getName(): string { return 'propeller_jump.[122,139,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_jump.[122,139,2,0,0].png'); }
-        static getFrameWidth(): number { return 122; }
-        static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
+        static getFrameMax(): number { return 6; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -199,23 +179,13 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesWingFly2161475 {
-        static getName(): string { return 'wing_fly.[216,147,5,0,0]'; }
+    export class SpritesheetsEnemiesWing2161475 {
+        static getName(): string { return 'wing.[216,147,5,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/wing_fly.[216,147,5,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/wing.[216,147,5,0,0].png'); }
         static getFrameWidth(): number { return 216; }
         static getFrameHeight(): number { return 147; }
         static getFrameMax(): number { return 5; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesWingIdle2161472 {
-        static getName(): string { return 'wing_idle.[216,147,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/wing_idle.[216,147,2,0,0].png'); }
-        static getFrameWidth(): number { return 216; }
-        static getFrameHeight(): number { return 147; }
-        static getFrameMax(): number { return 2; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }

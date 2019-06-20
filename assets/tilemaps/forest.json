@@ -39,6 +39,50 @@
         }, 
         {
          "draworder":"topdown",
+         "id":21,
+         "name":"WingEnemies",
+         "objects":[
+                {
+                 "height":138,
+                 "id":71,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":226.666666666667,
+                 "x":28.3333333333333,
+                 "y":1947
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":20,
+         "name":"PropellerEnemies",
+         "objects":[
+                {
+                 "height":138,
+                 "id":70,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":10,
+                 "x":410.001666666667,
+                 "y":1938.33333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":18,
          "name":"SawEnemies",
          "objects":[
@@ -521,8 +565,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":19,
- "nextobjectid":68,
+ "nextlayerid":22,
+ "nextobjectid":72,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
