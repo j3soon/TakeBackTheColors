@@ -251,6 +251,11 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/player.png'); }
     }
+    export class ImagesShiny {
+        static getName(): string { return 'shiny'; }
+
+        static getPNG(): string { return require('assets/images/shiny.png'); }
+    }
 }
 
 export namespace Spritesheets {
