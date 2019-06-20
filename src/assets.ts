@@ -251,6 +251,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/player.png'); }
     }
+    export class ImagesProjectileLightingBlue {
+        static getName(): string { return 'lighting_blue'; }
+
+        static getPNG(): string { return require('assets/images/projectile/lighting_blue.png'); }
+    }
+    export class ImagesProjectileLightingYellow {
+        static getName(): string { return 'lighting_yellow'; }
+
+        static getPNG(): string { return require('assets/images/projectile/lighting_yellow.png'); }
+    }
     export class ImagesShiny {
         static getName(): string { return 'shiny'; }
 
@@ -346,6 +356,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 37; }
         static getFrameHeight(): number { return 45; }
         static getFrameMax(): number { return 18; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsProjectileLightning551142 {
+        static getName(): string { return 'lightning.[55,114,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/projectile/lightning.[55,114,2,0,0].png'); }
+        static getFrameWidth(): number { return 55; }
+        static getFrameHeight(): number { return 114; }
+        static getFrameMax(): number { return 2; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
