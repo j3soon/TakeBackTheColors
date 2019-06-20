@@ -158,7 +158,7 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   private AnimationUpdate() {
     //console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
-    console.log(this.player.body.center);
+    // console.log(this.player.body.center);
     var onground = this.player.body.blocked.down;
     var moving = this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D);
     if(moving && this.animState != 'run' && onground){

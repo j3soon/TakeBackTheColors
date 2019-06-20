@@ -64,7 +64,7 @@ export default class RopeObject extends Phaser.Sprite {
     this.game.add.existing(this);
   }
   public ropeLocked_() {
-    console.log('locked');
+    // console.log('locked');
     this.ropeAnchor.body.velocity.x = 0;
     this.ropeAnchor.body.velocity.y = 0;
     this.ropeAnchor.body.gravity.y = 0;

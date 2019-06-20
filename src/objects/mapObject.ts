@@ -63,13 +63,13 @@ export default class MapObject extends Phaser.Sprite {
     // Object layers.
     // console.log(this.map.objects);
     let objPlayerSpawn = this.map.objects['Player'][0];
-    console.log(objPlayerSpawn);
+    // console.log(objPlayerSpawn);
     if (objPlayerSpawn.name !== 'PlayerSpawn')
       throw 'Tilemap Objects[\'Player\'][0].name !== PlayerSpawn';
     this.spawnPoint = new Phaser.Point(objPlayerSpawn.x + objPlayerSpawn.width / 2, objPlayerSpawn.y + objPlayerSpawn.height / 2);
     this.spawnPoint.x *= this.mapScale;
     this.spawnPoint.y *= this.mapScale;
-    console.log(this.spawnPoint);
+    // console.log(this.spawnPoint);
   }
   public createEnemies(game: Phaser.Game, gravity: number, player: Phaser.Sprite): EnemyObject[] {
     let enemies: EnemyObject[] = [];

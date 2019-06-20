@@ -79,7 +79,6 @@ export default class Game extends Phaser.State {
     for (let collectible of this.collectibles) {
       this.game.physics.arcade.collide(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
         (<CrystalObject>collectible).callback();
-        (<CrystalObject>collectible).collectible.kill();
         collectible.kill();
       });
     }
