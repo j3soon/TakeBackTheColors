@@ -179,33 +179,13 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesSpikeIdle1141552 {
-        static getName(): string { return 'spike_idle.[114,155,2,0,0]'; }
+    export class SpritesheetsEnemiesSpike1201594 {
+        static getName(): string { return 'spike.[120,159,4,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_idle.[114,155,2,0,0].png'); }
-        static getFrameWidth(): number { return 114; }
-        static getFrameHeight(): number { return 155; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesSpikeLeft1201592 {
-        static getName(): string { return 'spike_left.[120,159,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_left.[120,159,2,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/spike.[120,159,4,0,0].png'); }
         static getFrameWidth(): number { return 120; }
         static getFrameHeight(): number { return 159; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesSpikeRight1201592 {
-        static getName(): string { return 'spike_right.[120,159,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_right.[120,159,2,0,0].png'); }
-        static getFrameWidth(): number { return 120; }
-        static getFrameHeight(): number { return 159; }
-        static getFrameMax(): number { return 2; }
+        static getFrameMax(): number { return 4; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
