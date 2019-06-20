@@ -22,7 +22,7 @@ export default class Game extends Phaser.State {
     this.playerObj = new PlayerObject(this.game, this.mapObj.spawnPoint, this.gravity);
     this.ropeObj = new RopeObject(this.game, this.gravity, this.playerObj.player);
     this.playerObj.setRopeObject(this.ropeObj);
-    this.enemyObjs = this.mapObj.createEnemies(this.game, this.gravity);
+    this.enemyObjs = this.mapObj.createEnemies(this.game, this.gravity, this.playerObj.player);
     this.checkpointObjs = this.mapObj.createCheckpoints(this.game);
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
