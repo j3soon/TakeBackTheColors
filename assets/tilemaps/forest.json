@@ -39,6 +39,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":22,
+         "name":"Collectibles",
+         "objects":[
+                {
+                 "height":0,
+                 "id":73,
+                 "name":"BlackCrystal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2988.25,
+                 "y":1903.83333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":21,
          "name":"WingEnemies",
          "objects":[
@@ -565,8 +587,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":22,
- "nextobjectid":72,
+ "nextlayerid":23,
+ "nextobjectid":74,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

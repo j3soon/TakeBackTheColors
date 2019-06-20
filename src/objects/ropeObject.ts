@@ -23,6 +23,9 @@ export default class RopeObject extends Phaser.Sprite {
   private cheating = false;
   private positionCompensate = false;
 
+  // Abilities.
+  public ropeEnabled = false;
+
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
   *
@@ -76,7 +79,7 @@ export default class RopeObject extends Phaser.Sprite {
     if (ms.leftButton.isDown !== this.leftMouse) {
       if (ms.leftButton.isDown === false) {
         this.ropeState = 'idle';
-      } else {
+      } else if (this.ropeEnabled){
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
         this.ropeAnchor.position.copyFrom(this.player.position);

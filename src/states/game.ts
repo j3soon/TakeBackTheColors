@@ -5,6 +5,7 @@ import PlayerObject from '../objects/playerObject';
 import RopeObject from '../objects/ropeObject';
 import EnemyObject from '../objects/enemyObject';
 import CheckpointObject from '../objects/checkpointObject';
+import CrystalObject from '../objects/collectibles/crystalObject';
 
 export default class Game extends Phaser.State {
   public readonly gravity = 1800;
@@ -14,6 +15,7 @@ export default class Game extends Phaser.State {
   private ropeObj: RopeObject;
   private enemyObjs: EnemyObject[];
   private checkpointObjs: CheckpointObject[];
+  private collectibles: Phaser.Sprite[];
 
   public create(): void {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -24,6 +26,7 @@ export default class Game extends Phaser.State {
     this.playerObj.setRopeObject(this.ropeObj);
     this.enemyObjs = this.mapObj.createEnemies(this.game, this.gravity, this.playerObj.player);
     this.checkpointObjs = this.mapObj.createCheckpoints(this.game);
+    this.collectibles = this.mapObj.createCollectibles(this.game, this.playerObj);
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
 
     // Fix Tunneling (Bullet-Through-Paper) problem.
@@ -68,6 +71,14 @@ export default class Game extends Phaser.State {
     for (let enemy of this.enemyObjs) {
       this.game.physics.arcade.collide(this.playerObj.player, enemy.enemy, () => {
         this.playerObj.respawn();
+      });
+    }
+    // # Collectibles
+    for (let collectible of this.collectibles) {
+      this.game.physics.arcade.collide(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
+        (<CrystalObject>collectible).callback();
+        (<CrystalObject>collectible).collectible.kill();
+        collectible.kill();
       });
     }
     // # Checkpoints

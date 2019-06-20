@@ -47,7 +47,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
     this.player.body.setSize(100, 100, 50, 100);
-    
+
     this.gravity = gravity;
     // Setup Constants.
     this.jumpPower = this.gravity / 3;
@@ -146,6 +146,9 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.body.velocity.y = 0;
     this.ropeObj.ropeState = 'idle';
     // TODO: respawn all enemies.
+  }
+  public setRopeEnabled() {
+    this.ropeObj.ropeEnabled = true;
   }
   private AnimationUpdate() {
     //console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);

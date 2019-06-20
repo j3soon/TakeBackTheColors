@@ -1,6 +1,8 @@
 import * as Assets from '../assets';
+import PlayerObject from './playerObject';
 import EnemyObject from './enemyObject';
 import CheckpointObject from './checkpointObject';
+import CollectibleObject from './collectibles/crystalObject';
 import SpikeEnemyObject from './enemies/spikeEnemyObject';
 import SawEnemyObject from './enemies/sawEnemyObject';
 import PropellerEnemyObject from './enemies/propellerEnemyObject';
@@ -107,9 +109,24 @@ export default class MapObject extends Phaser.Sprite {
       let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
       pnt.x *= this.mapScale;
       pnt.y *= this.mapScale;
-      let check = new CheckpointObject(game, pnt);
-      checkpoints.push(check);
+      let checkpoint = new CheckpointObject(game, pnt);
+      checkpoints.push(checkpoint);
     }
     return checkpoints;
+  }
+  public createCollectibles(game: Phaser.Game, playerObj: PlayerObject): Phaser.Sprite[] {
+    let collectibles: Phaser.Sprite[] = [];
+    for (let obj of this.map.objects['Collectibles']) {
+      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+      pnt.x *= this.mapScale;
+      pnt.y *= this.mapScale;
+      if (obj.name === 'BlackCrystal') {
+        let collectible = new CollectibleObject(game, pnt, 0, playerObj);
+        collectibles.push(collectible);
+      } else {
+        throw 'No such crystal collectible name';
+      }
+    }
+    return collectibles;
   }
 }
