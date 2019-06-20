@@ -1,13 +1,12 @@
-import * as Assets from '../assets';
-import EnemyObject from './enemyObject';
+import * as Assets from '../../assets';
+import EnemyObject from '../enemyObject';
 
-export default class SawEnemyObject extends EnemyObject {
+export default class SpikeEnemyObject extends EnemyObject {
   private leftBound: number;
   private rightBound: number;
   private walkLeft = true;
-  private maxSpeed = 800;
-  private maxDistance = 2000;
-  private acceleration = 500;
+  private speed = 100;
+  private maxDistance = 1000;
 
   private player: Phaser.Sprite;
 
@@ -16,9 +15,11 @@ export default class SawEnemyObject extends EnemyObject {
     this.leftBound = leftBound;
     this.rightBound = rightBound;
     this.player = player;
-    this.enemy = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesSawRoll1481482.getName());
-    this.enemy.animations.add('roll', [0, 1], 24, true);
-    this.enemy.animations.play('roll');
+    this.enemy = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesSpike1201594.getName());
+    this.enemy.animations.add('idle', [0], 12, true);
+    this.enemy.animations.add('walk', [0, 1], 12, true);
+    this.enemy.animations.add('walkRight', [2, 3], 12, true);
+    this.enemy.animations.play('idle');
     this.enemy.anchor.setTo(0.5);
     this.enemy.scale.set(0.5, 0.5);
     game.physics.enable(this.enemy);
@@ -31,7 +32,7 @@ export default class SawEnemyObject extends EnemyObject {
       if (this.leftBound < this.player.x && this.player.x < this.rightBound && this.player.y < this.enemy.y) {
         this.walkLeft = (this.player.x < this.enemy.x);
       }
-      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.maxSpeed * this.game.time.elapsed / 1000) {
+      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.speed * this.game.time.elapsed / 1000) {
         idle = true;
       }
     }
@@ -41,17 +42,13 @@ export default class SawEnemyObject extends EnemyObject {
     } else if (this.walkLeft === false && (this.enemy.x > this.rightBound || this.enemy.body.blocked.right)) {
       this.walkLeft = true;
     }
+    // Set velocity.
+    this.enemy.body.velocity.x = this.speed * (this.walkLeft ? -1 : 1);
     if (idle) {
-      // Idle
-    }
-    else if (this.walkLeft) {
-      this.enemy.body.velocity.x -= this.acceleration * this.game.time.elapsed / 1000;
+      this.enemy.body.velocity.x = 0;
+      this.enemy.animations.play('idle');
     } else {
-      this.enemy.body.velocity.x += this.acceleration * this.game.time.elapsed / 1000;
-    }
-    // Clamp velocity.
-    if (Math.abs(this.enemy.body.velocity.x) > this.maxSpeed) {
-      this.enemy.body.velocity.x = this.maxSpeed * Math.sign(this.enemy.body.velocity.x);
+      this.enemy.animations.play('walk');
     }
   }
 }

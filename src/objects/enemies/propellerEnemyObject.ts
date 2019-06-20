@@ -1,5 +1,5 @@
-import * as Assets from '../assets';
-import EnemyObject from './enemyObject';
+import * as Assets from '../../assets';
+import EnemyObject from '../enemyObject';
 
 export default class PropellerEnemyObject extends EnemyObject {
   private topBound: number;

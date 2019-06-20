@@ -1,10 +1,10 @@
 import * as Assets from '../assets';
 import EnemyObject from './enemyObject';
 import CheckpointObject from './checkpointObject';
-import SpikeEnemyObject from './spikeEnemyObject';
-import SawEnemyObject from './sawEnemyObject';
-import PropellerEnemyObject from './propellerEnemyObject';
-import WingEnemyObject from './wingEnemyObject';
+import SpikeEnemyObject from './enemies/spikeEnemyObject';
+import SawEnemyObject from './enemies/sawEnemyObject';
+import PropellerEnemyObject from './enemies/propellerEnemyObject';
+import WingEnemyObject from './enemies/wingEnemyObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
