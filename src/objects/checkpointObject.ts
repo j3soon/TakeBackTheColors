@@ -7,7 +7,7 @@ export default class CheckpointObject extends Phaser.Sprite {
 
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point) {
     super(game, 0, 0);
-    this.checkpoint = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsFlag20232410.getName());
+    this.checkpoint = game.add.sprite(spawnPoint.x + 25, spawnPoint.y, Assets.Spritesheets.SpritesheetsFlag20232410.getName());
     this.checkpoint.animations.add('anim');
     this.checkpoint.animations.play('anim', 24, true);
     this.checkpoint.anchor.setTo(0.5);
