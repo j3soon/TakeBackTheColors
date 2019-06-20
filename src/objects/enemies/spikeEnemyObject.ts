@@ -39,8 +39,12 @@ export default class SpikeEnemyObject extends EnemyObject {
     // Change direction
     if (this.walkLeft === true && (this.enemy.x < this.leftBound || this.enemy.body.blocked.left)) {
       this.walkLeft = false;
+      if (this.enemy.x > this.player.x)
+        idle = true;
     } else if (this.walkLeft === false && (this.enemy.x > this.rightBound || this.enemy.body.blocked.right)) {
       this.walkLeft = true;
+      if (this.enemy.x < this.player.x)
+        idle = true;
     }
     // Set velocity.
     this.enemy.body.velocity.x = this.speed * (this.walkLeft ? -1 : 1);
