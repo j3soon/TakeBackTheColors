@@ -145,6 +145,12 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     this.ropeObj.ropeState = 'idle';
+    // Add respawn effect.
+    let respawn = this.game.add.sprite(this.player.x, this.player.y, Assets.Spritesheets.SpritesheetsRespawn25625625.getName())
+    respawn.anchor.setTo(0.5);
+    respawn.scale.set(0.6, 0.6);
+    respawn.animations.add('anim', null, 24, true);
+    respawn.animations.play('anim', null, false, true);
     // TODO: respawn all enemies.
   }
   public setRopeEnabled() {

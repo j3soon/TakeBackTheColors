@@ -28,7 +28,7 @@ export default class CrystalObject extends Phaser.Sprite {
     this.collectible = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsCrystalsCrystal27336420.getName());
     this.collectible.animations.add('idle', spriteId, 12, true);
     this.collectible.animations.play('idle');
-    this.collectible.anchor.setTo(0.25);
+    this.collectible.anchor.setTo(0.5);
     this.collectible.scale.set(0.25, 0.25);
     game.physics.enable(this.collectible);
     // Inject this object to event loop.

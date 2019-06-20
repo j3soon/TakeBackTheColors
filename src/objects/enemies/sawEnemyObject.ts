@@ -26,9 +26,9 @@ export default class SawEnemyObject extends EnemyObject {
   }
   public update() {
     let idle = false;
-    // Follow player X if player is at top and within range.
+    // Target player X.
     if (Phaser.Math.distance(this.enemy.x, this.enemy.y, this.player.x, this.player.y) <= this.maxDistance) {
-      if (this.leftBound < this.player.x && this.player.x < this.rightBound && this.player.y < this.enemy.y) {
+      if (this.leftBound < this.player.x && this.player.x < this.rightBound) {
         this.walkLeft = (this.player.x < this.enemy.x);
       }
       if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.maxSpeed * this.game.time.elapsed / 1000) {
