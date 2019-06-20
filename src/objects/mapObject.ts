@@ -73,58 +73,70 @@ export default class MapObject extends Phaser.Sprite {
   }
   public createEnemies(game: Phaser.Game, gravity: number, player: Phaser.Sprite): EnemyObject[] {
     let enemies: EnemyObject[] = [];
-    for (let obj of this.map.objects['SpikeEnemies']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      let ene = new SpikeEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
-      enemies.push(ene);
+    if (this.map.objects['SpikeEnemies'] !== undefined) {
+      for (let obj of this.map.objects['SpikeEnemies']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new SpikeEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
+        enemies.push(ene);
+      }
     }
-    for (let obj of this.map.objects['SawEnemies']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      let ene = new SawEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
-      enemies.push(ene);
+    if (this.map.objects['PropellerEnemies'] !== undefined) {
+      for (let obj of this.map.objects['SawEnemies']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new SawEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
+        enemies.push(ene);
+      }
     }
-    for (let obj of this.map.objects['PropellerEnemies']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      let ene = new PropellerEnemyObject(game, pnt, gravity, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale, player);
-      enemies.push(ene);
+    if (this.map.objects['PropellerEnemies'] !== undefined) {
+      for (let obj of this.map.objects['PropellerEnemies']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new PropellerEnemyObject(game, pnt, gravity, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale, player);
+        enemies.push(ene);
+      }
     }
-    for (let obj of this.map.objects['WingEnemies']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      let ene = new WingEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale, player);
-      enemies.push(ene);
+    if (this.map.objects['WingEnemies'] !== undefined) {
+      for (let obj of this.map.objects['WingEnemies']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new WingEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale, player);
+        enemies.push(ene);
+      }
     }
     return enemies;
   }
   public createCheckpoints(game: Phaser.Game): CheckpointObject[] {
     let checkpoints: CheckpointObject[] = [];
-    for (let obj of this.map.objects['Checkpoints']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      let checkpoint = new CheckpointObject(game, pnt);
-      checkpoints.push(checkpoint);
+    if (this.map.objects['Checkpoints'] !== undefined) {
+      for (let obj of this.map.objects['Checkpoints']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let checkpoint = new CheckpointObject(game, pnt);
+        checkpoints.push(checkpoint);
+      }
     }
     return checkpoints;
   }
   public createCollectibles(game: Phaser.Game, playerObj: PlayerObject): Phaser.Sprite[] {
     let collectibles: Phaser.Sprite[] = [];
-    for (let obj of this.map.objects['Collectibles']) {
-      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-      pnt.x *= this.mapScale;
-      pnt.y *= this.mapScale;
-      if (obj.name === 'BlackCrystal') {
-        let collectible = new CollectibleObject(game, pnt, 0, playerObj);
-        collectibles.push(collectible);
-      } else {
-        throw 'No such crystal collectible name';
+    if (this.map.objects['Collectibles'] !== undefined) {
+      for (let obj of this.map.objects['Collectibles']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        if (obj.name === 'BlackCrystal') {
+          let collectible = new CollectibleObject(game, pnt, 0, playerObj);
+          collectibles.push(collectible);
+        } else {
+          throw 'No such crystal collectible name';
+        }
       }
     }
     return collectibles;
