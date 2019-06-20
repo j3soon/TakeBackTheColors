@@ -26,12 +26,14 @@ export default class PropellerEnemyObject extends EnemyObject {
   }
   public update() {
     // Change direction
-    if (this.walkTop === true && (this.enemy.y < this.topBound || this.enemy.body.blocked.top)) {
+    if (this.walkTop === true && (this.enemy.y < this.topBound || this.enemy.body.blocked.up)) {
       this.walkTop = false;
-    } else if (this.walkTop === false && (this.enemy.y > this.bottomBound || this.enemy.body.blocked.bottom)) {
+    } else if (this.walkTop === false && (this.enemy.y > this.bottomBound || this.enemy.body.blocked.down)) {
       this.walkTop = true;
     }
     // Set velocity.
     this.enemy.body.velocity.y = this.speed * (this.walkTop ? -1 : 1);
+    console.log(this.enemy.body.blocked.bottom);
+    console.log(this.enemy.body.velocity.y);
   }
 }

@@ -43,10 +43,10 @@ export default class WingEnemyObject extends EnemyObject {
       this.walkLeft = true;
       changed = true;
     }
-    if (this.walkTop === true && (this.enemy.y < this.topBound || this.enemy.body.blocked.top)) {
+    if (this.walkTop === true && (this.enemy.y < this.topBound || this.enemy.body.blocked.up)) {
       this.walkTop = false;
       changed = true;
-    } else if (this.walkTop === false && (this.enemy.y > this.bottomBound || this.enemy.body.blocked.bottom)) {
+    } else if (this.walkTop === false && (this.enemy.y > this.bottomBound || this.enemy.body.blocked.down)) {
       this.walkTop = true;
       changed = true;
     }
