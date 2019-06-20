@@ -38,6 +38,7 @@ export default class Game extends Phaser.State {
     this.enemyObjs.push(new EnemyObject(this.game, new Phaser.Point(100, 1000), this.gravity));
   }
   update(): void {
+    // # Rope
     if (this.ropeObj.ropeState !== 'idle') {
       // TODO: make this.enemyObjs to group.
       for (let enemy of this.enemyObjs) {
@@ -49,6 +50,13 @@ export default class Game extends Phaser.State {
       });
       this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.obstacleLayer);
     }
+    // # Enemies
+    for (let enemy of this.enemyObjs) {
+      if (enemy.gravity !== 0) {
+        this.game.physics.arcade.collide(enemy.enemy, this.mapObj.obstacleLayer);
+      }
+    }
+    // # Player
     // Die if hit instant death tiles.
     this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.instantDeathLayer, () => {
       this.playerObj.respawn();
@@ -59,7 +67,7 @@ export default class Game extends Phaser.State {
         this.playerObj.respawn();
       });
     }
-    // Checkpoints
+    // # Checkpoints
     for (let checkpoint of this.checkpointObjs) {
       if (checkpoint.used)
         continue;
@@ -69,6 +77,7 @@ export default class Game extends Phaser.State {
         this.playerObj.spawnPoint.y = checkpoint.checkpoint.y;
       });
     }
+    // # Player'
     // At last, check against walls so that dying can be more accurate.
     this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.obstacleLayer);
   }

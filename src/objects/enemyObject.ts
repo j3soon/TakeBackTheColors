@@ -2,7 +2,7 @@
 import * as Assets from '../assets';
 
 export default class EnemyObject extends Phaser.Sprite {
-  private gravity: number;
+  public gravity: number;
 
   public enemy: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
@@ -10,12 +10,6 @@ export default class EnemyObject extends Phaser.Sprite {
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
     this.spawnPoint = spawnPoint;
-    this.enemy = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesWingFly2161475.getName());
-    this.enemy.animations.add('anim');
-    this.enemy.animations.play('anim', 12, true);
-    this.enemy.anchor.setTo(0.5);
-    this.enemy.scale.set(0.5, 0.5);
-    game.physics.enable(this.enemy);
     // Inject this object to event loop.
     game.add.existing(this);
   }
