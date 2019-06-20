@@ -76,6 +76,13 @@ export default class MapObject extends Phaser.Sprite {
       let ene = new SpikeEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
       enemies.push(ene);
     }
+    for (let obj of this.map.objects['SawEnemies']) {
+      let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+      pnt.x *= this.mapScale;
+      pnt.y *= this.mapScale;
+      let ene = new SawEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
+      enemies.push(ene);
+    }
     return enemies;
   }
   public createCheckpoints(game: Phaser.Game): CheckpointObject[] {
