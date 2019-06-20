@@ -76,6 +76,31 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/collectibles/bronze.png'); }
     }
+    export class ImagesCollectiblesCrystalBlack {
+        static getName(): string { return 'crystal_black'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_black.png'); }
+    }
+    export class ImagesCollectiblesCrystalBlue {
+        static getName(): string { return 'crystal_blue'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_blue.png'); }
+    }
+    export class ImagesCollectiblesCrystalGreen {
+        static getName(): string { return 'crystal_green'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_green.png'); }
+    }
+    export class ImagesCollectiblesCrystalRed {
+        static getName(): string { return 'crystal_red'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_red.png'); }
+    }
+    export class ImagesCollectiblesCrystalWhite {
+        static getName(): string { return 'crystal_white'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_white.png'); }
+    }
     export class ImagesCollectiblesGold {
         static getName(): string { return 'gold'; }
 
@@ -125,6 +150,11 @@ export namespace Images {
         static getName(): string { return 'player'; }
 
         static getPNG(): string { return require('assets/images/player.png'); }
+    }
+    export class SpritesheetsEnemiesCloud {
+        static getName(): string { return 'cloud'; }
+
+        static getPNG(): string { return require('assets/spritesheets/enemies/cloud.png'); }
     }
 }
 
