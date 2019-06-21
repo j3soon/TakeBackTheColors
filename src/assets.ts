@@ -11,61 +11,6 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/background_template.png'); }
     }
-    export class ImagesBgOldLayer0 {
-        static getName(): string { return 'layer0'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer0.png'); }
-    }
-    export class ImagesBgOldLayer1 {
-        static getName(): string { return 'layer1'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer1.png'); }
-    }
-    export class ImagesBgOldLayer10 {
-        static getName(): string { return 'layer10'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer10.png'); }
-    }
-    export class ImagesBgOldLayer2 {
-        static getName(): string { return 'layer2'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer2.png'); }
-    }
-    export class ImagesBgOldLayer3 {
-        static getName(): string { return 'layer3'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer3.png'); }
-    }
-    export class ImagesBgOldLayer4 {
-        static getName(): string { return 'layer4'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer4.png'); }
-    }
-    export class ImagesBgOldLayer5 {
-        static getName(): string { return 'layer5'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer5.png'); }
-    }
-    export class ImagesBgOldLayer6 {
-        static getName(): string { return 'layer6'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer6.png'); }
-    }
-    export class ImagesBgOldLayer7 {
-        static getName(): string { return 'layer7'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer7.png'); }
-    }
-    export class ImagesBgOldLayer8 {
-        static getName(): string { return 'layer8'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer8.png'); }
-    }
-    export class ImagesBgOldLayer9 {
-        static getName(): string { return 'layer9'; }
-
-        static getPNG(): string { return require('assets/images/bg-old/layer9.png'); }
-    }
     export class ImagesBgLayer0 {
         static getName(): string { return 'layer0'; }
 
@@ -572,6 +517,11 @@ export namespace JSON {
 }
 
 export namespace TilemapJSON {
+    export class TilemapsForestTop {
+        static getName(): string { return 'forest-top'; }
+
+        static getJSON(): string { return require('assets/tilemaps/forest-top.json'); }
+    }
     export class TilemapsForest {
         static getName(): string { return 'forest'; }
 
