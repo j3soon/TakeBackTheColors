@@ -17,7 +17,12 @@ export default class Game extends Phaser.State {
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
 
+  public preload(): void {
+      this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
+  }
+
   public create(): void {
+    // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bgObj = new BackgroundObject(this.game);
     this.mapObj = new MapObject(this.game);
@@ -27,7 +32,9 @@ export default class Game extends Phaser.State {
     this.enemyObjs = this.mapObj.createEnemies(this.game, this.gravity, this.playerObj.player);
     this.checkpointObjs = this.mapObj.createCheckpoints(this.game);
     this.collectibles = this.mapObj.createCollectibles(this.game, this.playerObj);
+    this.bgObj.setTopLayers();
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+    this.game.renderer.renderSession.roundPixels = true;
 
     // Fix Tunneling (Bullet-Through-Paper) problem.
     this.game.physics.arcade.TILE_BIAS = 38;
@@ -36,7 +43,7 @@ export default class Game extends Phaser.State {
         event.preventDefault();
         return false;
     });
-    // this.game.time.advancedTiming = true;
+    this.game.time.advancedTiming = true;
 
     this.enemyObjs.push(new EnemyObject(this.game, new Phaser.Point(100, 1000), this.gravity));
   }
@@ -97,7 +104,7 @@ export default class Game extends Phaser.State {
     this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.obstacleLayer);
   }
   render(): void {
-    // this.game.debug.text(this.game.time.fps.toString(), 2, 60, "#00ff00", "40pt Consolas");
+    this.game.debug.text(this.game.time.fps.toString(), 20, 60, "#00ff00", "40pt Consolas");
   }
   public postUpdate(): void {
   }
