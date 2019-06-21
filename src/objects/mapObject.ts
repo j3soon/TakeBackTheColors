@@ -7,7 +7,6 @@ import SpikeEnemyObject from './enemies/spikeEnemyObject';
 import SawEnemyObject from './enemies/sawEnemyObject';
 import PropellerEnemyObject from './enemies/propellerEnemyObject';
 import WingEnemyObject from './enemies/wingEnemyObject';
-import CloudEnemyObject from './enemies/cloudEnemyObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
@@ -99,7 +98,7 @@ export default class MapObject extends Phaser.Sprite {
         enemies.push(ene);
       }
     }
-    if (this.map.objects['SawEnemies'] !== undefined) {
+    if (this.map.objects['PropellerEnemies'] !== undefined) {
       for (let obj of this.map.objects['SawEnemies']) {
         let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
         pnt.x *= this.mapScale;
@@ -123,15 +122,6 @@ export default class MapObject extends Phaser.Sprite {
         pnt.x *= this.mapScale;
         pnt.y *= this.mapScale;
         let ene = new WingEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale, player);
-        enemies.push(ene);
-      }
-    }
-    if (this.map.objects['CloudEnemies'] !== undefined) {
-      for (let obj of this.map.objects['CloudEnemies']) {
-        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-        pnt.x *= this.mapScale;
-        pnt.y *= this.mapScale;
-        let ene = new CloudEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
         enemies.push(ene);
       }
     }
