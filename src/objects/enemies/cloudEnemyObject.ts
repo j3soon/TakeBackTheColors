@@ -8,9 +8,9 @@ export default class CloudEnemyObject extends EnemyObject {
   private walkLeft = true;
   private maxSpeed = 400;
   private maxDistance = 2000;
-  private acceleration = 400;
+  private acceleration = 800;
 
-  private maxShootDistance = 2000;
+  private maxShootDistance = 800;
   private coolDown = 0;
   private coolDownReset = 1;
 
@@ -28,13 +28,15 @@ export default class CloudEnemyObject extends EnemyObject {
     this.enemy.autoCull = true;
   }
   private checkShoot() {
-    if (Phaser.Math.distance(this.enemy.x, this.enemy.y, this.player.x, this.player.y) <= this.maxShootDistance) {
-      this.coolDown -= this.game.time.elapsed / 1000;
-      if (this.coolDown <= 0) {
-        this.coolDown = this.coolDownReset;
-        // Shoot
-        // TODO: Optmize it using object pool.
-        new LightningObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
+    if (this.leftBound < this.player.x && this.player.x < this.rightBound) {
+      if (Phaser.Math.distance(this.enemy.x, this.enemy.y, this.player.x, this.player.y) <= this.maxShootDistance) {
+        this.coolDown -= this.game.time.elapsed / 1000;
+        if (this.coolDown <= 0) {
+          this.coolDown = this.coolDownReset;
+          // Shoot
+          // TODO: Optmize it using object pool.
+          new LightningObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
+        }
       }
     }
   }
