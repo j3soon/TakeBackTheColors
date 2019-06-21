@@ -42,7 +42,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.scale.setTo(0.4);
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
-    this.player.body.setSize(100, 100, 50, 150);
+    this.player.body.setSize(130, 100, 60, 140);
     
     this.gravity = gravity;
     // Setup Constants.
@@ -129,7 +129,7 @@ export default class PlayerObject extends Phaser.Sprite {
     var moving = keybd.isDown(Phaser.Keyboard.D) || keybd.isDown(Phaser.Keyboard.A);
     var onground = this.player.body.blocked.down;
     var leaning = !onground && (this.player.body.blocked.left || this.player.body.blocked.right);
-    if(this.animator.Update(moving, onground, leaning, String(this.ropeObj.ropeState), this.player.body.velocity.y)) this.player.animations.play(this.animator.State());
+    if(this.animator.Update(moving, onground, leaning, String(this.ropeObj.ropeState), this.player.body.velocity.x, this.player.body.velocity.y, this.player.x, this.player.y, this.player.scale.x, this.player.scale.y, this.player)) this.player.animations.play(this.animator.State());
     this.player.scale.setTo((this.player.body.velocity.x > 0 ? -1 : 1) * Math.abs(this.player.scale.x), this.player.scale.y);
     // Motion
     if(this.animator.State() == 'run')
