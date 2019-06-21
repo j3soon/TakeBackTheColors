@@ -23,6 +23,7 @@ export default class PropellerEnemyObject extends EnemyObject {
     this.enemy.scale.set(0.5, 0.5);
     game.physics.enable(this.enemy);
     this.enemy.body.gravity.y = gravity;
+    this.enemy.autoCull = true;
   }
   public update() {
     // Change direction

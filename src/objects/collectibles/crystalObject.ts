@@ -40,6 +40,8 @@ export default class CrystalObject extends Phaser.Sprite {
     // Inject this object to event loop.
     game.add.existing(this);
     this.startTween();
+    this.shiny.autoCull = true;
+    this.collectible.autoCull = true;
   }
   public startTween() {
     this.shiny.scale.set(0.1, 0.1);

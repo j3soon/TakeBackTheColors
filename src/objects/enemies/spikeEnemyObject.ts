@@ -24,6 +24,7 @@ export default class SpikeEnemyObject extends EnemyObject {
     this.enemy.scale.set(0.5, 0.5);
     game.physics.enable(this.enemy);
     this.enemy.body.gravity.y = gravity;
+    this.enemy.autoCull = true;
   }
   public update() {
     let idle = false;
@@ -32,7 +33,7 @@ export default class SpikeEnemyObject extends EnemyObject {
       if (this.leftBound < this.player.x && this.player.x < this.rightBound) {
         this.walkLeft = (this.player.x < this.enemy.x);
       }
-      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.speed * this.game.time.elapsed / 1000) {
+      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.speed * this.game.time.physicsElapsed / 1000) {
         idle = true;
       }
     }

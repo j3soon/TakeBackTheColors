@@ -55,7 +55,8 @@ export default class MapObject extends Phaser.Sprite {
       // Pixel perfect scaling.
       layer.smoothed = false;
       // To improve performance.
-      layer.renderSettings.enableScrollDelta = false;
+      layer.autoCull = true;
+      // layer.renderSettings.enableScrollDelta = false;
     }
     // this.map.setCollision(1, true, this.layer);
     this.map.setCollisionByExclusion([], true, this.obstacleLayer);

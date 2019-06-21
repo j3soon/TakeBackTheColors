@@ -34,6 +34,7 @@ export default class Game extends Phaser.State {
     this.collectibles = this.mapObj.createCollectibles(this.game, this.playerObj);
     this.bgObj.setTopLayers();
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+    // Optmize
     this.game.renderer.renderSession.roundPixels = true;
 
     // Fix Tunneling (Bullet-Through-Paper) problem.

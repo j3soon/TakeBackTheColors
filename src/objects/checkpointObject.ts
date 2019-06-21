@@ -15,6 +15,7 @@ export default class CheckpointObject extends Phaser.Sprite {
     game.physics.enable(this.checkpoint);
     // Inject this object to event loop.
     game.add.existing(this);
+    this.checkpoint.autoCull = true;
   }
   public setUsed() {
     this.used = true;
