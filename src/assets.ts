@@ -1,6 +1,61 @@
 /* AUTO GENERATED FILE. DO NOT MODIFY. YOU WILL LOSE YOUR CHANGES ON BUILD. */
 
 export namespace Images {
+    export class ImagesDeprecatedBgOldLayer0 {
+        static getName(): string { return 'layer0'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer0.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer1 {
+        static getName(): string { return 'layer1'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer1.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer10 {
+        static getName(): string { return 'layer10'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer10.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer2 {
+        static getName(): string { return 'layer2'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer2.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer3 {
+        static getName(): string { return 'layer3'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer3.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer4 {
+        static getName(): string { return 'layer4'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer4.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer5 {
+        static getName(): string { return 'layer5'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer5.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer6 {
+        static getName(): string { return 'layer6'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer6.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer7 {
+        static getName(): string { return 'layer7'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer7.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer8 {
+        static getName(): string { return 'layer8'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer8.png'); }
+    }
+    export class ImagesDeprecatedBgOldLayer9 {
+        static getName(): string { return 'layer9'; }
+
+        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer9.png'); }
+    }
     export class ImagesAnchor {
         static getName(): string { return 'anchor'; }
 
@@ -547,6 +602,11 @@ export namespace Scripts {
         static getName(): string { return 'BlurY'; }
 
         static getJS(): string { return require('assets/scripts/BlurY.js'); }
+    }
+    export class ScriptsPhaserDebug119 {
+        static getName(): string { return 'phaser-debug-1.1.9'; }
+
+        static getJS(): string { return require('assets/scripts/phaser-debug-1.1.9.js'); }
     }
 }
 export namespace Shaders {
