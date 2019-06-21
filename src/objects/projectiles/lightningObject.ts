@@ -17,9 +17,10 @@ export default class LightningObject extends Phaser.Sprite {
     this.projectile.autoCull = true;
 
     let angle = Math.atan2(player.y - spawnPoint.y, player.x - spawnPoint.x);
-    // this.projectile.body.velocity.x = this.speed * Math.cos(angle);
-    // this.projectile.body.velocity.y = this.speed * Math.sin(angle);
-    this.projectile.body.velocity.y = this.speed;
+    this.projectile.body.velocity.x = this.speed * Math.cos(angle);
+    this.projectile.body.velocity.y = this.speed * Math.sin(angle);
+    // this.projectile.body.velocity.y = this.speed;
+    // this.projectile.body.velocity.x = xSpeed;
     // Inject this object to event loop.
     game.add.existing(this);
   }
