@@ -58,7 +58,6 @@ export default class CrystalObject extends Phaser.Sprite {
       this.tween.stop();
       this.tween2.stop();
       this.shiny.kill();
-      this.kill();
     }
   }
 }
