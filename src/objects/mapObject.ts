@@ -102,7 +102,7 @@ export default class MapObject extends Phaser.Sprite {
         enemies.push(ene);
       }
     }
-    if (this.map.objects['PropellerEnemies'] !== undefined) {
+    if (this.map.objects['SawEnemies'] !== undefined) {
       for (let obj of this.map.objects['SawEnemies']) {
         let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
         pnt.x *= this.mapScale;
