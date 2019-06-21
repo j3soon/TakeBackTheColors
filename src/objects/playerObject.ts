@@ -1,6 +1,7 @@
 // TODO: Maybe can modify the object directly without child sprite.
 import * as Assets from '../assets';
 import RopeObject from '../objects/ropeObject';
+import PlayerAnimation from '../playerAnimation';
 
 export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
@@ -10,10 +11,9 @@ export default class PlayerObject extends Phaser.Sprite {
   private readonly wallReleaseCountMax = 8;
   private wallReleaseCount = 0;
   private wallReleaseLeft = false;
-
+  private animator: PlayerAnimation;
   private ropeObj: RopeObject;
-  private animState = 'idle';
-
+  public moving: boolean;
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
 
@@ -34,20 +34,16 @@ export default class PlayerObject extends Phaser.Sprite {
     super(game, 0, 0);
     // Init player.
     this.spawnPoint = spawnPoint;
-    this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsRabbit20020020.getName());
-    this.player.animations.add('idle', [0], 1, true, true);
-    this.player.animations.add('run', [0, 1, 2, 3, 4], 10, true, true);
-    this.player.animations.add('up', [5, 6, 7, 8, 9], 15, true, true);
-    this.player.animations.add('down', [10, 11, 12, 13, 14], 15, true, true);
-    for(let i = 0; i < 5; i++)
-      this.player.animations.add(`air${i}`, [15 + i], 15, true, true);
+    this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsRabbit20025055.getName());
+    this.animator = new PlayerAnimation(this.player, this.ropeObj, game);
+    
     //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.player.scale.setTo(0.4);
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
-    this.player.body.setSize(100, 100, 50, 100);
-
+    this.player.body.setSize(100, 100, 50, 150);
+    
     this.gravity = gravity;
     // Setup Constants.
     this.jumpPower = this.gravity / 3;
@@ -130,16 +126,23 @@ export default class PlayerObject extends Phaser.Sprite {
     // Air friction
     this.player.body.velocity.x *= 0.99;
     this.player.body.velocity.y *= 0.99;
+    var moving = keybd.isDown(Phaser.Keyboard.D) || keybd.isDown(Phaser.Keyboard.A);
+    var onground = this.player.body.blocked.down;
+    var leaning = !onground && (this.player.body.blocked.left || this.player.body.blocked.right);
+    if(this.animator.Update(moving, onground, leaning, String(this.ropeObj.ropeState), this.player.body.velocity.y)) this.player.animations.play(this.animator.State());
+    this.player.scale.setTo((this.player.body.velocity.x > 0 ? -1 : 1) * Math.abs(this.player.scale.x), this.player.scale.y);
     // Motion
-    if((this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) && (this.player.body.blocked.down))
+    if(this.animator.State() == 'run')
       this.player.body.velocity.x *= moveSpeedFractionX[this.player.animations.frame % 5];
-    this.AnimationUpdate();
   }
   public getPlayer(): Phaser.Sprite {
     return this.player;
   }
   public setRopeObject(ropeObject: RopeObject) {
     this.ropeObj = ropeObject;
+  }
+  public getRopeObject() {
+    return this.ropeObj;
   }
   public respawn() {
     // Reset to spawn point. (Can be used as checkpoint)
@@ -158,34 +161,5 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public setRopeEnabled() {
     this.ropeObj.ropeEnabled = true;
-  }
-  private AnimationUpdate() {
-    //console.log(`Onground: ${this.player.body.blocked.down}, state: ${this.animState}`);
-    // console.log(this.player.body.center);
-    var onground = this.player.body.blocked.down;
-    var moving = this.game.input.keyboard.isDown(Phaser.Keyboard.A) || this.game.input.keyboard.isDown(Phaser.Keyboard.D);
-    if(moving && this.animState != 'run' && onground){
-      this.animState = "run";
-      this.player.animations.play(this.animState);
-    } else if(!moving && onground && this.animState != 'idle') {
-      this.animState = "idle";
-      this.player.animations.play(this.animState);
-    } else if (!onground) {
-      const threshold = 180;
-      let tooFast = Math.abs(this.player.body.velocity.y) > threshold;
-      if(tooFast)
-        this.animState = this.player.body.velocity.y < 0 ? "up" : "down";
-      else if(Math.abs(this.player.body.velocity.y) < 0.2 * threshold)
-        this.animState = "air2";
-      else if(Math.abs(this.player.body.velocity.y) < 0.5 * threshold)
-        this.animState = this.player.body.velocity.y < 0 ? "air1" : "air3";
-      else
-        this.animState = this.player.body.velocity.y < 0 ? "air0" : "air4";
-      this.player.animations.play(this.animState);
-    }
-
-
-    this.player.scale.setTo((this.player.body.velocity.x > 0 ? -1 : 1) * Math.abs(this.player.scale.x), this.player.scale.y);
-
   }
 }
