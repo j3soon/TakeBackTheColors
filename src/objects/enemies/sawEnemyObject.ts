@@ -31,7 +31,7 @@ export default class SawEnemyObject extends EnemyObject {
       if (this.leftBound < this.player.x && this.player.x < this.rightBound) {
         this.walkLeft = (this.player.x < this.enemy.x);
       }
-      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.maxSpeed * this.game.time.elapsed / 1000) {
+      if (Phaser.Math.distance(this.enemy.x, 0, this.player.x, 0) <= this.maxSpeed * this.game.time.physicsElapsed / 1000) {
         idle = true;
       }
     }
@@ -43,11 +43,12 @@ export default class SawEnemyObject extends EnemyObject {
     }
     if (idle) {
       // Idle
+      this.enemy.body.acceleration.x = 0;
     }
     else if (this.walkLeft) {
-      this.enemy.body.velocity.x -= this.acceleration * this.game.time.elapsed / 1000;
+      this.enemy.body.acceleration.x = -this.acceleration;
     } else {
-      this.enemy.body.velocity.x += this.acceleration * this.game.time.elapsed / 1000;
+      this.enemy.body.velocity.x = this.acceleration;
     }
     // Clamp velocity.
     if (Math.abs(this.enemy.body.velocity.x) > this.maxSpeed) {

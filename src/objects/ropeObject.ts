@@ -83,10 +83,6 @@ export default class RopeObject extends Phaser.Sprite {
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
         this.ropeAnchor.position.copyFrom(this.player.position);
-        // compensate next frame move
-        // this.ropeAnchor.position.x += (this.player.body.velocity.x * this.game.time.elapsed / 1000);
-        // this.ropeAnchor.position.y += (this.player.body.velocity.x * this.game.time.elapsed / 1000);
-        // this.ropeAnchor.position.y -= (this.gravity * this.game.time.elapsed / 1000);
         // Get angle
         let rotation = Math.atan2(y - this.player.y, x - this.player.x);
         // shoot toward mouse pointer.
