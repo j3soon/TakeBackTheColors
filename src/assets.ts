@@ -1,61 +1,6 @@
 /* AUTO GENERATED FILE. DO NOT MODIFY. YOU WILL LOSE YOUR CHANGES ON BUILD. */
 
 export namespace Images {
-    export class ImagesDeprecatedBgOldLayer0 {
-        static getName(): string { return 'layer0'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer0.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer1 {
-        static getName(): string { return 'layer1'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer1.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer10 {
-        static getName(): string { return 'layer10'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer10.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer2 {
-        static getName(): string { return 'layer2'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer2.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer3 {
-        static getName(): string { return 'layer3'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer3.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer4 {
-        static getName(): string { return 'layer4'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer4.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer5 {
-        static getName(): string { return 'layer5'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer5.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer6 {
-        static getName(): string { return 'layer6'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer6.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer7 {
-        static getName(): string { return 'layer7'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer7.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer8 {
-        static getName(): string { return 'layer8'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer8.png'); }
-    }
-    export class ImagesDeprecatedBgOldLayer9 {
-        static getName(): string { return 'layer9'; }
-
-        static getPNG(): string { return require('assets/images-deprecated/bg-old/layer9.png'); }
-    }
     export class ImagesAnchor {
         static getName(): string { return 'anchor'; }
 
@@ -65,6 +10,61 @@ export namespace Images {
         static getName(): string { return 'background_template'; }
 
         static getPNG(): string { return require('assets/images/background_template.png'); }
+    }
+    export class ImagesBgOldLayer0 {
+        static getName(): string { return 'layer0'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer0.png'); }
+    }
+    export class ImagesBgOldLayer1 {
+        static getName(): string { return 'layer1'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer1.png'); }
+    }
+    export class ImagesBgOldLayer10 {
+        static getName(): string { return 'layer10'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer10.png'); }
+    }
+    export class ImagesBgOldLayer2 {
+        static getName(): string { return 'layer2'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer2.png'); }
+    }
+    export class ImagesBgOldLayer3 {
+        static getName(): string { return 'layer3'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer3.png'); }
+    }
+    export class ImagesBgOldLayer4 {
+        static getName(): string { return 'layer4'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer4.png'); }
+    }
+    export class ImagesBgOldLayer5 {
+        static getName(): string { return 'layer5'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer5.png'); }
+    }
+    export class ImagesBgOldLayer6 {
+        static getName(): string { return 'layer6'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer6.png'); }
+    }
+    export class ImagesBgOldLayer7 {
+        static getName(): string { return 'layer7'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer7.png'); }
+    }
+    export class ImagesBgOldLayer8 {
+        static getName(): string { return 'layer8'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer8.png'); }
+    }
+    export class ImagesBgOldLayer9 {
+        static getName(): string { return 'layer9'; }
+
+        static getPNG(): string { return require('assets/images/bg-old/layer9.png'); }
     }
     export class ImagesBgLayer0 {
         static getName(): string { return 'layer0'; }
