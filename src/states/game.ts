@@ -6,12 +6,13 @@ import RopeObject from '../objects/ropeObject';
 import EnemyObject from '../objects/enemyObject';
 import CheckpointObject from '../objects/checkpointObject';
 import CrystalObject from '../objects/collectibles/crystalObject';
+import LightningObject from '../objects/projectiles/lightningObject';
 
 export default class Game extends Phaser.State {
   public readonly gravity = 1800;
   private bgObj: BackgroundObject;
-  private mapObj: MapObject;
-  private playerObj: PlayerObject;
+  public mapObj: MapObject;
+  public playerObj: PlayerObject;
   private ropeObj: RopeObject;
   private enemyObjs: EnemyObject[];
   private checkpointObjs: CheckpointObject[];

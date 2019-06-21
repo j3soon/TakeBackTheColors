@@ -13,7 +13,6 @@ export default class PlayerObject extends Phaser.Sprite {
   private wallReleaseLeft = false;
   private animator: PlayerAnimation;
   private ropeObj: RopeObject;
-  public moving: boolean;
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
 
