@@ -16,8 +16,10 @@ export default class Game extends Phaser.State {
   private enemyObjs: EnemyObject[];
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
+  private debugTools = false;
 
   public preload(): void {
+    if (this.debugTools)
       this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
   }
 
@@ -105,7 +107,8 @@ export default class Game extends Phaser.State {
     this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.obstacleLayer);
   }
   render(): void {
-    this.game.debug.text(this.game.time.fps.toString(), 20, 60, "#00ff00", "40pt Consolas");
+    if (this.debugTools)
+      this.game.debug.text(this.game.time.fps.toString(), 20, 60, "#00ff00", "40pt Consolas");
   }
   public postUpdate(): void {
   }

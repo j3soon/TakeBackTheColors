@@ -34,7 +34,7 @@ export default class PropellerEnemyObject extends EnemyObject {
     }
     // Set velocity.
     this.enemy.body.velocity.y = this.speed * (this.walkTop ? -1 : 1);
-    console.log(this.enemy.body.blocked.bottom);
-    console.log(this.enemy.body.velocity.y);
+    /*console.log(this.enemy.body.blocked.bottom);
+    console.log(this.enemy.body.velocity.y);*/
   }
 }
