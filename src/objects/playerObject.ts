@@ -53,7 +53,8 @@ export default class PlayerObject extends Phaser.Sprite {
   public update() {
     const keybd = this.game.input.keyboard;
     let vx = 0;
-    const gravity = (this.gravity * this.game.time.elapsed / 1000);
+    // const gravity = (this.gravity * this.game.time.physicsElapsed / 1000);
+    this.player.body.acceleration.y = 0;
     if (keybd.isDown(Phaser.Keyboard.W)) {
       // Up
       if (this.player.body.blocked.down || (this.wallReleaseCount > 0 &&
@@ -70,7 +71,8 @@ export default class PlayerObject extends Phaser.Sprite {
       } else if (this.jumpBoostCount > 0) {
         // Jump boost (if holding space)
         this.jumpBoostCount--;
-        this.player.body.velocity.y -= gravity * Math.pow(this.jumpBoostCount / this.jumpBoostCountMax, 2);
+        this.player.body.acceleration.y = -this.gravity * Math.pow(this.jumpBoostCount / this.jumpBoostCountMax, 2);
+        // this.player.body.velocity.y -= gravity * Math.pow(this.jumpBoostCount / this.jumpBoostCountMax, 2);
       }
     }
     if (!keybd.isDown(Phaser.Keyboard.W) || this.player.body.blocked.up) {
@@ -103,7 +105,8 @@ export default class PlayerObject extends Phaser.Sprite {
         if (this.player.body.velocity.y > maxSlideSpeedY) {
           this.player.body.velocity.y *= 0.8;
         } else if (this.player.body.velocity.y < 0) {
-          this.player.body.velocity.y -= gravity;
+          this.player.body.acceleration.y = -this.gravity;
+          // this.player.body.velocity.y -= gravity;
           this.player.body.velocity.y *= 0.8;
         }
       }
@@ -148,5 +151,15 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     this.ropeObj.ropeState = 'idle';
+    // Add respawn effect.
+    let respawn = this.game.add.sprite(this.player.x, this.player.y, Assets.Spritesheets.SpritesheetsRespawn25625625.getName())
+    respawn.anchor.setTo(0.5);
+    respawn.scale.set(0.6, 0.6);
+    respawn.animations.add('anim', null, 24, true);
+    respawn.animations.play('anim', null, false, true);
+    // TODO: respawn all enemies.
+  }
+  public setRopeEnabled() {
+    this.ropeObj.ropeEnabled = true;
   }
 }

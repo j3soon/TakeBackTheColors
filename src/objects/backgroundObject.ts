@@ -3,7 +3,7 @@ import * as Assets from '../assets';
 export default class BackgroundObject extends Phaser.Sprite {
   // 11 layer background instances.
   private tiles: Phaser.TileSprite[] = [];
-  private yMove = 2;
+  private yMove = 3;
   // The move difference of layers. (The higher the number, the slower it moves)
   private tilesMove: number[];
 
@@ -40,8 +40,8 @@ export default class BackgroundObject extends Phaser.Sprite {
     // From far([0]) to near([10]).
     this.tilesMove = [0, 32, 16, 16, 8, 4, 4, 1.5, 1.5, 1, 0.5];
 
-    let w = 10000;
-    let h = this.game.cache.getImage(layers[0]).height * w / this.game.cache.getImage(layers[0]).width;
+    let w = this.game.camera.view.width;
+    let h = this.game.camera.view.height;
 
     for (let i = 0; i < layers.length; i++) {
       let tile = this.game.add.tileSprite(0, 0, w, h, layers[i]);
@@ -57,18 +57,25 @@ export default class BackgroundObject extends Phaser.Sprite {
   }
 
   public postUpdate(): void {
-    // Ground and grass layer should be above players, enemies, ...
-    // Hacky way to preserve layer relationship.
-    this.game.world.bringToTop(this.tiles[9]);
-    this.game.world.bringToTop(this.tiles[10]);
+    const deltaY = this.game.camera.view.height / this.tiles[0].tileScale.y + 6;
     // BG
     for (let i = 0; i < this.tiles.length; i++) {
       let tile = this.tiles[i];
       if (this.tilesMove[i] === 0)
         continue;
-      // Some offset for better background parts in test level.
-      tile.tilePosition.y =  (-960 - this.game.camera.view.centerY) / tile.tileScale.y / this.yMove;
-      tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i];
+      /*console.log(this.game.camera.view.centerY);
+      console.log(this.game.world.bounds.y);
+      console.log(this.game.camera.view.height / 2);*/
+      // Some offset for better background parts in test leel.
+      tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+      tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
+      // Hide vertical tilemap if wrap.
+      tile.visible = (tile.tilePosition.y < deltaY + 793 - this.game.camera.view.height / tile.tileScale.y);
     }
+  }
+  public setTopLayers() {
+    // Ground and grass layer should be above players, enemies, ...
+    // this.game.world.bringToTop(this.tiles[9]);
+    this.game.world.bringToTop(this.tiles[10]);
   }
 }

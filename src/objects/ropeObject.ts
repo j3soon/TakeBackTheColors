@@ -21,6 +21,10 @@ export default class RopeObject extends Phaser.Sprite {
 
   private shrinkCoef: number;
   private cheating = false;
+  private positionCompensate = false;
+
+  // Abilities.
+  public ropeEnabled = false;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -60,7 +64,7 @@ export default class RopeObject extends Phaser.Sprite {
     this.game.add.existing(this);
   }
   public ropeLocked_() {
-    console.log('locked');
+    // console.log('locked');
     this.ropeAnchor.body.velocity.x = 0;
     this.ropeAnchor.body.velocity.y = 0;
     this.ropeAnchor.body.gravity.y = 0;
@@ -70,12 +74,12 @@ export default class RopeObject extends Phaser.Sprite {
   private changeRopeState_() {
     const keybd = this.game.input.keyboard;
     const ms = this.game.input.mousePointer;
-    const x = ms.x += this.game.camera.x;
-    const y = ms.y += this.game.camera.y;
+    const x = ms.x + this.game.camera.x;
+    const y = ms.y + this.game.camera.y;
     if (ms.leftButton.isDown !== this.leftMouse) {
       if (ms.leftButton.isDown === false) {
         this.ropeState = 'idle';
-      } else {
+      } else if (this.ropeEnabled){
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
         this.ropeAnchor.position.copyFrom(this.player.position);
@@ -84,13 +88,17 @@ export default class RopeObject extends Phaser.Sprite {
         // shoot toward mouse pointer.
         this.ropeAnchor.body.velocity.x = Math.cos(rotation) * this.speedAnchor;
         this.ropeAnchor.body.velocity.y = Math.sin(rotation) * this.speedAnchor;
+        // add player speed
+        // this.ropeAnchor.body.velocity.x += this.player.body.velocity.x;
+        // this.ropeAnchor.body.velocity.y += this.player.body.velocity.y;
+        this.positionCompensate = true;
       }
     }
     // Move to clicked spot.
     // TODO: remove this cheat.
     if (ms.rightButton.isDown && !this.cheating) {
-      this.player.position.x = ms.x;
-      this.player.position.y = ms.y;
+      this.player.position.x = x;
+      this.player.position.y = y;
       this.player.body.velocity.x = 0;
       this.player.body.velocity.y = 0;
       this.cheating = true;
@@ -170,12 +178,26 @@ export default class RopeObject extends Phaser.Sprite {
     }
   }
   public postUpdate() {
+    // compensate
+    if (this.positionCompensate) {
+      const ms = this.game.input.mousePointer;
+      const x = ms.x + this.game.camera.x;
+      const y = ms.y + this.game.camera.y;
+      this.ropeAnchor.body.gravity.y = this.gravity;
+      this.ropeAnchor.position.copyFrom(this.player.position);
+      // Get angle
+      let rotation = Math.atan2(y - this.player.y, x - this.player.x);
+      // shoot toward mouse pointer.
+      this.ropeAnchor.body.velocity.x = Math.cos(rotation) * this.speedAnchor;
+      this.ropeAnchor.body.velocity.y = Math.sin(rotation) * this.speedAnchor;
+      this.positionCompensate = false;
+    }
     this.hud.clear();
     // Draw velocity
     this.hud.lineStyle(2, 0x0000ff, 1);
     this.hud.moveTo(this.player.x, this.player.y);
     this.hud.lineTo(this.player.x + this.player.body.velocity.x / 8,
-      this.player.y + this.player.body.velocity.y / 8);
+    this.player.y + this.player.body.velocity.y / 8);
     this.hud.endFill();
     if (this.ropeState === 'idle') {
       return;

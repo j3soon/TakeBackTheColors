@@ -76,6 +76,131 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/collectibles/bronze.png'); }
     }
+    export class ImagesCollectiblesCrystalBlack {
+        static getName(): string { return 'crystal_black'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_black.png'); }
+    }
+    export class ImagesCollectiblesCrystalBlue {
+        static getName(): string { return 'crystal_blue'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_blue.png'); }
+    }
+    export class ImagesCollectiblesCrystalGreen {
+        static getName(): string { return 'crystal_green'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_green.png'); }
+    }
+    export class ImagesCollectiblesCrystalRed {
+        static getName(): string { return 'crystal_red'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_red.png'); }
+    }
+    export class ImagesCollectiblesCrystalWhite {
+        static getName(): string { return 'crystal_white'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal_white.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack {
+        static getName(): string { return 'crystal_black'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack1 {
+        static getName(): string { return 'crystal_black1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack2 {
+        static getName(): string { return 'crystal_black2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlack3 {
+        static getName(): string { return 'crystal_black3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_black3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue {
+        static getName(): string { return 'crystal_blue'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue1 {
+        static getName(): string { return 'crystal_blue1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue2 {
+        static getName(): string { return 'crystal_blue2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalBlue3 {
+        static getName(): string { return 'crystal_blue3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_blue3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen {
+        static getName(): string { return 'crystal_green'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen1 {
+        static getName(): string { return 'crystal_green1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen2 {
+        static getName(): string { return 'crystal_green2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalGreen3 {
+        static getName(): string { return 'crystal_green3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_green3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed {
+        static getName(): string { return 'crystal_red'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed1 {
+        static getName(): string { return 'crystal_red1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed2 {
+        static getName(): string { return 'crystal_red2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalRed3 {
+        static getName(): string { return 'crystal_red3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_red3.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite {
+        static getName(): string { return 'crystal_white'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite1 {
+        static getName(): string { return 'crystal_white1'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white1.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite2 {
+        static getName(): string { return 'crystal_white2'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white2.png'); }
+    }
+    export class ImagesCollectiblesCrystalCrystalWhite3 {
+        static getName(): string { return 'crystal_white3'; }
+
+        static getPNG(): string { return require('assets/images/collectibles/crystal/crystal_white3.png'); }
+    }
     export class ImagesCollectiblesGold {
         static getName(): string { return 'gold'; }
 
@@ -126,9 +251,34 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/player.png'); }
     }
+    export class ImagesProjectileLightingBlue {
+        static getName(): string { return 'lighting_blue'; }
+
+        static getPNG(): string { return require('assets/images/projectile/lighting_blue.png'); }
+    }
+    export class ImagesProjectileLightingYellow {
+        static getName(): string { return 'lighting_yellow'; }
+
+        static getPNG(): string { return require('assets/images/projectile/lighting_yellow.png'); }
+    }
+    export class ImagesShiny {
+        static getName(): string { return 'shiny'; }
+
+        static getPNG(): string { return require('assets/images/shiny.png'); }
+    }
 }
 
 export namespace Spritesheets {
+    export class SpritesheetsCrystalsCrystal27336420 {
+        static getName(): string { return 'crystal.[273,364,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/crystals/crystal.[273,364,20,0,0].png'); }
+        static getFrameWidth(): number { return 273; }
+        static getFrameHeight(): number { return 364; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsEnemiesExplosion64636 {
         static getName(): string { return 'explosion.[64,63,6,0,0]'; }
 
@@ -139,33 +289,13 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesPropellerFly1221392 {
-        static getName(): string { return 'propeller_fly.[122,139,2,0,0]'; }
+    export class SpritesheetsEnemiesPropeller1221396 {
+        static getName(): string { return 'propeller.[122,139,6,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_fly.[122,139,2,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/propeller.[122,139,6,0,0].png'); }
         static getFrameWidth(): number { return 122; }
         static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesPropellerIdle1221392 {
-        static getName(): string { return 'propeller_idle.[122,139,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_idle.[122,139,2,0,0].png'); }
-        static getFrameWidth(): number { return 122; }
-        static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesPropellerJump1221392 {
-        static getName(): string { return 'propeller_jump.[122,139,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/propeller_jump.[122,139,2,0,0].png'); }
-        static getFrameWidth(): number { return 122; }
-        static getFrameHeight(): number { return 139; }
-        static getFrameMax(): number { return 2; }
+        static getFrameMax(): number { return 6; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -179,33 +309,13 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesSpikeIdle1141552 {
-        static getName(): string { return 'spike_idle.[114,155,2,0,0]'; }
+    export class SpritesheetsEnemiesSpike1201594 {
+        static getName(): string { return 'spike.[120,159,4,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_idle.[114,155,2,0,0].png'); }
-        static getFrameWidth(): number { return 114; }
-        static getFrameHeight(): number { return 155; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesSpikeLeft1201592 {
-        static getName(): string { return 'spike_left.[120,159,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_left.[120,159,2,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/spike.[120,159,4,0,0].png'); }
         static getFrameWidth(): number { return 120; }
         static getFrameHeight(): number { return 159; }
-        static getFrameMax(): number { return 2; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsEnemiesSpikeRight1201592 {
-        static getName(): string { return 'spike_right.[120,159,2,0,0]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/enemies/spike_right.[120,159,2,0,0].png'); }
-        static getFrameWidth(): number { return 120; }
-        static getFrameHeight(): number { return 159; }
-        static getFrameMax(): number { return 2; }
+        static getFrameMax(): number { return 4; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -219,23 +329,23 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesWingFly2161475 {
-        static getName(): string { return 'wing_fly.[216,147,5,0,0]'; }
+    export class SpritesheetsEnemiesWing2161475 {
+        static getName(): string { return 'wing.[216,147,5,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/wing_fly.[216,147,5,0,0].png'); }
+        static getPNG(): string { return require('assets/spritesheets/enemies/wing.[216,147,5,0,0].png'); }
         static getFrameWidth(): number { return 216; }
         static getFrameHeight(): number { return 147; }
         static getFrameMax(): number { return 5; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemiesWingIdle2161472 {
-        static getName(): string { return 'wing_idle.[216,147,2,0,0]'; }
+    export class SpritesheetsFlag20232410 {
+        static getName(): string { return 'flag.[202,324,10,0,0]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemies/wing_idle.[216,147,2,0,0].png'); }
-        static getFrameWidth(): number { return 216; }
-        static getFrameHeight(): number { return 147; }
-        static getFrameMax(): number { return 2; }
+        static getPNG(): string { return require('assets/spritesheets/flag.[202,324,10,0,0].png'); }
+        static getFrameWidth(): number { return 202; }
+        static getFrameHeight(): number { return 324; }
+        static getFrameMax(): number { return 10; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -246,6 +356,46 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 37; }
         static getFrameHeight(): number { return 45; }
         static getFrameMax(): number { return 18; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsProjectileLightning551142 {
+        static getName(): string { return 'lightning.[55,114,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/projectile/lightning.[55,114,2,0,0].png'); }
+        static getFrameWidth(): number { return 55; }
+        static getFrameHeight(): number { return 114; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbit20020020 {
+        static getName(): string { return 'rabbit.[200,200,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,200,20,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 200; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRedflag20232410 {
+        static getName(): string { return 'redflag.[202,324,10,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/redflag.[202,324,10,0,0].png'); }
+        static getFrameWidth(): number { return 202; }
+        static getFrameHeight(): number { return 324; }
+        static getFrameMax(): number { return 10; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRespawn25625625 {
+        static getName(): string { return 'respawn.[256,256,25,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/respawn.[256,256,25,0,0].png'); }
+        static getFrameWidth(): number { return 256; }
+        static getFrameHeight(): number { return 256; }
+        static getFrameMax(): number { return 25; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -367,6 +517,11 @@ export namespace JSON {
 }
 
 export namespace TilemapJSON {
+    export class TilemapsForestTop {
+        static getName(): string { return 'forest-top'; }
+
+        static getJSON(): string { return require('assets/tilemaps/forest-top.json'); }
+    }
     export class TilemapsForest {
         static getName(): string { return 'forest'; }
 
@@ -397,6 +552,11 @@ export namespace Scripts {
         static getName(): string { return 'BlurY'; }
 
         static getJS(): string { return require('assets/scripts/BlurY.js'); }
+    }
+    export class ScriptsPhaserDebug119 {
+        static getName(): string { return 'phaser-debug-1.1.9'; }
+
+        static getJS(): string { return require('assets/scripts/phaser-debug-1.1.9.js'); }
     }
 }
 export namespace Shaders {

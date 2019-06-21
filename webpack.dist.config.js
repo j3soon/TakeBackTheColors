@@ -50,7 +50,7 @@ module.exports = {
             path.join(__dirname, 'dist')
         ]),
         new HtmlWebpackPlugin({
-            title: 'Phaser NPM Webpack TypeScript Starter Project!',
+            title: 'Take Back the Colors!',
             template: path.join(__dirname, 'templates/index.ejs')
         })
     ],
@@ -76,7 +76,7 @@ module.exports = {
         ]
     },
     performance: {
-        hints: false 
+        hints: false
     }
 };
 
