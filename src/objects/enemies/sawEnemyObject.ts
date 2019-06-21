@@ -49,7 +49,7 @@ export default class SawEnemyObject extends EnemyObject {
     else if (this.walkLeft) {
       this.enemy.body.acceleration.x = -this.acceleration;
     } else {
-      this.enemy.body.velocity.x = this.acceleration;
+      this.enemy.body.acceleration.x = this.acceleration;
     }
     // Clamp velocity.
     if (Math.abs(this.enemy.body.velocity.x) > this.maxSpeed) {
