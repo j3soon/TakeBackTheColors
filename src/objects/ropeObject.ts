@@ -24,7 +24,7 @@ export default class RopeObject extends Phaser.Sprite {
   private positionCompensate = false;
 
   // Abilities.
-  public ropeEnabled = false;
+  public ropeEnabled = !false;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
