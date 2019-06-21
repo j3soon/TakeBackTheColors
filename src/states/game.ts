@@ -6,14 +6,12 @@ import RopeObject from '../objects/ropeObject';
 import EnemyObject from '../objects/enemyObject';
 import CheckpointObject from '../objects/checkpointObject';
 import CrystalObject from '../objects/collectibles/crystalObject';
-import LightningObject from '../objects/projectiles/lightningObject';
 
 export default class Game extends Phaser.State {
   public readonly gravity = 1800;
   private bgObj: BackgroundObject;
-  // Hacky way to expose map & player.
-  public mapObj: MapObject;
-  public playerObj: PlayerObject;
+  private mapObj: MapObject;
+  private playerObj: PlayerObject;
   private ropeObj: RopeObject;
   private enemyObjs: EnemyObject[];
   private checkpointObjs: CheckpointObject[];
@@ -91,18 +89,9 @@ export default class Game extends Phaser.State {
     for (let collectible of this.collectibles) {
       this.game.physics.arcade.collide(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
         (<CrystalObject>collectible).callback();
+        collectible.kill();
       });
     }
-    // # Projectiles
-    /*for (let projectile of this.projectiles) {
-      this.game.physics.arcade.collide(this.mapObj.obstacleLayer, (<LightningObject>projectile).projectile, () => {
-        (<LightningObject>projectile).callback();
-      });
-      this.game.physics.arcade.collide(this.playerObj.player, (<LightningObject>projectile).projectile, () => {
-        this.playerObj.respawn();
-        (<LightningObject>projectile).callback();
-      });
-    }*/
     // # Checkpoints
     for (let checkpoint of this.checkpointObjs) {
       if (checkpoint.used)
