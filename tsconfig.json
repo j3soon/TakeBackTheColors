@@ -10,6 +10,6 @@
   "files": [
     "./src/globals.d.ts",
     "./src/app.ts",
-    "./node_modules/phaser-ce/typescript/phaser.comments.d.ts"
+    "./src/typescript/phaser.comments.d.ts"
   ]
 }
