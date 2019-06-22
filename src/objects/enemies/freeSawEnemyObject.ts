@@ -1,7 +1,7 @@
 import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 
-export default class SawEnemyObject extends EnemyObject {
+export default class FreeSawEnemyObject extends EnemyObject {
   private walkLeft;
   private maxSpeed = 800;
   private maxDistance = 2000;
@@ -21,6 +21,8 @@ export default class SawEnemyObject extends EnemyObject {
     game.physics.enable(this.enemy);
     this.enemy.body.gravity.y = gravity;
     this.enemy.autoCull = true;
+
+    this.die = true;
   }
   public update() {
     // Change direction
@@ -38,5 +40,9 @@ export default class SawEnemyObject extends EnemyObject {
     if (Math.abs(this.enemy.body.velocity.x) > this.maxSpeed) {
       this.enemy.body.velocity.x = this.maxSpeed * Math.sign(this.enemy.body.velocity.x);
     }
+  }
+  public callback() {
+    this.enemy.destroy();
+    this.destroy();
   }
 }

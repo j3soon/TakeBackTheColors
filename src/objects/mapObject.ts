@@ -10,7 +10,8 @@ import WingEnemyObject from './enemies/wingEnemyObject';
 import CloudEnemyObject from './enemies/cloudEnemyObject';
 // # Forest Top
 import EagleEnemyObject from './enemies/eagleEnemyObject';
-import FreeSawEnemyObject from './enemies/freeSawEnemyObject';
+import SpawnSawEnemyObject from './enemies/spawnSawEnemyObject';
+import SpawnCloudEnemyObject from './enemies/spawnCloudEnemyObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
@@ -110,24 +111,6 @@ export default class MapObject extends Phaser.Sprite {
         enemies.push(ene);
       }
     }
-    if (this.map.objects['FreeSawEnemiesL'] !== undefined) {
-      for (let obj of this.map.objects['FreeSawEnemiesL']) {
-        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-        pnt.x *= this.mapScale;
-        pnt.y *= this.mapScale;
-        let ene = new FreeSawEnemyObject(game, pnt, gravity, player, true);
-        enemies.push(ene);
-      }
-    }
-    if (this.map.objects['FreeSawEnemiesR'] !== undefined) {
-      for (let obj of this.map.objects['FreeSawEnemiesR']) {
-        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
-        pnt.x *= this.mapScale;
-        pnt.y *= this.mapScale;
-        let ene = new FreeSawEnemyObject(game, pnt, gravity, player, false);
-        enemies.push(ene);
-      }
-    }
     if (this.map.objects['PropellerEnemies'] !== undefined) {
       for (let obj of this.map.objects['PropellerEnemies']) {
         let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
@@ -153,6 +136,50 @@ export default class MapObject extends Phaser.Sprite {
         pnt.y *= this.mapScale;
         let ene = new CloudEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
         enemies.push(ene);
+      }
+    }
+    // # Forest Top
+    if (this.map.objects['EagleBoss'] !== undefined) {
+      for (let obj of this.map.objects['EagleBoss']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new EagleEnemyObject(game, pnt, gravity,
+          new Phaser.Rectangle(obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale),
+          player);
+        enemies.push(ene);
+      }
+    }
+    if (this.map.objects['SpawnerSawL'] !== undefined) {
+      for (let obj of this.map.objects['SpawnerSawL']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        new SpawnSawEnemyObject(game, pnt, gravity, player, true, enemies);
+      }
+    }
+    if (this.map.objects['SpawnerSawR'] !== undefined) {
+      for (let obj of this.map.objects['SpawnerSawR']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        new SpawnSawEnemyObject(game, pnt, gravity, player, false, enemies);
+      }
+    }
+    if (this.map.objects['SpawnerCloudU'] !== undefined) {
+      for (let obj of this.map.objects['SpawnerCloudU']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        new SpawnCloudEnemyObject(game, pnt, gravity, player, true, enemies);
+      }
+    }
+    if (this.map.objects['SpawnerCloudD'] !== undefined) {
+      for (let obj of this.map.objects['SpawnerCloudD']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        new SpawnCloudEnemyObject(game, pnt, gravity, player, false, enemies);
       }
     }
     return enemies;
