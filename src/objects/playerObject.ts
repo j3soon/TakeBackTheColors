@@ -45,8 +45,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.emitter.setAlpha(0.8, 0, 500);
     this.emitter.setScale(1.1, 0.2, 1.1, 0.2, 500);
     this.emitter.setXSpeed(-150, 150);
-    game.input.onDown.add(this.ClickBurstTest, this);
-    //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
+    // game.input.onDown.add(this.ClickBurstTest, this);
     this.player.anchor.setTo(0.5);
     this.player.scale.setTo(0.4);
     this.game.physics.enable(this.player);
