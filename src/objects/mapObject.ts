@@ -109,12 +109,21 @@ export default class MapObject extends Phaser.Sprite {
         enemies.push(ene);
       }
     }
-    if (this.map.objects['FreeSawEnemies'] !== undefined) {
-      for (let obj of this.map.objects['FreeSawEnemies']) {
+    if (this.map.objects['FreeSawEnemiesL'] !== undefined) {
+      for (let obj of this.map.objects['FreeSawEnemiesL']) {
         let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
         pnt.x *= this.mapScale;
         pnt.y *= this.mapScale;
-        let ene = new FreeSawEnemyObject(game, pnt, gravity, player);
+        let ene = new FreeSawEnemyObject(game, pnt, gravity, player, true);
+        enemies.push(ene);
+      }
+    }
+    if (this.map.objects['FreeSawEnemiesR'] !== undefined) {
+      for (let obj of this.map.objects['FreeSawEnemiesR']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new FreeSawEnemyObject(game, pnt, gravity, player, false);
         enemies.push(ene);
       }
     }

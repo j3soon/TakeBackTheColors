@@ -2,16 +2,17 @@ import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 
 export default class SawEnemyObject extends EnemyObject {
-  private walkLeft = true;
+  private walkLeft;
   private maxSpeed = 800;
   private maxDistance = 2000;
   private acceleration = 500;
 
   private player: Phaser.Sprite;
 
-  constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number, player: Phaser.Sprite) {
+  constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number, player: Phaser.Sprite, walkLeft: boolean) {
     super(game, spawnPoint, gravity);
     this.player = player;
+    this.walkLeft = walkLeft;
     this.enemy = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsEnemiesSawRoll1481482.getName());
     this.enemy.animations.add('roll', [0, 1], 24, true);
     this.enemy.animations.play('roll');
