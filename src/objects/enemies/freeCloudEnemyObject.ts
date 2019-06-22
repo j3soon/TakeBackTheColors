@@ -56,7 +56,7 @@ export default class FreeCloudEnemyObject extends EnemyObject {
     }
   }
   public callback() {
-    this.enemy.kill();
-    this.kill();
+    this.enemy.destroy();
+    this.destroy();
   }
 }

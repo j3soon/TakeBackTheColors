@@ -54,11 +54,11 @@ export default class CrystalObject extends Phaser.Sprite {
   public callback() {
     if (this.typeId === 0) {
       this.playerObj.setRopeEnabled();
-      this.collectible.kill();
+      this.collectible.destroy();
       this.tween.stop();
       this.tween2.stop();
-      this.shiny.kill();
-      this.kill();
+      this.shiny.destroy();
+      this.destroy();
     }
   }
 }

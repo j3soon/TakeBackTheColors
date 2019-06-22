@@ -42,7 +42,7 @@ export default class FreeSawEnemyObject extends EnemyObject {
     }
   }
   public callback() {
-    this.enemy.kill();
-    this.kill();
+    this.enemy.destroy();
+    this.destroy();
   }
 }

@@ -27,16 +27,20 @@ export default class LightningObject extends Phaser.Sprite {
   public update() {
     let mapObj = (<Game>this.game.state.getCurrentState()).mapObj;
     let playerObj = (<Game>this.game.state.getCurrentState()).playerObj;
+    let kill = false;
     this.game.physics.arcade.collide(mapObj.obstacleLayer, this.projectile, () => {
-      this.callback();
+      kill = true;
     });
     this.game.physics.arcade.collide(playerObj.player, this.projectile, () => {
       playerObj.respawn();
-      this.callback();
+      kill = true;
     });
+    if (kill) {
+      this.callback();
+    }
   }
   public callback() {
-    this.projectile.kill();
-    this.kill();
+    this.projectile.destroy();
+    this.destroy();
   }
 }

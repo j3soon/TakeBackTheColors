@@ -32,7 +32,7 @@ export default class Game extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     if (this.firstEntrance) {
       this.firstEntrance = false;
-      MapObject.tileMapId = 'forest';
+      MapObject.tileMapId = 'forestTop';
     }
     this.bgObj = new BackgroundObject(this.game);
     this.mapObj = new MapObject(this.game);
@@ -82,6 +82,7 @@ export default class Game extends Phaser.State {
       this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.obstacleLayer);
     }
     // # Enemies
+    let kills = [];
     for (let i = 0; i < this.enemyObjs.length; i++) {
       let enemy = this.enemyObjs[i];
       this.game.physics.arcade.collide(enemy.enemy, this.mapObj.obstacleLayer);
@@ -92,11 +93,14 @@ export default class Game extends Phaser.State {
       if (enemy.die) {
         this.game.physics.arcade.collide(enemy.enemy, this.mapObj.instantDeathLayer, () => {
           // TODO: Optimize.
-          this.enemyObjs.splice(i, 1);
-          enemy.callback();
-          i--;
+          kills.push(i);
         });
       }
+    }
+    for (let i of kills) {
+      let enemy = this.enemyObjs[i];
+      this.enemyObjs.splice(i, 1);
+      enemy.callback();
     }
     // # Player
     // Die if hit instant death tiles.
