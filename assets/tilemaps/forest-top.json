@@ -63,6 +63,61 @@
         }, 
         {
          "draworder":"topdown",
+         "id":50,
+         "name":"Triggers",
+         "objects":[
+                {
+                 "height":20,
+                 "id":167,
+                 "name":"StageGoal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":383.333333333333,
+                 "y":76.9999999999968
+                }, 
+                {
+                 "height":338,
+                 "id":184,
+                 "name":"FightStart1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":58,
+                 "x":938,
+                 "y":1329.33333333333
+                }, 
+                {
+                 "height":63,
+                 "id":185,
+                 "name":"FightStart2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":404.333333333333,
+                 "x":991.666666666667,
+                 "y":1328.66666666667
+                }, 
+                {
+                 "height":1657.69696969697,
+                 "id":189,
+                 "name":"FightArea",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":957.030303030303,
+                 "x":429.878787878788,
+                 "y":12
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":87,
          "name":"Collectibles",
          "objects":[
@@ -76,6 +131,28 @@
                  "width":0,
                  "x":910.666666666667,
                  "y":1598
+                }, 
+                {
+                 "height":0,
+                 "id":190,
+                 "name":"WhiteCrystal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":48.25,
+                 "y":1649
+                }, 
+                {
+                 "height":0,
+                 "id":191,
+                 "name":"GreenCrystal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":911.818181818182,
+                 "y":157.272727272727
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -239,61 +316,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":50,
-         "name":"Triggers",
-         "objects":[
-                {
-                 "height":212,
-                 "id":167,
-                 "name":"StageGoal",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":170,
-                 "x":4.66666666666667,
-                 "y":1457.33333333333
-                }, 
-                {
-                 "height":338,
-                 "id":184,
-                 "name":"FightStart1",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":58,
-                 "x":938,
-                 "y":1329.33333333333
-                }, 
-                {
-                 "height":63,
-                 "id":185,
-                 "name":"FightStart2",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":404.333333333333,
-                 "x":991.666666666667,
-                 "y":1328.66666666667
-                }, 
-                {
-                 "height":1657.69696969697,
-                 "id":189,
-                 "name":"FightArea",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":961.030303030303,
-                 "x":429.878787878788,
-                 "y":12
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":3,
          "name":"Player",
          "objects":[
@@ -315,7 +337,7 @@
          "y":0
         }],
  "nextlayerid":88,
- "nextobjectid":190,
+ "nextobjectid":192,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

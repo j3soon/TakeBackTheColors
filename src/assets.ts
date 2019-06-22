@@ -364,6 +364,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsCrystalsCrystal27536620 {
+        static getName(): string { return 'crystal.[275,366,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/crystals/crystal.[275,366,20,0,0].png'); }
+        static getFrameWidth(): number { return 275; }
+        static getFrameHeight(): number { return 366; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsEnemiesExplosion64636 {
         static getName(): string { return 'explosion.[64,63,6,0,0]'; }
 

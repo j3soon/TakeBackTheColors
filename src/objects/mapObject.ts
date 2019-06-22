@@ -218,6 +218,9 @@ export default class MapObject extends Phaser.Sprite {
         } else if (obj.name === 'GreenCrystal') {
           let collectible = new CollectibleObject(game, pnt, 1, playerObj);
           collectibles.push(collectible);
+        } else if (obj.name === 'WhiteCrystal') {
+          let collectible = new CollectibleObject(game, pnt, 4, playerObj);
+          collectibles.push(collectible);
         } else {
           throw 'No such crystal collectible name';
         }
