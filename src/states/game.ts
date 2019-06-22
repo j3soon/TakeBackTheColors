@@ -97,10 +97,12 @@ export default class Game extends Phaser.State {
         });
       }
     }
-    for (let i of kills) {
-      let enemy = this.enemyObjs[i];
-      this.enemyObjs.splice(i, 1);
+    let i = kills.length - 1;
+    while (i >= 0) {
+      let enemy = this.enemyObjs[kills[i]];
+      this.enemyObjs.splice(kills[i], 1);
       enemy.callback();
+      i--;
     }
     // # Player
     // Die if hit instant death tiles.
