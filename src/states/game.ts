@@ -119,6 +119,7 @@ export default class Game extends Phaser.State {
     for (let collectible of this.collectibles) {
       this.game.physics.arcade.overlap(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
         (<CrystalObject>collectible).callback();
+        collectible.kill();
       });
     }
     // # Checkpoints

@@ -16,6 +16,8 @@ export default class Opening extends Phaser.State {
   private allWhite: Phaser.Sprite;
   private allBlack: Phaser.Sprite;
   private calls: number;
+  private title: Phaser.Sprite;
+  private psts: Phaser.Sprite;
   public preload(): void {
     if (this.debugTools)
       this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
@@ -49,6 +51,12 @@ export default class Opening extends Phaser.State {
     this.allBlack = this.game.add.sprite(0, 0, Assets.Images.ImagesAllBlack.getName());
     this.allBlack.alpha = 0;
     this.allWhite.alpha = 0;
+    this.title = this.game.add.sprite(1920/2, 450, Assets.Images.ImagesTitle.getName());
+    this.title.alpha = 0;
+    this.title.anchor.setTo(0.5);
+    this.psts = this.game.add.sprite(1920/2, 900, Assets.Images.ImagesPsts.getName());
+    this.psts.alpha = 0;
+    this.psts.anchor.setTo(0.5);
   }
   setUpEagleBack() {
     this.eagle = this.game.add.sprite(2000, 150, Assets.Spritesheets.SpritesheetsOpeningEagleBack50043812.getName());
@@ -147,11 +155,13 @@ export default class Opening extends Phaser.State {
         this.game.time.events.add(Phaser.Timer.SECOND * 7, function () { this.eagleState = 'end' }, this);
       }
     } else if (this.eagleState == 'end') {
-      this.allBlack.alpha = Math.min(1, this.allBlack.alpha + 0.02);
+      /*this.allBlack.alpha = Math.min(1, this.allBlack.alpha + 0.02);
       if(this.calls == 6) {
         this.calls++;
         this.game.time.events.add(Phaser.Timer.SECOND * 2.5, function () { this.game.state.start('game') }, this);
-      }
+      }*/
+      this.title.alpha  = Math.min((Math.sin(this.game.time.now / 500) + 1) / 2 * 0.4 + 0.3, this.title.alpha + 0.02);
+      this.psts.alpha  = Math.min(0.5, this.psts.alpha + 0.02);
     }
     this.eagleFront.x = this.eagle.x;
     this.eagleFront.y = this.eagle.y;
@@ -203,6 +213,7 @@ export default class Opening extends Phaser.State {
       // random speed
       let speed = this.game.rnd.realInRange(0.25, 0.8) * speedBase * rndScale;
       this.rbt.push({r: r, i: index, s: state, speed: speed});
+      
   }
   updateRbt(rbt: any) {
     if(rbt.s == 'walk') {
@@ -230,6 +241,7 @@ export default class Opening extends Phaser.State {
     for(var i = 0; i < this.RABBITS; i++) this.updateRbt(this.rbt[i]);
     this.updateCrystal();
     this.EagleUpdate();
+    if(this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) this.game.state.start('game');
   }
   render(): void {
     if (this.debugTools)
