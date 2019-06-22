@@ -121,6 +121,11 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/chain.png'); }
     }
+    export class ImagesClaw {
+        static getName(): string { return 'claw'; }
+
+        static getPNG(): string { return require('assets/images/claw.png'); }
+    }
     export class ImagesCollectiblesBronze {
         static getName(): string { return 'bronze'; }
 
@@ -326,10 +331,20 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/projectile/lighting_yellow.png'); }
     }
+    export class ImagesPsts {
+        static getName(): string { return 'psts'; }
+
+        static getPNG(): string { return require('assets/images/psts.png'); }
+    }
     export class ImagesShiny {
         static getName(): string { return 'shiny'; }
 
         static getPNG(): string { return require('assets/images/shiny.png'); }
+    }
+    export class ImagesTitle {
+        static getName(): string { return 'title'; }
+
+        static getPNG(): string { return require('assets/images/title.png'); }
     }
 }
 

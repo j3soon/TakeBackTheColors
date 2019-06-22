@@ -49,8 +49,12 @@ export default class SpawnSawEnemyObject extends Phaser.Sprite {
   }
   public update() {
     // fin
-    if (EagleEnemyObject.enemyStage === 3)
+    if (EagleEnemyObject.enemyStage === 3) {
+      for (let eff of this.effect) {
+        eff.visible = false;
+      }
       return;
+    }
     if (EagleEnemyObject.enemyStage <= 1 && this.x <= 200) {
       // Upper saw spawner. appear in stage 2.
       return;

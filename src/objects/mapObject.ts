@@ -62,6 +62,7 @@ export default class MapObject extends Phaser.Sprite {
     this.instantDeathLayer = this.map.createLayer('InstantDeath');
     this.layers.push(this.decorationLayer);
     this.layers.push(this.obstacleLayer);
+    // Might be popped afterwards
     this.layers.push(this.instantDeathLayer);
     for (let layer of this.layers) {
       // this.layer.debug = true;

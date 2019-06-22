@@ -4,6 +4,9 @@ import EagleEnemyObject from '../enemies/eagleEnemyObject';
 
 export default class CrystalObject extends Phaser.Sprite {
   // public static whiteInstance: CrystalObject;
+  public static loP: Phaser.Point;
+  public static hiP: Phaser.Point;
+  public static spawn = false;
 
   public collectible: Phaser.Sprite;
   private shiny: Phaser.Sprite;
@@ -74,20 +77,40 @@ export default class CrystalObject extends Phaser.Sprite {
       // Green
       if (CrystalObject.greenCount === 0) {
         CrystalObject.greenCount = 1;
+        CrystalObject.loP = new Phaser.Point(this.collectible.x, this.collectible.y);
       } else {
+        // Green
+        // Kick player back.
+        if (this.playerObj.player.x > this.collectible.x)
+          this.playerObj.player.position.x += 300;
+        else
+          this.playerObj.player.position.x -= 300;
         // Spawn Blue
-        let collectible = new CrystalObject(this.game, new Phaser.Point(this.x, this.y), 2, this.playerObj);
-        EagleEnemyObject.enemyStage++;
+        CrystalObject.hiP = new Phaser.Point(this.collectible.x, this.collectible.y);
+        CrystalObject.spawn = true;
+        // new CrystalObject(this.game, CrystalObject.hiP, 2, this.playerObj);
+        EagleEnemyObject.nextStage = true;
       }
     } else if (this.typeId === 2) {
       // Blue
+      // Kick player back.
+      if (this.playerObj.player.x > this.collectible.x)
+        this.playerObj.player.position.x += 300;
+      else
+        this.playerObj.player.position.x -= 300;
       // Spawn Red
-      let collectible = new CrystalObject(this.game, new Phaser.Point(this.x, this.y), 3, this.playerObj);
-      EagleEnemyObject.enemyStage++;
+      CrystalObject.spawn = true;
+      // new CrystalObject(this.game, CrystalObject.hiP, 3, this.playerObj);
+      EagleEnemyObject.nextStage = true;
     } else if (this.typeId === 3) {
       // Red
+      // Kick player back.
+      if (this.playerObj.player.x > this.collectible.x)
+        this.playerObj.player.position.x += 300;
+      else
+        this.playerObj.player.position.x -= 300;
       // Eagle dead.
-      EagleEnemyObject.enemyStage++;
+      EagleEnemyObject.nextStage = true;
     } else if (this.typeId === 4) {
       // White
       // TODO: Win!!!!!!! YBing

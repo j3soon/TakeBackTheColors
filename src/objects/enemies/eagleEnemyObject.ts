@@ -1,6 +1,7 @@
 import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 import CrystalObject from '../collectibles/crystalObject';
+import Game from '../../states/game';
 
 export default class EagleEnemyObject extends EnemyObject {
   public fightAreaRect: Phaser.Rectangle;
@@ -17,6 +18,7 @@ export default class EagleEnemyObject extends EnemyObject {
   // 2: laser
   // 3: dead bird
   public static enemyStage = 0;
+  public static nextStage = false;
 
   private player: Phaser.Sprite;
 
@@ -128,7 +130,35 @@ export default class EagleEnemyObject extends EnemyObject {
         break;
     }
   }
+  public openGates() {
+    // Pop instance death tiles
+    let gameScene = <Game>this.game.state.getCurrentState();
+    let mapObj = gameScene.mapObj;
+    mapObj.layers.pop();
+    mapObj.instantDeathLayer.destroy();
+    mapObj.instantDeathLayer = null;
+    // Kill all enemies.
+    for (let enemy of gameScene.enemyObjs) {
+      enemy.destroy();
+    }
+    gameScene.enemyObjs = [];
+  }
   public update() {
+    if (EagleEnemyObject.nextStage) {
+      // Clear flag.
+      EagleEnemyObject.nextStage = false;
+      // TODO: Play eagle hit anim. YBing
+      // Kill player.
+      let playerObj = (<Game>this.game.state.getCurrentState()).playerObj;
+      playerObj.respawn();
+      EagleEnemyObject.enemyStage++;
+      if (EagleEnemyObject.enemyStage === 3) {
+        // TODO: Dead animation? (Dead and fall down)
+        this.state = 'dead'
+        this.openGates();
+      }
+      console.log('stage', EagleEnemyObject.enemyStage);
+    }
     this.changeState();
     // Change direction
   }

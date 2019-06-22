@@ -15,7 +15,7 @@ export default class Game extends Phaser.State {
   public mapObj: MapObject;
   public playerObj: PlayerObject;
   private ropeObj: RopeObject;
-  private enemyObjs: EnemyObject[];
+  public enemyObjs: EnemyObject[];
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
   private debugTools = false;
@@ -76,9 +76,11 @@ export default class Game extends Phaser.State {
         });
       }
       // Rope disappear if hit instant death tiles.
-      this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.instantDeathLayer, () => {
-        this.ropeObj.ropeState = 'idle';
-      });
+      if (this.mapObj.instantDeathLayer !== null) {
+        this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.instantDeathLayer, () => {
+          this.ropeObj.ropeState = 'idle';
+        });
+      }
       this.game.physics.arcade.collide(this.ropeObj.ropeAnchor, this.mapObj.obstacleLayer);
     }
     // # Enemies
@@ -91,10 +93,12 @@ export default class Game extends Phaser.State {
         this.game.physics.arcade.collide(enemy.enemy, enemy2.enemy);
       }*/
       if (enemy.die) {
-        this.game.physics.arcade.collide(enemy.enemy, this.mapObj.instantDeathLayer, () => {
-          // TODO: Optimize.
-          kills.push(i);
-        });
+        if (this.mapObj.instantDeathLayer !== null) {
+          this.game.physics.arcade.collide(enemy.enemy, this.mapObj.instantDeathLayer, () => {
+            // TODO: Optimize.
+            kills.push(i);
+          });
+        }
       }
     }
     let i = kills.length - 1;
@@ -106,9 +110,11 @@ export default class Game extends Phaser.State {
     }
     // # Player
     // Die if hit instant death tiles.
-    this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.instantDeathLayer, () => {
-      this.playerObj.respawn();
-    });
+    if (this.mapObj.instantDeathLayer !== null) {
+      this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.instantDeathLayer, () => {
+        this.playerObj.respawn();
+      });
+    }
     // Die if hit enemy.
     for (let enemy of this.enemyObjs) {
       this.game.physics.arcade.overlap(this.playerObj.player, enemy.enemy, () => {
@@ -116,12 +122,11 @@ export default class Game extends Phaser.State {
       });
     }
     // # Collectibles
-    for (let collectible of this.collectibles) {
+    /*for (let collectible of this.collectibles) {
       this.game.physics.arcade.overlap(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
         (<CrystalObject>collectible).callback();
-        collectible.kill();
       });
-    }
+    }*/
     // # Checkpoints
     for (let checkpoint of this.checkpointObjs) {
       if (checkpoint.used)
