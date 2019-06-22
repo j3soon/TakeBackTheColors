@@ -14,6 +14,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private animator: PlayerAnimation;
   private ropeObj: RopeObject;
   private dead: boolean;
+
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
   private emitter: Phaser.Particles.Arcade.Emitter;
@@ -31,6 +32,10 @@ export default class PlayerObject extends Phaser.Sprite {
   * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
   * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
   */
+  private ClickBurstTest(pointer) {
+    console.log("burst!")
+    this.emitter.start(true, 750, null, 50);
+  }
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
     // Init player.
@@ -57,6 +62,8 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.add.existing(this);
   }
   public update() {
+    this.emitter.x = this.player.x;
+    this.emitter.y = this.player.y;
     const keybd = this.game.input.keyboard;
     this.emitter.x = this.player.x;
     this.emitter.y = this.player.y;
