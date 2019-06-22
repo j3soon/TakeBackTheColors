@@ -44,14 +44,14 @@
          "objects":[
                 {
                  "height":0,
-                 "id":214,
+                 "id":216,
                  "name":"BlackCrystal",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1558,
-                 "y":1354
+                 "x":3013.5,
+                 "y":1909.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -583,14 +583,14 @@
          "objects":[
                 {
                  "height":16,
-                 "id":213,
+                 "id":215,
                  "name":"PlayerSpawn",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1576,
-                 "y":1316
+                 "x":24.3333333333334,
+                 "y":2327.66666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -709,7 +709,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":215,
+ "nextobjectid":217,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

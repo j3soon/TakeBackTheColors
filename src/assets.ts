@@ -71,6 +71,11 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/cavesofgallet_tiles.png'); }
     }
+    export class ImagesChain {
+        static getName(): string { return 'chain'; }
+
+        static getPNG(): string { return require('assets/images/chain.png'); }
+    }
     export class ImagesCollectiblesBronze {
         static getName(): string { return 'bronze'; }
 
@@ -246,6 +251,11 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/enemies/wing.png'); }
     }
+    export class ImagesExplosion {
+        static getName(): string { return 'explosion'; }
+
+        static getPNG(): string { return require('assets/images/explosion.png'); }
+    }
     export class ImagesPlayer {
         static getName(): string { return 'player'; }
 
@@ -376,6 +386,36 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 200; }
         static getFrameHeight(): number { return 200; }
         static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbit20025045 {
+        static getName(): string { return 'rabbit.[200,250,45,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,250,45,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 250; }
+        static getFrameMax(): number { return 45; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbit20025050 {
+        static getName(): string { return 'rabbit.[200,250,50,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,250,50,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 250; }
+        static getFrameMax(): number { return 50; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbit20025055 {
+        static getName(): string { return 'rabbit.[200,250,55,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbit.[200,250,55,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 250; }
+        static getFrameMax(): number { return 55; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
