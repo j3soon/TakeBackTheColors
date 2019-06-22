@@ -314,6 +314,26 @@ export namespace Images {
 }
 
 export namespace Spritesheets {
+    export class SpritesheetsChick242421 {
+        static getName(): string { return 'chick.[24,24,21,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/chick.[24,24,21,0,0].png'); }
+        static getFrameWidth(): number { return 24; }
+        static getFrameHeight(): number { return 24; }
+        static getFrameMax(): number { return 21; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsCosmicTimeEffect1501505 {
+        static getName(): string { return 'cosmic-time-effect.[150,150,5,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/cosmic-time-effect.[150,150,5,0,0].png'); }
+        static getFrameWidth(): number { return 150; }
+        static getFrameHeight(): number { return 150; }
+        static getFrameMax(): number { return 5; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsCrystalsCrystal27336420 {
         static getName(): string { return 'crystal.[273,364,20,0,0]'; }
 
@@ -471,6 +491,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 256; }
         static getFrameHeight(): number { return 256; }
         static getFrameMax(): number { return 25; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsWaterEffect1501505 {
+        static getName(): string { return 'water-effect.[150,150,5,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/water-effect.[150,150,5,0,0].png'); }
+        static getFrameWidth(): number { return 150; }
+        static getFrameHeight(): number { return 150; }
+        static getFrameMax(): number { return 5; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
