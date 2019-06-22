@@ -25,21 +25,34 @@ export default class BackgroundObject extends Phaser.Sprite {
     super(game, 0, 0);
     let layers = [];
     // From far(10) to near(0).
-    layers.push(Assets.Images.ImagesBgLayer10.getName());
-    layers.push(Assets.Images.ImagesBgLayer9.getName());
-    layers.push(Assets.Images.ImagesBgLayer8.getName());
-    layers.push(Assets.Images.ImagesBgLayer7.getName());
-    layers.push(Assets.Images.ImagesBgLayer6.getName());
-    layers.push(Assets.Images.ImagesBgLayer5.getName());
-    layers.push(Assets.Images.ImagesBgLayer4.getName());
-    layers.push(Assets.Images.ImagesBgLayer3.getName());
-    layers.push(Assets.Images.ImagesBgLayer2.getName());
-    layers.push(Assets.Images.ImagesBgLayer1.getName());
-    layers.push(Assets.Images.ImagesBgLayer0.getName());
-
-    // Different moving speed to create 3D-like background effect.
-    // From far([0]) to near([10]).
-    this.tilesMove = [0, 32, 16, 16, 8, 4, 4, 1.5, 1.5, 1, 0.5];
+    // console.log(MapObject.tileMapId);
+    if (MapObject.tileMapId === 'forest') {
+      layers.push(Assets.Images.ImagesBgLayer10.getName());
+      layers.push(Assets.Images.ImagesBgLayer9.getName());
+      layers.push(Assets.Images.ImagesBgLayer8.getName());
+      layers.push(Assets.Images.ImagesBgLayer7.getName());
+      layers.push(Assets.Images.ImagesBgLayer6.getName());
+      layers.push(Assets.Images.ImagesBgLayer5.getName());
+      layers.push(Assets.Images.ImagesBgLayer4.getName());
+      layers.push(Assets.Images.ImagesBgLayer3.getName());
+      layers.push(Assets.Images.ImagesBgLayer2.getName());
+      layers.push(Assets.Images.ImagesBgLayer1.getName());
+      layers.push(Assets.Images.ImagesBgLayer0.getName());
+      // Different moving speed to create 3D-like background effect.
+      // From far([0]) to near([10]).
+      this.tilesMove = [0, 32, 16, 16, 8, 4, 4, 1.5, 1.5, 1, 0.5];
+    } else if (MapObject.tileMapId === 'forestTop') {
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer5.getName());
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer4.getName());
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer3.getName());
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer2.getName());
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer1.getName());
+      layers.push(Assets.Images.ImagesBg2ForestTopLayer0.getName());
+      layers.push(Assets.Images.ImagesBgLayer2.getName());
+      // Different moving speed to create 3D-like background effect.
+      // From far([0]) to near([10]).
+      this.tilesMove = [128, 64, 32, 16, 8, 4, 1];
+    }
 
     let w = this.game.camera.view.width;
     let h = this.game.camera.view.height;
@@ -47,8 +60,13 @@ export default class BackgroundObject extends Phaser.Sprite {
     for (let i = 0; i < layers.length; i++) {
       let tile = this.game.add.tileSprite(0, 0, w, h, layers[i]);
       tile.fixedToCamera = true;
-      tile.tileScale.x = 4;
-      tile.tileScale.y = 4;
+      if (layers[i].includes("forest-top")) {
+        tile.tileScale.x = 2;
+        tile.tileScale.y = 2;
+      } else {
+        tile.tileScale.x = 4;
+        tile.tileScale.y = 4;
+      }
       tile.smoothed = false;
       this.tiles.push(tile);
     }
@@ -58,17 +76,23 @@ export default class BackgroundObject extends Phaser.Sprite {
   }
 
   public postUpdate(): void {
-    let deltaY;
-    if (MapObject.tileMapId === 'forest') {
-      deltaY = this.game.camera.view.height / this.tiles[0].tileScale.y + 6;
-    } else if (MapObject.tileMapId === 'forestTop') {
-      deltaY = 153 * this.tiles[0].tileScale.y;
-    }
     // BG
     for (let i = 0; i < this.tiles.length; i++) {
       let tile = this.tiles[i];
       if (this.tilesMove[i] === 0)
         continue;
+      let deltaY1, deltaY2, deltaX2;
+      if (MapObject.tileMapId === 'forest') {
+        deltaY1 = this.game.camera.view.height / tile.tileScale.y + 6;
+      } else if (MapObject.tileMapId === 'forestTop') {
+        deltaY1 = 153 * tile.tileScale.y;
+        deltaX2 = -850;
+        deltaY2 = 950;
+        if (i !== 0) {
+          deltaY2 -= 250;
+          deltaY2 += 400 / this.tilesMove[i];
+        }
+      }
       /*console.log(this.game.camera.view.centerY);
       console.log(this.game.world.bounds.y);
       console.log(this.game.camera.view.height / 2);*/
@@ -76,16 +100,20 @@ export default class BackgroundObject extends Phaser.Sprite {
       // Hide vertical tilemap if wrap.
       if (MapObject.tileMapId === 'forest') {
         // Hacky way to hide bg.
-        tile.visible = (tile.tilePosition.y <= deltaY + 793 / 2/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
-        tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+        tile.visible = (tile.tilePosition.y <= deltaY1 + 793 / 2/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
+        tile.tilePosition.y = deltaY1 + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
         tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
       } else if (MapObject.tileMapId === 'forestTop') {
-        tile.visible = false;
-        if (i === 0 || i === 8) {
-          tile.visible = true;
+        if (i === 6) {
+          tile.visible = (tile.tilePosition.y <= deltaY1 + 100/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
+          tile.tilePosition.y = deltaY1 + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+          tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x;
+        } else {
+          tile.visible = (tile.tilePosition.y <= deltaY2 + 800/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
+          // console.log(this.game.camera.view.centerY);
+          tile.tilePosition.y = deltaY2 + (1640 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+          tile.tilePosition.x = deltaX2 + (-this.game.camera.view.centerX) / tile.tileScale.x / this.tilesMove[i];
         }
-        tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y;
-        tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x;
       }
     }
   }
@@ -95,7 +123,7 @@ export default class BackgroundObject extends Phaser.Sprite {
     if (MapObject.tileMapId === 'forest') {
       this.game.world.bringToTop(this.tiles[10]);
     } else if (MapObject.tileMapId === 'forestTop') {
-      this.game.world.bringToTop(this.tiles[8]);
+      this.game.world.bringToTop(this.tiles[6]);
     }
   }
 }

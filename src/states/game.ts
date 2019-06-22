@@ -30,11 +30,11 @@ export default class Game extends Phaser.State {
   public create(): void {
     // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.bgObj = new BackgroundObject(this.game);
     if (this.firstEntrance) {
       this.firstEntrance = false;
       MapObject.tileMapId = 'forest';
     }
+    this.bgObj = new BackgroundObject(this.game);
     this.mapObj = new MapObject(this.game);
     this.playerObj = new PlayerObject(this.game, this.mapObj.spawnPoint, this.gravity);
     this.ropeObj = new RopeObject(this.game, this.gravity, this.playerObj.player);

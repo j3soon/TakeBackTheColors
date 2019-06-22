@@ -8,6 +8,8 @@ import SawEnemyObject from './enemies/sawEnemyObject';
 import PropellerEnemyObject from './enemies/propellerEnemyObject';
 import WingEnemyObject from './enemies/wingEnemyObject';
 import CloudEnemyObject from './enemies/cloudEnemyObject';
+// # Forest Top
+import EagleEnemyObject from './enemies/eagleEnemyObject';
 import FreeSawEnemyObject from './enemies/freeSawEnemyObject';
 
 export default class MapObject extends Phaser.Sprite {
@@ -19,7 +21,6 @@ export default class MapObject extends Phaser.Sprite {
   public layers: Phaser.TilemapLayer[] = [];
 
   public spawnPoint: Phaser.Point;
-  // TODO: Phaser.Rectangle doesn't seems to be a nice choice.
   public stageGoalRect: Phaser.Rectangle;
   // public enemySpawnPoints: Phaser.Point[] = [];
   public readonly mapScale: number = 4;
