@@ -13,8 +13,10 @@ export default class PlayerObject extends Phaser.Sprite {
   private wallReleaseLeft = false;
   private animator: PlayerAnimation;
   private ropeObj: RopeObject;
+  private dead: boolean;
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
+  private emitter: Phaser.Particles.Arcade.Emitter;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -35,7 +37,12 @@ export default class PlayerObject extends Phaser.Sprite {
     this.spawnPoint = spawnPoint;
     this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsRabbit20025055.getName());
     this.animator = new PlayerAnimation(this.player, this.ropeObj, game);
-    
+    this.dead = false;
+    this.emitter = this.game.add.emitter(0, 0, 100);
+    this.emitter.makeParticles(Assets.Images.ImagesExplosion.getName());
+    this.emitter.setAlpha(0.8, 0, 500);
+    this.emitter.setScale(1.1, 0.2, 1.1, 0.2, 500);
+    this.emitter.setXSpeed(-150, 150);
     //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.player.scale.setTo(0.4);
@@ -51,6 +58,13 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public update() {
     const keybd = this.game.input.keyboard;
+    this.emitter.x = this.player.x;
+    this.emitter.y = this.player.y;
+    if(this.dead) {
+      this.player.body.velocity.x = 0;
+      this.player.body.velocity.y = 0;
+      return;
+    }
     let vx = 0;
     // const gravity = (this.gravity * this.game.time.physicsElapsed / 1000);
     this.player.body.acceleration.y = 0;
@@ -143,20 +157,35 @@ export default class PlayerObject extends Phaser.Sprite {
   public getRopeObject() {
     return this.ropeObj;
   }
-  public respawn() {
-    // Reset to spawn point. (Can be used as checkpoint)
+  private BurstDeath() {
+    console.log("burst!")
+    this.emitter.start(true, 750, null, 50);
+  }
+  private RealRespawn() {
     this.player.x = this.spawnPoint.x;
     this.player.y = this.spawnPoint.y;
-    this.player.body.velocity.x = 0;
-    this.player.body.velocity.y = 0;
-    this.ropeObj.ropeState = 'idle';
     // Add respawn effect.
     let respawn = this.game.add.sprite(this.player.x, this.player.y, Assets.Spritesheets.SpritesheetsRespawn25625625.getName())
     respawn.anchor.setTo(0.5);
     respawn.scale.set(0.6, 0.6);
     respawn.animations.add('anim', null, 24, true);
     respawn.animations.play('anim', null, false, true);
+    this.player.alpha = 1;
+    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, ()=>this.dead=false, this);
     // TODO: respawn all enemies.
+  }
+  public respawn() {
+    // Reset to spawn point. (Can be used as checkpoint)
+    if(this.dead) return;
+    this.dead = true;
+    this.game.time.events.add(Phaser.Timer.SECOND * 2, this.RealRespawn, this);
+    this.player.alpha = 0;
+    this.BurstDeath();
+    this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 0;
+    this.ropeObj.ropeState = 'idle';
+    
+    
   }
   public setRopeEnabled() {
     this.ropeObj.ropeEnabled = true;
