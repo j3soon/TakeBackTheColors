@@ -63,6 +63,50 @@
         }, 
         {
          "draworder":"topdown",
+         "id":87,
+         "name":"Collectibles",
+         "objects":[
+                {
+                 "height":0,
+                 "id":188,
+                 "name":"GreenCrystal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":910.666666666667,
+                 "y":1598
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":86,
+         "name":"EagleBoss",
+         "objects":[
+                {
+                 "height":16,
+                 "id":187,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14,
+                 "x":584,
+                 "y":1564
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":83,
          "name":"SpawnerCloudD",
          "objects":[
@@ -208,6 +252,39 @@
                  "width":170,
                  "x":4.66666666666667,
                  "y":1457.33333333333
+                }, 
+                {
+                 "height":338,
+                 "id":184,
+                 "name":"FightStart1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":58,
+                 "x":938,
+                 "y":1329.33333333333
+                }, 
+                {
+                 "height":63,
+                 "id":185,
+                 "name":"FightStart2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":404.333333333333,
+                 "x":991.666666666667,
+                 "y":1328.66666666667
+                }, 
+                {
+                 "height":1657.69696969697,
+                 "id":189,
+                 "name":"FightArea",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":961.030303030303,
+                 "x":429.878787878788,
+                 "y":12
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -237,8 +314,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":86,
- "nextobjectid":181,
+ "nextlayerid":88,
+ "nextobjectid":190,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

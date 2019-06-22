@@ -20,6 +20,7 @@ export default class CrystalObject extends Phaser.Sprite {
         spriteId = [0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         break;
       case 1:
+        spriteId = [8, 9, 10, 11, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8];
         break;
       case 2:
         break;
@@ -54,6 +55,13 @@ export default class CrystalObject extends Phaser.Sprite {
   public callback() {
     if (this.typeId === 0) {
       this.playerObj.setRopeEnabled();
+      this.collectible.destroy();
+      this.tween.stop();
+      this.tween2.stop();
+      this.shiny.destroy();
+      this.destroy();
+    } else if (this.typeId === 1) {
+      // TODO: Win!!!!!!! YBing
       this.collectible.destroy();
       this.tween.stop();
       this.tween2.stop();

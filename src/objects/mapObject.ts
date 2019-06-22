@@ -28,6 +28,10 @@ export default class MapObject extends Phaser.Sprite {
 
   public static tileMapId: string;
 
+  public fightAreaRect: Phaser.Rectangle;
+  public fightStart1Rect: Phaser.Rectangle;
+  public fightStart2Rect: Phaser.Rectangle;
+
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
   *
@@ -86,10 +90,16 @@ export default class MapObject extends Phaser.Sprite {
     this.spawnPoint.y *= this.mapScale;
     // console.log(this.spawnPoint);
     // # Stage Goal Point
-    let objStageGoal = this.map.objects['Triggers'][0];
-    if (objStageGoal.name !== 'StageGoal')
-      throw 'Tilemap Objects[\'Triggers\'][0].name !== StageGoal';
-    this.stageGoalRect = new Phaser.Rectangle(objStageGoal.x * this.mapScale, objStageGoal.y * this.mapScale, objStageGoal.width * this.mapScale, objStageGoal.height * this.mapScale);
+    for (let obj of this.map.objects['Triggers']) {
+      if (obj.name === 'StageGoal')
+        this.stageGoalRect = new Phaser.Rectangle(obj.x * this.mapScale, obj.y * this.mapScale, obj.width * this.mapScale, obj.height * this.mapScale);
+      else if (obj.name === 'FightArea')
+        this.fightAreaRect = new Phaser.Rectangle(obj.x * this.mapScale, obj.y * this.mapScale, obj.width * this.mapScale, obj.height * this.mapScale);
+      else if (obj.name === 'FightStart1')
+        this.fightStart1Rect = new Phaser.Rectangle(obj.x * this.mapScale, obj.y * this.mapScale, obj.width * this.mapScale, obj.height * this.mapScale);
+      else if (obj.name === 'FightStart2')
+        this.fightStart2Rect = new Phaser.Rectangle(obj.x * this.mapScale, obj.y * this.mapScale, obj.width * this.mapScale, obj.height * this.mapScale);
+    }
   }
   public createEnemies(game: Phaser.Game, gravity: number, player: Phaser.Sprite): EnemyObject[] {
     let enemies: EnemyObject[] = [];
@@ -144,9 +154,7 @@ export default class MapObject extends Phaser.Sprite {
         let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
         pnt.x *= this.mapScale;
         pnt.y *= this.mapScale;
-        let ene = new EagleEnemyObject(game, pnt, gravity,
-          new Phaser.Rectangle(obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, obj.y * this.mapScale, (obj.y + obj.height) * this.mapScale),
-          player);
+        let ene = new EagleEnemyObject(game, pnt, gravity, this.fightAreaRect, this.fightStart1Rect, this.fightStart2Rect, player);
         enemies.push(ene);
       }
     }
@@ -206,6 +214,9 @@ export default class MapObject extends Phaser.Sprite {
         pnt.y *= this.mapScale;
         if (obj.name === 'BlackCrystal') {
           let collectible = new CollectibleObject(game, pnt, 0, playerObj);
+          collectibles.push(collectible);
+        } else if (obj.name === 'GreenCrystal') {
+          let collectible = new CollectibleObject(game, pnt, 1, playerObj);
           collectibles.push(collectible);
         } else {
           throw 'No such crystal collectible name';

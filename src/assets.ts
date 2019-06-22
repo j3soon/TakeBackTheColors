@@ -1,6 +1,16 @@
 /* AUTO GENERATED FILE. DO NOT MODIFY. YOU WILL LOSE YOUR CHANGES ON BUILD. */
 
 export namespace Images {
+    export class ImagesAllBlack {
+        static getName(): string { return 'allBlack'; }
+
+        static getPNG(): string { return require('assets/images/allBlack.png'); }
+    }
+    export class ImagesAllWhite {
+        static getName(): string { return 'allWhite'; }
+
+        static getPNG(): string { return require('assets/images/allWhite.png'); }
+    }
     export class ImagesAnchor {
         static getName(): string { return 'anchor'; }
 
@@ -291,6 +301,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/explosion.png'); }
     }
+    export class ImagesOpeningBgColored {
+        static getName(): string { return 'opening_bg_colored'; }
+
+        static getPNG(): string { return require('assets/images/opening_bg_colored.png'); }
+    }
+    export class ImagesOpeningBgPale {
+        static getName(): string { return 'opening_bg_pale'; }
+
+        static getPNG(): string { return require('assets/images/opening_bg_pale.png'); }
+    }
     export class ImagesPlayer {
         static getName(): string { return 'player'; }
 
@@ -424,6 +444,26 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsOpeningEagleBack50043812 {
+        static getName(): string { return 'opening_eagle_back.[500,438,12,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/opening_eagle_back.[500,438,12,0,0].png'); }
+        static getFrameWidth(): number { return 500; }
+        static getFrameHeight(): number { return 438; }
+        static getFrameMax(): number { return 12; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsOpeningEagleFront50043812 {
+        static getName(): string { return 'opening_eagle_front.[500,438,12,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/opening_eagle_front.[500,438,12,0,0].png'); }
+        static getFrameWidth(): number { return 500; }
+        static getFrameHeight(): number { return 438; }
+        static getFrameMax(): number { return 12; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsProjectileLightning551142 {
         static getName(): string { return 'lightning.[55,114,2,0,0]'; }
 
@@ -471,6 +511,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 200; }
         static getFrameHeight(): number { return 250; }
         static getFrameMax(): number { return 55; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbitset20025045 {
+        static getName(): string { return 'rabbitset.[200,250,45,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbitset.[200,250,45,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 250; }
+        static getFrameMax(): number { return 45; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
