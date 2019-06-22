@@ -18,8 +18,12 @@ export default class MapObject extends Phaser.Sprite {
   public layers: Phaser.TilemapLayer[] = [];
 
   public spawnPoint: Phaser.Point;
+  // TODO: Phaser.Rectangle doesn't seems to be a nice choice.
+  public stageGoalRect: Phaser.Rectangle;
   // public enemySpawnPoints: Phaser.Point[] = [];
   public readonly mapScale: number = 4;
+
+  public static tileMapId: string;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -38,7 +42,12 @@ export default class MapObject extends Phaser.Sprite {
     // TODO: Make certain tilemap dynamic. (for boss)
     super(game, 0, 0);
     // Init tilemap.
-    this.map = this.game.add.tilemap(Assets.TilemapJSON.TilemapsForest.getName());
+    let tileMapName;
+    if (MapObject.tileMapId === 'forest')
+      tileMapName = Assets.TilemapJSON.TilemapsForest.getName();
+    else if (MapObject.tileMapId === 'forestTop')
+      tileMapName = Assets.TilemapJSON.TilemapsForestTop.getName();
+    this.map = this.game.add.tilemap(tileMapName);
     // Tile layers.
     this.map.addTilesetImage(Assets.Images.ImagesCavesofgalletTiles.getName());
     this.decorationLayer = this.map.createLayer('Decorations');
@@ -63,6 +72,7 @@ export default class MapObject extends Phaser.Sprite {
     this.map.setCollisionByExclusion([], true, this.obstacleLayer);
     this.map.setCollisionByExclusion([], true, this.instantDeathLayer);
     // Object layers.
+    // # Player Spawn Point
     // console.log(this.map.objects);
     let objPlayerSpawn = this.map.objects['Player'][0];
     // console.log(objPlayerSpawn);
@@ -72,6 +82,11 @@ export default class MapObject extends Phaser.Sprite {
     this.spawnPoint.x *= this.mapScale;
     this.spawnPoint.y *= this.mapScale;
     // console.log(this.spawnPoint);
+    // # Stage Goal Point
+    let objStageGoal = this.map.objects['Triggers'][0];
+    if (objStageGoal.name !== 'StageGoal')
+      throw 'Tilemap Objects[\'Triggers\'][0].name !== StageGoal';
+    this.stageGoalRect = new Phaser.Rectangle(objStageGoal.x * this.mapScale, objStageGoal.y * this.mapScale, objStageGoal.width * this.mapScale, objStageGoal.height * this.mapScale);
   }
   public createEnemies(game: Phaser.Game, gravity: number, player: Phaser.Sprite): EnemyObject[] {
     let enemies: EnemyObject[] = [];

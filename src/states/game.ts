@@ -7,6 +7,7 @@ import EnemyObject from '../objects/enemyObject';
 import CheckpointObject from '../objects/checkpointObject';
 import CrystalObject from '../objects/collectibles/crystalObject';
 import LightningObject from '../objects/projectiles/lightningObject';
+import { runInThisContext } from 'vm';
 
 export default class Game extends Phaser.State {
   public readonly gravity = 1800;
@@ -18,6 +19,8 @@ export default class Game extends Phaser.State {
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
   private debugTools = false;
+  // If entered from title scene.
+  private firstEntrance = true;
 
   public preload(): void {
     if (this.debugTools)
@@ -28,6 +31,10 @@ export default class Game extends Phaser.State {
     // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bgObj = new BackgroundObject(this.game);
+    if (this.firstEntrance) {
+      this.firstEntrance = false;
+      MapObject.tileMapId = 'forest';
+    }
     this.mapObj = new MapObject(this.game);
     this.playerObj = new PlayerObject(this.game, this.mapObj.spawnPoint, this.gravity);
     this.ropeObj = new RopeObject(this.game, this.gravity, this.playerObj.player);
@@ -38,7 +45,7 @@ export default class Game extends Phaser.State {
     this.bgObj.setTopLayers();
     this.game.camera.follow(this.playerObj.getPlayer(), Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
     this.game.camera.focusOn(this.playerObj.player);
-    // Optmize
+    // Optimize
     this.game.renderer.renderSession.roundPixels = true;
 
     // Fix Tunneling (Bullet-Through-Paper) problem.
@@ -51,6 +58,13 @@ export default class Game extends Phaser.State {
     this.game.time.advancedTiming = true;
 
     this.enemyObjs.push(new EnemyObject(this.game, new Phaser.Point(100, 1000), this.gravity));
+    this.updateMapData();
+  }
+  updateMapData(): void {
+    if (MapObject.tileMapId === 'forest') {
+    } else if (MapObject.tileMapId === 'forestTop') {
+      this.playerObj.setRopeEnabled();
+    }
   }
   update(): void {
     // # Rope
@@ -107,6 +121,17 @@ export default class Game extends Phaser.State {
     // # Player'
     // At last, check against walls so that dying can be more accurate.
     this.game.physics.arcade.collide(this.playerObj.player, this.mapObj.obstacleLayer);
+    // # Goal
+    let x = this.playerObj.player.x;
+    let y = this.playerObj.player.y;
+    if (this.mapObj.stageGoalRect.x < x && x < this.mapObj.stageGoalRect.x + this.mapObj.stageGoalRect.width &&
+        this.mapObj.stageGoalRect.y < y && y < this.mapObj.stageGoalRect.y + this.mapObj.stageGoalRect.height) {
+          if (MapObject.tileMapId === 'forest') {
+            console.log('change stage to forest top');
+            MapObject.tileMapId = 'forestTop';
+            this.game.state.restart(true);
+          }
+    }
   }
   render(): void {
     if (this.debugTools)

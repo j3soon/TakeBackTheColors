@@ -1,4 +1,5 @@
 import * as Assets from '../assets';
+import MapObject from './mapObject';
 
 export default class BackgroundObject extends Phaser.Sprite {
   // 11 layer background instances.
@@ -57,7 +58,12 @@ export default class BackgroundObject extends Phaser.Sprite {
   }
 
   public postUpdate(): void {
-    const deltaY = this.game.camera.view.height / this.tiles[0].tileScale.y + 6;
+    let deltaY;
+    if (MapObject.tileMapId === 'forest') {
+      deltaY = this.game.camera.view.height / this.tiles[0].tileScale.y + 6;
+    } else if (MapObject.tileMapId === 'forestTop') {
+      deltaY = 153 * this.tiles[0].tileScale.y;
+    }
     // BG
     for (let i = 0; i < this.tiles.length; i++) {
       let tile = this.tiles[i];
@@ -67,15 +73,28 @@ export default class BackgroundObject extends Phaser.Sprite {
       console.log(this.game.world.bounds.y);
       console.log(this.game.camera.view.height / 2);*/
       // Some offset for better background parts in test leel.
-      tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
-      tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
       // Hide vertical tilemap if wrap.
-      tile.visible = (tile.tilePosition.y < deltaY + 793 - this.game.camera.view.height / tile.tileScale.y);
+      if (MapObject.tileMapId === 'forest') {
+        tile.visible = (tile.tilePosition.y < deltaY + 793 - this.game.camera.view.height / tile.tileScale.y);
+        tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+        tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
+      } else if (MapObject.tileMapId === 'forestTop') {
+        tile.visible = false;
+        if (i === 0 || i === 8) {
+          tile.visible = true;
+        }
+        tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y;
+        tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x;
+      }
     }
   }
   public setTopLayers() {
     // Ground and grass layer should be above players, enemies, ...
     // this.game.world.bringToTop(this.tiles[9]);
-    this.game.world.bringToTop(this.tiles[10]);
+    if (MapObject.tileMapId === 'forest') {
+      this.game.world.bringToTop(this.tiles[10]);
+    } else if (MapObject.tileMapId === 'forestTop') {
+      this.game.world.bringToTop(this.tiles[8]);
+    }
   }
 }

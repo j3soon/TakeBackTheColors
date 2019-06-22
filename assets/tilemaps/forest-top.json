@@ -63,6 +63,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":50,
+         "name":"Triggers",
+         "objects":[
+                {
+                 "height":388.666666666667,
+                 "id":167,
+                 "name":"StageGoal",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":62.6666666666667,
+                 "x":6,
+                 "y":162
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":3,
          "name":"Player",
          "objects":[
@@ -83,8 +105,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":50,
- "nextobjectid":167,
+ "nextlayerid":51,
+ "nextobjectid":168,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

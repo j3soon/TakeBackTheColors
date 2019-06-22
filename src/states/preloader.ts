@@ -1,5 +1,6 @@
 import * as Assets from '../assets';
 import * as AssetUtils from '../utils/assetUtils';
+import MapObject from '../objects/mapObject';
 
 export default class Preloader extends Phaser.State {
     private preloadBarSprite!: Phaser.Sprite;
