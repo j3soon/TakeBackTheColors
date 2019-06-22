@@ -15,6 +15,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private ropeObj: RopeObject;
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
+  private emitter: Phaser.Particles.Arcade.Emitter;
 
   /**
   * Sprites are the lifeblood of your game, used for nearly everything visual.
@@ -29,13 +30,22 @@ export default class PlayerObject extends Phaser.Sprite {
   * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
   * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
   */
+  private ClickBurstTest(pointer) {
+    console.log("burst!")
+    this.emitter.start(true, 750, null, 50);
+  }
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
     // Init player.
     this.spawnPoint = spawnPoint;
     this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsRabbit20025055.getName());
     this.animator = new PlayerAnimation(this.player, this.ropeObj, game);
-    
+    this.emitter = this.game.add.emitter(0, 0, 100);
+    this.emitter.makeParticles(Assets.Images.ImagesExplosion.getName());
+    this.emitter.setAlpha(0.8, 0, 500);
+    this.emitter.setScale(1.1, 0.2, 1.1, 0.2, 500);
+    this.emitter.setXSpeed(-150, 150);
+    game.input.onDown.add(this.ClickBurstTest, this);
     //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.player.scale.setTo(0.4);
@@ -50,6 +60,8 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.add.existing(this);
   }
   public update() {
+    this.emitter.x = this.player.x;
+    this.emitter.y = this.player.y;
     const keybd = this.game.input.keyboard;
     let vx = 0;
     // const gravity = (this.gravity * this.game.time.physicsElapsed / 1000);
