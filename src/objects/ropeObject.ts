@@ -14,7 +14,7 @@ export default class RopeObject extends Phaser.Sprite {
   readonly shrinkDelta = 0.1;
   readonly shrinkMax = 6;
   readonly maxDistance = 800;
-  readonly minDistance = 32;
+  readonly minDistance = 40;
 
   public ropeAnchor!: Phaser.Sprite;
   public ropeState!: String; // idle, extend, shrink, burst

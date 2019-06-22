@@ -7,6 +7,8 @@ export default class EnemyObject extends Phaser.Sprite {
   public enemy: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
 
+  public die = false;
+
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
     super(game, 0, 0);
     this.spawnPoint = spawnPoint;
@@ -18,5 +20,7 @@ export default class EnemyObject extends Phaser.Sprite {
     this.enemy.y = this.spawnPoint.y;
     this.enemy.body.velocity.x = 0;
     this.enemy.body.velocity.y = 0;
+  }
+  public callback() {
   }
 }

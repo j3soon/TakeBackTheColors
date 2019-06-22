@@ -89,6 +89,14 @@ export default class Game extends Phaser.State {
         let enemy2 = this.enemyObjs[j];
         this.game.physics.arcade.collide(enemy.enemy, enemy2.enemy);
       }*/
+      if (enemy.die) {
+        this.game.physics.arcade.collide(enemy.enemy, this.mapObj.instantDeathLayer, () => {
+          // TODO: Optimize.
+          this.enemyObjs.splice(i, 1);
+          enemy.callback();
+          i--;
+        });
+      }
     }
     // # Player
     // Die if hit instant death tiles.
@@ -105,7 +113,6 @@ export default class Game extends Phaser.State {
     for (let collectible of this.collectibles) {
       this.game.physics.arcade.collide(this.playerObj.player, (<CrystalObject>collectible).collectible, () => {
         (<CrystalObject>collectible).callback();
-        collectible.kill();
       });
     }
     // # Checkpoints

@@ -85,8 +85,8 @@ export default class BackgroundObject extends Phaser.Sprite {
       if (MapObject.tileMapId === 'forest') {
         deltaY1 = this.game.camera.view.height / tile.tileScale.y + 6;
       } else if (MapObject.tileMapId === 'forestTop') {
-        deltaY1 = 153 * tile.tileScale.y;
-        deltaX2 = -850;
+        deltaY1 = 76;
+        deltaX2 = -750;
         deltaY2 = 950;
         if (i !== 0) {
           deltaY2 -= 250;
@@ -105,13 +105,15 @@ export default class BackgroundObject extends Phaser.Sprite {
         tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
       } else if (MapObject.tileMapId === 'forestTop') {
         if (i === 6) {
-          tile.visible = (tile.tilePosition.y <= deltaY1 + 100/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
-          tile.tilePosition.y = deltaY1 + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+          tile.visible = (tile.tilePosition.y <= deltaY1 + 200/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
+          tile.tilePosition.y = deltaY1 + (6120 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
           tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x;
         } else {
-          tile.visible = (tile.tilePosition.y <= deltaY2 + 800/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
+          tile.visible = (tile.tilePosition.y <= deltaY2 + 400);
+          if (i === 5)
+            tile.visible = (tile.tilePosition.y <= deltaY2 + 200);
           // console.log(this.game.camera.view.centerY);
-          tile.tilePosition.y = deltaY2 + (1640 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+          tile.tilePosition.y = deltaY2 + (6120 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
           tile.tilePosition.x = deltaX2 + (-this.game.camera.view.centerX) / tile.tileScale.x / this.tilesMove[i];
         }
       }
