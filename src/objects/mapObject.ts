@@ -8,6 +8,7 @@ import SawEnemyObject from './enemies/sawEnemyObject';
 import PropellerEnemyObject from './enemies/propellerEnemyObject';
 import WingEnemyObject from './enemies/wingEnemyObject';
 import CloudEnemyObject from './enemies/cloudEnemyObject';
+import FreeSawEnemyObject from './enemies/freeSawEnemyObject';
 
 export default class MapObject extends Phaser.Sprite {
   private map: Phaser.Tilemap;
@@ -105,6 +106,15 @@ export default class MapObject extends Phaser.Sprite {
         pnt.x *= this.mapScale;
         pnt.y *= this.mapScale;
         let ene = new SawEnemyObject(game, pnt, gravity, obj.x * this.mapScale, (obj.x + obj.width) * this.mapScale, player);
+        enemies.push(ene);
+      }
+    }
+    if (this.map.objects['FreeSawEnemies'] !== undefined) {
+      for (let obj of this.map.objects['FreeSawEnemies']) {
+        let pnt = new Phaser.Point(obj.x + obj.width / 2, obj.y + obj.height / 2);
+        pnt.x *= this.mapScale;
+        pnt.y *= this.mapScale;
+        let ene = new FreeSawEnemyObject(game, pnt, gravity, player);
         enemies.push(ene);
       }
     }
