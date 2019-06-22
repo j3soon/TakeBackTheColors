@@ -35,6 +35,6 @@ export default class Preloader extends Phaser.State {
     }
 
     private loadTitle(): void {
-        this.game.state.start('game');
+        this.game.state.start('Opening');
     }
 }
