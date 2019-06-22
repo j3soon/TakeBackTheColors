@@ -75,7 +75,8 @@ export default class BackgroundObject extends Phaser.Sprite {
       // Some offset for better background parts in test leel.
       // Hide vertical tilemap if wrap.
       if (MapObject.tileMapId === 'forest') {
-        tile.visible = (tile.tilePosition.y < deltaY + 793 - this.game.camera.view.height / tile.tileScale.y);
+        // Hacky way to hide bg.
+        tile.visible = (tile.tilePosition.y <= deltaY + 793 / 2/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
         tile.tilePosition.y = deltaY + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
         tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
       } else if (MapObject.tileMapId === 'forestTop') {
