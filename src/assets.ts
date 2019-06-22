@@ -66,6 +66,41 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/bg/layer9.png'); }
     }
+    export class ImagesBg2ForestTopLayer0 {
+        static getName(): string { return 'forest-top-layer0'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer0.png'); }
+    }
+    export class ImagesBg2ForestTopLayer1 {
+        static getName(): string { return 'forest-top-layer1'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer1.png'); }
+    }
+    export class ImagesBg2ForestTopLayer2 {
+        static getName(): string { return 'forest-top-layer2'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer2.png'); }
+    }
+    export class ImagesBg2ForestTopLayer3 {
+        static getName(): string { return 'forest-top-layer3'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer3.png'); }
+    }
+    export class ImagesBg2ForestTopLayer4 {
+        static getName(): string { return 'forest-top-layer4'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer4.png'); }
+    }
+    export class ImagesBg2ForestTopLayer5 {
+        static getName(): string { return 'forest-top-layer5'; }
+
+        static getPNG(): string { return require('assets/images/bg2/forest-top-layer5.png'); }
+    }
+    export class ImagesBg2FullMoon {
+        static getName(): string { return 'full-moon'; }
+
+        static getPNG(): string { return require('assets/images/bg2/full-moon.png'); }
+    }
     export class ImagesCavesofgalletTiles {
         static getName(): string { return 'cavesofgallet_tiles'; }
 
