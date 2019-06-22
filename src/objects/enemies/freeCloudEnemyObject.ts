@@ -9,8 +9,8 @@ export default class FreeCloudEnemyObject extends EnemyObject {
   private acceleration = 800;
 
   private maxShootDistance = 800;
-  private coolDown = 0;
-  private coolDownReset = 1;
+  private coolDown = 2;
+  private coolDownReset = 2;
 
   private player: Phaser.Sprite;
 
