@@ -20,6 +20,7 @@ export default class Game extends Phaser.State {
   private collectibles: Phaser.Sprite[];
   private debugTools = false;
   public bgm: any;
+  public bossBgm: any;
   private ab: Phaser.Sprite;
   private turnDark: boolean;
   private reveal: boolean;
@@ -32,8 +33,9 @@ export default class Game extends Phaser.State {
   }
 
   public create(): void {
+	this.bossBgm = this.game.add.audio(Assets.Audio.AudioJuhaniJunkalaEpicBossBattleSeamlesslyLooping.getName());
     this.bgm = this.game.add.audio(Assets.Audio.Audio8bitBossa.getName());
-    this.bgm.play('', 0, 1, true);
+    
     // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     if (this.firstEntrance) {
@@ -72,8 +74,10 @@ export default class Game extends Phaser.State {
 		// BOSS
 		this.ab.alpha = 1;
 		this.reveal = true;
+		this.bossBgm.play();
 	} else {
 		this.ab.alpha = 0;
+		this.bgm.play('', 0, 1, true);
 	}
   }
   updateMapData(): void {

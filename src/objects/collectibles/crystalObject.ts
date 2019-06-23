@@ -116,6 +116,7 @@ export default class CrystalObject extends Phaser.Sprite {
       // White
 	  this.game.state.start("Ending");
 	  (<Game>this.game.state.getCurrentState()).bgm.stop();
+	  (<Game>this.game.state.getCurrentState()).bossBgm.stop();
       console.log('win');
     }
     this.collectible.destroy();
