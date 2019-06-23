@@ -9,7 +9,7 @@ export default class LaserObject extends Phaser.Sprite {
   private readonly spawnCountReset = 5;
   private spawnCount: number = this.spawnCountReset;
 
-  constructor(game: Phaser.Game, spawnPoint: Phaser.Point, player: Phaser.Sprite) {
+  constructor(game: Phaser.Game, spawnPoint: Phaser.Point, playerPnt: Phaser.Point) {
     super(game, 0, 0);
     this.projectile = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesBeam.getName());
     this.projectile.anchor.setTo(0.5);
@@ -19,9 +19,10 @@ export default class LaserObject extends Phaser.Sprite {
     /*this.projectile.body.angularVelocity = 100;
     this.projectile.body.angularAcceleration = 50;*/
 
-    let angle = Math.atan2(player.y - spawnPoint.y, player.x - spawnPoint.x);
+    let angle = Math.atan2(playerPnt.y - spawnPoint.y, playerPnt.x - spawnPoint.x);
     this.projectile.body.velocity.x = this.speed * Math.cos(angle);
     this.projectile.body.velocity.y = this.speed * Math.sin(angle);
+    this.projectile.rotation = angle;
     // this.projectile.body.velocity.y = this.speed;
     // this.projectile.body.velocity.x = xSpeed;
     // Inject this object to event loop.

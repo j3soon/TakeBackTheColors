@@ -19,6 +19,10 @@ export default class EagleEnemyObject extends EnemyObject {
   private laserCount = 4;
   private laserPrepareCountReset = 1;
   private laserCountReset = 4;
+
+  private laserCD = 0.05;
+  private laserCDReset = 0.05;
+
   private shockCount = 2;
   private shockCountReset = 2;
   private ice: any;
@@ -32,6 +36,8 @@ export default class EagleEnemyObject extends EnemyObject {
   public static nextStage = false;
 
   private player: Phaser.Sprite;
+
+  private targetPoint: Phaser.Point = new Phaser.Point();
 
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number, moveRect: Phaser.Rectangle, fightStart1Rect: Phaser.Rectangle, fightStart2Rect: Phaser.Rectangle, player: Phaser.Sprite) {
     super(game, spawnPoint, gravity);
@@ -82,8 +88,11 @@ export default class EagleEnemyObject extends EnemyObject {
   public shootLaser() {
     this.state = 'laserPrepare';
     this.laserCount = this.laserPrepareCountReset;
+    this.laserCD = this.laserCDReset;
 	//  Play neck forward anim YBing
-	this.enemy.animations.play('laser0');
+  this.enemy.animations.play('laser0');
+  this.targetPoint.x = this.player.x
+  this.targetPoint.y = this.player.y
   }
   public resetCD() {
     this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
@@ -98,7 +107,7 @@ export default class EagleEnemyObject extends EnemyObject {
       // Attack!!
       let r = this.game.rnd.integerInRange(0, 10);
       if (EagleEnemyObject.enemyStage === 0) {
-        this.shootIce();
+        this.shootLaser();
       } else if (EagleEnemyObject.enemyStage === 1) {
         if (r <= 7)
           this.shootIce();
@@ -216,6 +225,13 @@ export default class EagleEnemyObject extends EnemyObject {
           this.resetCD();
 		  this.state = 'laserComeback';
 		  this.enemy.animations.play('idle');
+        }
+        // Shoot
+        this.laserCD -= this.game.time.elapsed / 1000;
+        if (this.laserCD <= 0) {
+          this.laserCD = this.laserCDReset;
+          this.resetCD();
+          let laser = new LaserObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.targetPoint);
         }
         // Play neck back anim YBing
         break;
