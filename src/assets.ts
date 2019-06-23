@@ -459,6 +459,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsIceBlock70702 {
+        static getName(): string { return 'iceBlock.[70,70,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/iceBlock.[70,70,2,0,0].png'); }
+        static getFrameWidth(): number { return 70; }
+        static getFrameHeight(): number { return 70; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsMetalslugMummy374518 {
         static getName(): string { return 'metalslug_mummy.[37,45,18,0,0]'; }
 
@@ -624,6 +634,31 @@ export namespace Atlases {
 }
 
 export namespace Audio {
+    export class Audio8bitBossa {
+        static getName(): string { return '8bit Bossa'; }
+
+        static getMP3(): string { return require('assets/audio/8bit Bossa.mp3'); }
+    }
+    export class AudioBubble {
+        static getName(): string { return 'bubble'; }
+
+        static getWAV(): string { return require('assets/audio/bubble.wav'); }
+    }
+    export class AudioCloudAttack {
+        static getName(): string { return 'cloud_attack'; }
+
+        static getMP3(): string { return require('assets/audio/cloud_attack.mp3'); }
+    }
+    export class AudioEagleCry {
+        static getName(): string { return 'eagle_cry'; }
+
+        static getWAV(): string { return require('assets/audio/eagle_cry.wav'); }
+    }
+    export class AudioJump {
+        static getName(): string { return 'jump'; }
+
+        static getMP3(): string { return require('assets/audio/jump.mp3'); }
+    }
     export class AudioMusic {
         static getName(): string { return 'music'; }
 
@@ -631,6 +666,16 @@ export namespace Audio {
         static getM4A(): string { return require('assets/audio/music.m4a'); }
         static getMP3(): string { return require('assets/audio/music.mp3'); }
         static getOGG(): string { return require('assets/audio/music.ogg'); }
+    }
+    export class AudioShootRope {
+        static getName(): string { return 'shoot_rope'; }
+
+        static getWAV(): string { return require('assets/audio/shoot_rope.wav'); }
+    }
+    export class AudioSmallThings {
+        static getName(): string { return 'Small Things'; }
+
+        static getMP3(): string { return require('assets/audio/Small Things.mp3'); }
     }
 }
 

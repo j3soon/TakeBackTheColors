@@ -1,6 +1,6 @@
 import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
-import CrystalObject from '../collectibles/crystalObject';
+import IceObject from '../projectiles/iceObject';
 import Game from '../../states/game';
 
 export default class EagleEnemyObject extends EnemyObject {
@@ -9,8 +9,8 @@ export default class EagleEnemyObject extends EnemyObject {
   public fightStart2Rect: Phaser.Rectangle;
   private state = 'stop';
 
-  private coolDown = 8;
-  private coolDownReset = 8;
+  private coolDown = 6;
+  private coolDownReset = 6;
   private dockLeft = true;
 
   // 0: ice
@@ -41,6 +41,7 @@ export default class EagleEnemyObject extends EnemyObject {
     this.enemy.autoCull = true;
   }
   public shootIce() {
+    new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
   }
   public dive() {
   }
