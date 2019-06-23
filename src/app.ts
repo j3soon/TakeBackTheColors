@@ -9,6 +9,7 @@ import Preloader from './states/preloader';
 import Title from './states/title';
 import Game from './states/game';
 import Opening from './states/Opening';
+import Ending from './states/Ending';
 import * as Utils from './utils/utils';
 import * as Assets from './assets';
 
@@ -21,7 +22,8 @@ class App extends Phaser.Game {
         this.state.add('preloader', Preloader);
         this.state.add('title', Title);
         this.state.add('game', Game);
-        this.state.add('Opening', Opening);
+		this.state.add('Opening', Opening);
+		this.state.add('Ending', Ending);
 
         this.state.start('boot');
     }

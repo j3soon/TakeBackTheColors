@@ -12,6 +12,7 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDown = 6;
   private coolDownReset = 6;
   private dockLeft = true;
+  private ab: any;
   private diveCount = 2;
   private diveCountReset = 2;
 
@@ -28,7 +29,8 @@ export default class EagleEnemyObject extends EnemyObject {
     super(game, spawnPoint, gravity);
     this.fightAreaRect = moveRect;
     this.fightStart1Rect = fightStart1Rect;
-    this.fightStart2Rect = fightStart2Rect;
+	this.fightStart2Rect = fightStart2Rect;
+	
     this.player = player;
     //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
     this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
@@ -43,7 +45,8 @@ export default class EagleEnemyObject extends EnemyObject {
     game.physics.enable(this.enemy);
 	this.enemy.body.setSize(400, 350, 200, 175);
 	// this.enemy.body.gravity.y = gravity;
-    this.enemy.autoCull = true;
+	this.enemy.autoCull = true;
+	
   }
   public shootIce() {
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
@@ -140,7 +143,10 @@ export default class EagleEnemyObject extends EnemyObject {
         this.calcAttack();
         break;
       /*case 'ice':
-        break;*/
+		break;*/
+	  case 'shock':
+		
+	    break;
       case 'dive':
         this.diveCount -= this.game.time.elapsed / 1000;
         if (this.diveCount <= 0) {
