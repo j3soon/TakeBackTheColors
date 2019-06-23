@@ -1,6 +1,7 @@
 import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 import IceObject from '../projectiles/iceObject';
+import LaserObject from '../projectiles/laserObject';
 import Game from '../../states/game';
 
 export default class EagleEnemyObject extends EnemyObject {
