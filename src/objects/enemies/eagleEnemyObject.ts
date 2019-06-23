@@ -12,6 +12,8 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDown = 6;
   private coolDownReset = 6;
   private dockLeft = true;
+  private diveCount = 2;
+  private diveCountReset = 2;
 
   // 0: ice
   // 1: dive
@@ -51,8 +53,13 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public dive() {
     this.dockLeft = !this.dockLeft;
+    this.state = 'dive';
+    this.diveCount = this.diveCountReset;
   }
   public shootLaser() {
+  }
+  public resetCD() {
+    this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
   }
   public calcAttack() {
     if (this.state !== 'idle') {
@@ -60,7 +67,7 @@ export default class EagleEnemyObject extends EnemyObject {
     }
     this.coolDown -= this.game.time.elapsed / 1000;
     if (this.coolDown <= 0) {
-      this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
+      this.resetCD();
       // Attack!!
       let r = this.game.rnd.integerInRange(0, 10);
       if (EagleEnemyObject.enemyStage === 0) {
@@ -82,7 +89,21 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public changeState() {
 	let newScaleX = this.player.x < this.enemy.x ? 1 : -1;
-	if(newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
+  // For idle, dive
+  let target = new Phaser.Point();
+  target.y = this.game.camera.view.centerY - 500;
+  let newY = this.fightAreaRect.y + this.enemy.height / 2 - 150;
+  target.y = Math.max(target.y, newY);
+  if (this.dockLeft) {
+    target.x = this.game.camera.view.centerX - 700;
+    let newX = this.fightAreaRect.x + this.enemy.width / 2 + 50;
+    target.x = Math.max(target.x, newX);
+  } else {
+    target.x = this.game.camera.view.centerX + 700;
+    let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
+    target.x = Math.min(target.x, newX);
+  }
+	if (newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
     let x = this.player.x;
     let y = this.player.y;
     switch (this.state) {
@@ -112,19 +133,6 @@ export default class EagleEnemyObject extends EnemyObject {
       // Below are fights.
       case 'idle':
         // Want to stay at upper screen (left / right).
-        let target = new Phaser.Point();
-        target.y = this.game.camera.view.centerY - 500;
-        let newY = this.fightAreaRect.y + this.enemy.height / 2 - 150;
-        target.y = Math.max(target.y, newY);
-        if (this.dockLeft) {
-          target.x = this.game.camera.view.centerX - 700;
-          let newX = this.fightAreaRect.x + this.enemy.width / 2 + 50;
-          target.x = Math.max(target.x, newX);
-        } else {
-          target.x = this.game.camera.view.centerX + 700;
-          let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
-          target.x = Math.min(target.x, newX);
-        }
         // TODO: Move birdy here (move y slowly maybe within 0.5 sec?) YBing
         //       may swap left / right, can move x within 0.25 sec?
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
@@ -134,6 +142,24 @@ export default class EagleEnemyObject extends EnemyObject {
       /*case 'ice':
         break;*/
       case 'dive':
+        this.diveCount -= this.game.time.elapsed / 1000;
+        if (this.diveCount <= 0) {
+          this.diveCount = this.diveCountReset;
+          this.resetCD();
+          this.state = 'diveComeback';
+        }
+        target.y = this.game.camera.view.centerY + 500;
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.015;
+        break;
+      case 'diveComeback':
+        this.diveCount -= this.game.time.elapsed / 1000;
+        if (this.diveCount <= 0) {
+          this.resetCD();
+          this.state = 'idle';
+        }
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.02;
         break;
       case 'laser':
         break;
