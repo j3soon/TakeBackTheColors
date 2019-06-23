@@ -15,7 +15,7 @@ export default class PlayerObject extends Phaser.Sprite {
   private wallReleaseLeft = false;
   private animator: PlayerAnimation;
   private ropeObj: RopeObject;
-  private dead: boolean;
+  public dead: boolean;
   private jump: any;
   private bubble: any;
 

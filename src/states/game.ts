@@ -35,12 +35,12 @@ export default class Game extends Phaser.State {
   public create(): void {
 	this.bossBgm = this.game.add.audio(Assets.Audio.AudioJuhaniJunkalaEpicBossBattleSeamlesslyLooping.getName());
     this.bgm = this.game.add.audio(Assets.Audio.Audio8bitBossa.getName());
-    
+
     // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     if (this.firstEntrance) {
       this.firstEntrance = false;
-      MapObject.tileMapId = 'forestTop';
+      MapObject.tileMapId = 'forest';
     }
     this.bgObj = new BackgroundObject(this.game);
     this.mapObj = new MapObject(this.game);
@@ -70,7 +70,7 @@ export default class Game extends Phaser.State {
 	this.ab = this.game.add.sprite(0, 0, Assets.Images.ImagesAllBlack.getName());
 	this.ab.fixedToCamera = true;
 	this.ab.bringToTop();
-	if(MapObject.tileMapId === 'forestTop') { 
+	if(MapObject.tileMapId === 'forestTop') {
 		// BOSS
 		this.ab.alpha = 1;
 		this.reveal = true;
@@ -173,10 +173,10 @@ export default class Game extends Phaser.State {
         this.mapObj.stageGoalRect.y < y && y < this.mapObj.stageGoalRect.y + this.mapObj.stageGoalRect.height) {
           if (MapObject.tileMapId === 'forest' && !this.turnDark) {
             console.log('change stage to forest top');
-            MapObject.tileMapId = 'forestTop';
+
 			// TODO: Use fade in fade out YBing
 			this.turnDark = true;
-            this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {this.game.state.restart(true);}, this);
+            this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {MapObject.tileMapId = 'forestTop'; this.game.state.restart(true);}, this);
           }
     }
   }

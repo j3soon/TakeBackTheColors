@@ -1,4 +1,5 @@
 import * as Assets from '../assets';
+import Game from '../states/game';
 
 export default class RopeObject extends Phaser.Sprite {
   private gravity: number;
@@ -177,6 +178,8 @@ export default class RopeObject extends Phaser.Sprite {
     }
   }
   public update() {
+    if ((<Game>this.game.state.getCurrentState()).playerObj.dead)
+      return;
     this.changeRopeState_();
     this.procRope_();
     if (this.ropeAnchor.body.blocked.up ||
