@@ -28,8 +28,8 @@ export default class EagleEnemyObject extends EnemyObject {
     this.fightStart1Rect = fightStart1Rect;
     this.fightStart2Rect = fightStart2Rect;
     this.player = player;
-	//this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
-	this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
+    //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
+    this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
     // this.enemy.animations.add('take-off', [0, 1, 2, 3], 12, true);
     this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
@@ -37,7 +37,7 @@ export default class EagleEnemyObject extends EnemyObject {
     this.enemy.animations.play('idle');
     this.enemy.anchor.setTo(0.5);
 	this.enemy.scale.set(1);
-	
+
     game.physics.enable(this.enemy);
 	this.enemy.body.setSize(400, 350, 200, 175);
 	// this.enemy.body.gravity.y = gravity;
@@ -46,8 +46,11 @@ export default class EagleEnemyObject extends EnemyObject {
   public shootIce() {
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
     this.enemy.bringToTop();
+    if (this.game.rnd.integerInRange(0, 10) < 3)
+      this.dockLeft = !this.dockLeft;
   }
   public dive() {
+    this.dockLeft = !this.dockLeft;
   }
   public shootLaser() {
   }
@@ -57,25 +60,24 @@ export default class EagleEnemyObject extends EnemyObject {
     }
     this.coolDown -= this.game.time.elapsed / 1000;
     if (this.coolDown <= 0) {
-      this.coolDown = this.coolDownReset + this.game.rnd.frac() * 4;
+      this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
       // Attack!!
       let r = this.game.rnd.integerInRange(0, 10);
       if (EagleEnemyObject.enemyStage === 0) {
         this.shootIce();
       } else if (EagleEnemyObject.enemyStage === 1) {
-        if (r <= 4)
+        if (r <= 7)
           this.shootIce();
         else
           this.dive();
       } else if (EagleEnemyObject.enemyStage === 2) {
-        if (r <= 3)
+        if (r <= 4)
           this.shootIce();
-        else if (r <= 6)
+        else if (r <= 7)
           this.dive();
         else
           this.shootLaser();
       }
-      this.dockLeft = !this.dockLeft;
     }
   }
   public changeState() {
@@ -111,8 +113,8 @@ export default class EagleEnemyObject extends EnemyObject {
       case 'idle':
         // Want to stay at upper screen (left / right).
         let target = new Phaser.Point();
-        target.y = this.game.camera.view.centerY - 300;
-        let newY = this.fightAreaRect.y + this.enemy.height / 2 + 50;
+        target.y = this.game.camera.view.centerY - 500;
+        let newY = this.fightAreaRect.y + this.enemy.height / 2 - 150;
         target.y = Math.max(target.y, newY);
         if (this.dockLeft) {
           target.x = this.game.camera.view.centerX - 700;
@@ -126,7 +128,7 @@ export default class EagleEnemyObject extends EnemyObject {
         // TODO: Move birdy here (move y slowly maybe within 0.5 sec?) YBing
         //       may swap left / right, can move x within 0.25 sec?
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
-        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.005;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
         this.calcAttack();
         break;
       /*case 'ice':

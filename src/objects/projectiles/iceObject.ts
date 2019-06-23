@@ -4,7 +4,7 @@ import Game from '../../states/game';
 
 export default class IceObject extends Phaser.Sprite {
   public projectile: Phaser.Sprite;
-  private readonly speed = 400;
+  private readonly speed = 800;
 
   private readonly spawnCountReset = 10;
   private spawnCount: number = this.spawnCountReset;
@@ -15,7 +15,7 @@ export default class IceObject extends Phaser.Sprite {
     this.projectile.animations.add('anim', [0, 1, 0, 0, 0, 0, 0, 0], 6, true);
     this.projectile.animations.play('anim');
     this.projectile.anchor.setTo(0.5);
-    this.projectile.scale.set(2, 2);
+    this.projectile.scale.set(1.5, 1.5);
     game.physics.enable(this.projectile);
     this.projectile.autoCull = true;
     this.projectile.body.angularVelocity = 100;

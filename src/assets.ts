@@ -21,6 +21,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/background_template.png'); }
     }
+    export class ImagesBeamSmall {
+        static getName(): string { return 'beam-small'; }
+
+        static getPNG(): string { return require('assets/images/beam-small.png'); }
+    }
+    export class ImagesBeam {
+        static getName(): string { return 'beam'; }
+
+        static getPNG(): string { return require('assets/images/beam.png'); }
+    }
     export class ImagesBgLayer0 {
         static getName(): string { return 'layer0'; }
 
@@ -386,6 +396,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 275; }
         static getFrameHeight(): number { return 366; }
         static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsEagleBoss80070018 {
+        static getName(): string { return 'eagle_boss.[800,700,18,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/eagle_boss.[800,700,18,0,0].png'); }
+        static getFrameWidth(): number { return 800; }
+        static getFrameHeight(): number { return 700; }
+        static getFrameMax(): number { return 18; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
