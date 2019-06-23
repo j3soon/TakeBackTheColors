@@ -28,16 +28,19 @@ export default class EagleEnemyObject extends EnemyObject {
     this.fightStart1Rect = fightStart1Rect;
     this.fightStart2Rect = fightStart2Rect;
     this.player = player;
-    this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
+	//this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
+	this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
     // this.enemy.animations.add('take-off', [0, 1, 2, 3], 12, true);
-    this.enemy.animations.add('hover', [0, 1], 12, true);
+    this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
     // this.enemy.animations.add('laser', [2, 3], 12, true);
-    this.enemy.animations.play('hover');
+    this.enemy.animations.play('idle');
     this.enemy.anchor.setTo(0.5);
-    this.enemy.scale.set(4, 4);
+	this.enemy.scale.set(1);
+	
     game.physics.enable(this.enemy);
-    // this.enemy.body.gravity.y = gravity;
+	this.enemy.body.setSize(400, 350, 200, 175);
+	// this.enemy.body.gravity.y = gravity;
     this.enemy.autoCull = true;
   }
   public shootIce() {
@@ -75,6 +78,8 @@ export default class EagleEnemyObject extends EnemyObject {
     }
   }
   public changeState() {
+	let newScaleX = this.player.x < this.enemy.x ? 1 : -1;
+	if(newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
     let x = this.player.x;
     let y = this.player.y;
     switch (this.state) {
@@ -119,8 +124,8 @@ export default class EagleEnemyObject extends EnemyObject {
         }
         // TODO: Move birdy here (move y slowly maybe within 0.5 sec?) YBing
         //       may swap left / right, can move x within 0.25 sec?
-        this.enemy.x = target.x;
-        this.enemy.y = target.y;
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.005;
         this.calcAttack();
         break;
       /*case 'ice':
