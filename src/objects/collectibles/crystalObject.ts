@@ -115,7 +115,6 @@ export default class CrystalObject extends Phaser.Sprite {
     } else if (this.typeId === 4) {
       // White
 	  this.game.state.start("Ending");
-	  (<Game>this.game.state.getCurrentState()).bgm.stop();
 	  (<Game>this.game.state.getCurrentState()).bossBgm.stop();
       console.log('win');
     }

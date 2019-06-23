@@ -74,6 +74,7 @@ export default class Game extends Phaser.State {
 		// BOSS
 		this.ab.alpha = 1;
 		this.reveal = true;
+	  (<Game>this.game.state.getCurrentState()).bgm.stop();
 		this.bossBgm.play('', 0, 1, true);
 	} else {
 		this.ab.alpha = 0;
