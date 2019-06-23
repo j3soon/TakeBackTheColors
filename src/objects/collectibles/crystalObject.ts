@@ -1,6 +1,7 @@
 import * as Assets from '../../assets';
 import PlayerObject from '../playerObject';
 import EagleEnemyObject from '../enemies/eagleEnemyObject';
+import Game from '../../states/game';
 
 export default class CrystalObject extends Phaser.Sprite {
   // public static whiteInstance: CrystalObject;
@@ -113,7 +114,8 @@ export default class CrystalObject extends Phaser.Sprite {
       EagleEnemyObject.nextStage = true;
     } else if (this.typeId === 4) {
       // White
-      this.game.state.start("Ending");
+	  this.game.state.start("Ending");
+	  (<Game>this.game.state.getCurrentState()).bgm.stop();
       console.log('win');
     }
     this.collectible.destroy();

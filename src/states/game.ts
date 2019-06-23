@@ -19,7 +19,7 @@ export default class Game extends Phaser.State {
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
   private debugTools = false;
-  private bgm: any;
+  public bgm: any;
   private ab: Phaser.Sprite;
   private turnDark: boolean;
   private reveal: boolean;
