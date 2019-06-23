@@ -108,7 +108,7 @@ export default class EagleEnemyObject extends EnemyObject {
       // Attack!!
       let r = this.game.rnd.integerInRange(0, 10);
       if (EagleEnemyObject.enemyStage === 0) {
-        this.shootLaser();
+        this.shootIce();
       } else if (EagleEnemyObject.enemyStage === 1) {
         if (r <= 7)
           this.shootIce();
