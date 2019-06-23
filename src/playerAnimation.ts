@@ -6,7 +6,7 @@ export default class PlayerAnimation{
     //private player: PlayerObject;
     private animState: string;
     private game: any;
-    private playerComp: Phaser.Sprite;
+    public playerComp: Phaser.Sprite;
     private playerHand: Phaser.Sprite;
     //private rope: RopeObject;
     //private game: Phaser.Game;

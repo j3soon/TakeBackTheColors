@@ -18,6 +18,8 @@ export default class Opening extends Phaser.State {
   private calls: number;
   private title: Phaser.Sprite;
   private psts: Phaser.Sprite;
+  private cry: any;
+  private bgm: any;
   public preload(): void {
     if (this.debugTools)
       this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
@@ -25,6 +27,8 @@ export default class Opening extends Phaser.State {
 
   public create(): void {
     // this.game.forceSingleUpdate = true;
+    this.cry = this.game.add.audio(Assets.Audio.AudioEagleCry.getName());
+    this.bgm = this.game.add.audio(Assets.Audio.Audio8bitBossa.getName());
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bg = this.game.add.sprite(0, 0, Assets.Images.ImagesOpeningBgColored.getName());
     this.pale_bg = this.game.add.sprite(0, 0, Assets.Images.ImagesOpeningBgPale.getName());
@@ -57,6 +61,7 @@ export default class Opening extends Phaser.State {
     this.psts = this.game.add.sprite(1920/2, 900, Assets.Images.ImagesPsts.getName());
     this.psts.alpha = 0;
     this.psts.anchor.setTo(0.5);
+    this.bgm.play('', 0, 1, true);
   }
   setUpEagleBack() {
     this.eagle = this.game.add.sprite(2000, 150, Assets.Spritesheets.SpritesheetsOpeningEagleBack50043812.getName());
@@ -73,6 +78,7 @@ export default class Opening extends Phaser.State {
     
     if(this.eagleState == 'dive1') {
       //var sec = 1 / this.game.time.elapsed;
+      
       this.eagle.x -= 2600 / 70;
       this.eagle.y += 300 / 70;
       if(this.calls == 0) {
@@ -80,6 +86,7 @@ export default class Opening extends Phaser.State {
         this.game.time.events.add(Phaser.Timer.SECOND * 2, function () { this.eagleState = 'dive2' }, this);
       }
     } else if (this.eagleState == 'dive2') {
+      this.cry.play();
       this.eagleState = 'dive3';
       this.eagle.x = -150; 
       this.eagle.y = 0;
@@ -241,7 +248,10 @@ export default class Opening extends Phaser.State {
     for(var i = 0; i < this.RABBITS; i++) this.updateRbt(this.rbt[i]);
     this.updateCrystal();
     this.EagleUpdate();
-    if(this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) this.game.state.start('game');
+    if(this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+      this.bgm.stop();
+      this.game.state.start('game');
+    }
   }
   render(): void {
     if (this.debugTools)
