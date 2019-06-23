@@ -1,6 +1,7 @@
 import * as Assets from '../../assets';
 import EnemyObject from '../enemyObject';
 import FreeCloudEnemyObject from './freeCloudEnemyObject';
+import EagleEnemyObject from './eagleEnemyObject';
 
 export default class SpawnCloudEnemyObject extends Phaser.Sprite {
   private spawnPoint: Phaser.Point;
@@ -41,11 +42,29 @@ export default class SpawnCloudEnemyObject extends Phaser.Sprite {
       }
       eff.anchor.setTo(0.53);
       // eff.anchor.setTo(0.53);
+      eff.visible = false;
     }
     // Inject this object to event loop.
     game.add.existing(this);
   }
   public update() {
+    // fin
+    if (EagleEnemyObject.enemyStage === 3) {
+      for (let eff of this.effect) {
+        eff.visible = false;
+      }
+      return;
+    }
+    if (EagleEnemyObject.enemyStage <= 1 && this.walkTop) {
+      // Lower cloud spawner. appear in stage 2.
+      return;
+    } else if (EagleEnemyObject.enemyStage <= 0 && !this.walkTop) {
+      // Upper saw cloud. appear in stage 1.
+      return;
+    }
+    for (let eff of this.effect) {
+      eff.visible = true;
+    }
     this.spawnCount -= this.game.time.elapsed / 1000;
     if (this.spawnCount <= 0) {
       this.spawnCount = this.spawnCountReset;

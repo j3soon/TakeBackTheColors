@@ -2,6 +2,8 @@
 import * as Assets from '../assets';
 import RopeObject from '../objects/ropeObject';
 import PlayerAnimation from '../playerAnimation';
+import CrystalObject from './collectibles/crystalObject';
+import EagleEnemyObject from './enemies/eagleEnemyObject';
 
 export default class PlayerObject extends Phaser.Sprite {
   private gravity: number;
@@ -56,7 +58,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.game.physics.enable(this.player);
     this.player.body.gravity.y = gravity;
     this.player.body.setSize(130, 100, 60, 140);
-    
+
     this.gravity = gravity;
     // Setup Constants.
     this.jumpPower = this.gravity / 3;
@@ -184,6 +186,15 @@ export default class PlayerObject extends Phaser.Sprite {
     respawn.animations.play('anim', null, false, true);
     this.player.alpha = 1;
     this.game.time.events.add(Phaser.Timer.SECOND * 0.5, ()=>this.dead=false, this);
+    // Spawn crystal if needed
+    if (CrystalObject.spawn) {
+      // Clear flag.
+      CrystalObject.spawn = false;
+      if (EagleEnemyObject.enemyStage === 1)
+        new CrystalObject(this.game, CrystalObject.hiP, 2, this);
+      if (EagleEnemyObject.enemyStage === 2)
+        new CrystalObject(this.game, CrystalObject.hiP, 3, this);
+    }
     // TODO: respawn all enemies.
   }
   public respawn() {
@@ -198,8 +209,8 @@ export default class PlayerObject extends Phaser.Sprite {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     this.ropeObj.ropeState = 'idle';
-    
-    
+
+
   }
   public setRopeEnabled() {
     this.ropeObj.ropeEnabled = true;

@@ -1,6 +1,16 @@
 /* AUTO GENERATED FILE. DO NOT MODIFY. YOU WILL LOSE YOUR CHANGES ON BUILD. */
 
 export namespace Images {
+    export class ImagesAllBlack {
+        static getName(): string { return 'allBlack'; }
+
+        static getPNG(): string { return require('assets/images/allBlack.png'); }
+    }
+    export class ImagesAllWhite {
+        static getName(): string { return 'allWhite'; }
+
+        static getPNG(): string { return require('assets/images/allWhite.png'); }
+    }
     export class ImagesAnchor {
         static getName(): string { return 'anchor'; }
 
@@ -110,6 +120,11 @@ export namespace Images {
         static getName(): string { return 'chain'; }
 
         static getPNG(): string { return require('assets/images/chain.png'); }
+    }
+    export class ImagesClaw {
+        static getName(): string { return 'claw'; }
+
+        static getPNG(): string { return require('assets/images/claw.png'); }
     }
     export class ImagesCollectiblesBronze {
         static getName(): string { return 'bronze'; }
@@ -291,6 +306,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/explosion.png'); }
     }
+    export class ImagesOpeningBgColored {
+        static getName(): string { return 'opening_bg_colored'; }
+
+        static getPNG(): string { return require('assets/images/opening_bg_colored.png'); }
+    }
+    export class ImagesOpeningBgPale {
+        static getName(): string { return 'opening_bg_pale'; }
+
+        static getPNG(): string { return require('assets/images/opening_bg_pale.png'); }
+    }
     export class ImagesPlayer {
         static getName(): string { return 'player'; }
 
@@ -306,10 +331,20 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/projectile/lighting_yellow.png'); }
     }
+    export class ImagesPsts {
+        static getName(): string { return 'psts'; }
+
+        static getPNG(): string { return require('assets/images/psts.png'); }
+    }
     export class ImagesShiny {
         static getName(): string { return 'shiny'; }
 
         static getPNG(): string { return require('assets/images/shiny.png'); }
+    }
+    export class ImagesTitle {
+        static getName(): string { return 'title'; }
+
+        static getPNG(): string { return require('assets/images/title.png'); }
     }
 }
 
@@ -340,6 +375,16 @@ export namespace Spritesheets {
         static getPNG(): string { return require('assets/spritesheets/crystals/crystal.[273,364,20,0,0].png'); }
         static getFrameWidth(): number { return 273; }
         static getFrameHeight(): number { return 364; }
+        static getFrameMax(): number { return 20; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsCrystalsCrystal27536620 {
+        static getName(): string { return 'crystal.[275,366,20,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/crystals/crystal.[275,366,20,0,0].png'); }
+        static getFrameWidth(): number { return 275; }
+        static getFrameHeight(): number { return 366; }
         static getFrameMax(): number { return 20; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
@@ -414,6 +459,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsIceBlock70702 {
+        static getName(): string { return 'iceBlock.[70,70,2,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/iceBlock.[70,70,2,0,0].png'); }
+        static getFrameWidth(): number { return 70; }
+        static getFrameHeight(): number { return 70; }
+        static getFrameMax(): number { return 2; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsMetalslugMummy374518 {
         static getName(): string { return 'metalslug_mummy.[37,45,18,0,0]'; }
 
@@ -421,6 +476,26 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 37; }
         static getFrameHeight(): number { return 45; }
         static getFrameMax(): number { return 18; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsOpeningEagleBack50043812 {
+        static getName(): string { return 'opening_eagle_back.[500,438,12,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/opening_eagle_back.[500,438,12,0,0].png'); }
+        static getFrameWidth(): number { return 500; }
+        static getFrameHeight(): number { return 438; }
+        static getFrameMax(): number { return 12; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsOpeningEagleFront50043812 {
+        static getName(): string { return 'opening_eagle_front.[500,438,12,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/opening_eagle_front.[500,438,12,0,0].png'); }
+        static getFrameWidth(): number { return 500; }
+        static getFrameHeight(): number { return 438; }
+        static getFrameMax(): number { return 12; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -471,6 +546,16 @@ export namespace Spritesheets {
         static getFrameWidth(): number { return 200; }
         static getFrameHeight(): number { return 250; }
         static getFrameMax(): number { return 55; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
+    export class SpritesheetsRabbitset20025045 {
+        static getName(): string { return 'rabbitset.[200,250,45,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/rabbitset.[200,250,45,0,0].png'); }
+        static getFrameWidth(): number { return 200; }
+        static getFrameHeight(): number { return 250; }
+        static getFrameMax(): number { return 45; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
@@ -549,6 +634,31 @@ export namespace Atlases {
 }
 
 export namespace Audio {
+    export class Audio8bitBossa {
+        static getName(): string { return '8bit Bossa'; }
+
+        static getMP3(): string { return require('assets/audio/8bit Bossa.mp3'); }
+    }
+    export class AudioBubble {
+        static getName(): string { return 'bubble'; }
+
+        static getWAV(): string { return require('assets/audio/bubble.wav'); }
+    }
+    export class AudioCloudAttack {
+        static getName(): string { return 'cloud_attack'; }
+
+        static getMP3(): string { return require('assets/audio/cloud_attack.mp3'); }
+    }
+    export class AudioEagleCry {
+        static getName(): string { return 'eagle_cry'; }
+
+        static getWAV(): string { return require('assets/audio/eagle_cry.wav'); }
+    }
+    export class AudioJump {
+        static getName(): string { return 'jump'; }
+
+        static getMP3(): string { return require('assets/audio/jump.mp3'); }
+    }
     export class AudioMusic {
         static getName(): string { return 'music'; }
 
@@ -556,6 +666,16 @@ export namespace Audio {
         static getM4A(): string { return require('assets/audio/music.m4a'); }
         static getMP3(): string { return require('assets/audio/music.mp3'); }
         static getOGG(): string { return require('assets/audio/music.ogg'); }
+    }
+    export class AudioShootRope {
+        static getName(): string { return 'shoot_rope'; }
+
+        static getWAV(): string { return require('assets/audio/shoot_rope.wav'); }
+    }
+    export class AudioSmallThings {
+        static getName(): string { return 'Small Things'; }
+
+        static getMP3(): string { return require('assets/audio/Small Things.mp3'); }
     }
 }
 

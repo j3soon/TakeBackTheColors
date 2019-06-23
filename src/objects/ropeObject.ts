@@ -205,13 +205,13 @@ export default class RopeObject extends Phaser.Sprite {
     }
     this.hud.clear();
     // Draw velocity
-    this.hud.lineStyle(2, 0x0000ff, 1);
+    /*this.hud.lineStyle(2, 0x0000ff, 1);
     this.hud.moveTo(this.player.x, this.player.y);
     this.hud.lineTo(this.player.x + this.player.body.velocity.x / 8,
     this.player.y + this.player.body.velocity.y / 8);
-    this.hud.endFill();
+    this.hud.endFill();*/
     if (this.ropeState === 'idle') {
-	  for(var i = 0; i < this.numchains; i++) {	
+	  for(var i = 0; i < this.numchains; i++) {
 		var chain: any = this.chains.getAt(i);
 		chain.visible = false;
 	  }
