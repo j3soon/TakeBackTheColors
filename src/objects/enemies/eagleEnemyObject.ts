@@ -14,6 +14,8 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDownReset = 6;
   private dockLeft = true;
   private ab: any;
+  private diveGoCount = 0.5;
+  private diveGoCountReset = 0.5;
   private diveCount = 2;
   private diveCountReset = 2;
   private laserCount = 4;
@@ -81,8 +83,8 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public dive() {
     this.dockLeft = !this.dockLeft;
-    this.state = 'dive';
-	this.diveCount = this.diveCountReset;
+    this.state = 'diveGo';
+	this.diveGoCount = this.diveGoCountReset;
 	this.enemy.animations.play('dive');
 	this.cry.play();
   }
@@ -190,6 +192,16 @@ export default class EagleEnemyObject extends EnemyObject {
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
         this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
 	    break;
+      case 'diveGo':
+        this.diveGoCount -= this.game.time.elapsed / 1000;
+        if (this.diveGoCount <= 0) {
+          this.diveCount = this.diveCountReset;
+          this.resetCD();
+          this.state = 'dive';
+        }
+        /*this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;*/
+        break;
       case 'dive':
         this.diveCount -= this.game.time.elapsed / 1000;
         if (this.diveCount <= 0) {
