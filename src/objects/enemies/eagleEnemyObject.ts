@@ -42,6 +42,7 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public shootIce() {
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
+    this.enemy.bringToTop();
   }
   public dive() {
   }
