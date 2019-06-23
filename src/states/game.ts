@@ -22,8 +22,8 @@ export default class Game extends Phaser.State {
   public bgm: any;
   public bossBgm: any;
   private ab: Phaser.Sprite;
-  private turnDark: boolean;
-  private reveal: boolean;
+  public turnDark: boolean;
+  public reveal: boolean;
   // If entered from title scene.
   private firstEntrance = true;
 
@@ -74,7 +74,6 @@ export default class Game extends Phaser.State {
 		// BOSS
 		this.ab.alpha = 1;
 		this.reveal = true;
-		this.bossBgm.play('', 0, 1, true);
 	} else {
 		this.ab.alpha = 0;
 		this.bgm.play('', 0, 1, true);

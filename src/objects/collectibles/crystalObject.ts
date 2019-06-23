@@ -112,11 +112,17 @@ export default class CrystalObject extends Phaser.Sprite {
         this.playerObj.player.position.x -= 300;
       // Eagle dead.
       EagleEnemyObject.nextStage = true;
+      (<Game>this.game.state.getCurrentState()).bossBgm.stop();
     } else if (this.typeId === 4) {
       // White
-	  this.game.state.start("Ending");
-	  (<Game>this.game.state.getCurrentState()).bossBgm.stop();
-      console.log('win');
+      let gameScene = <Game>this.game.state.getCurrentState();
+      gameScene.reveal = false;
+      gameScene.turnDark = true;
+      let game = this.game;
+      this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {
+        game.state.start("Ending");
+        console.log('win');
+      }, this);
     }
     this.collectible.destroy();
     this.tween.stop();

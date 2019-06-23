@@ -14,10 +14,12 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDownReset = 6;
   private dockLeft = true;
   private ab: any;
-  private diveGoCount = 0.5;
-  private diveGoCountReset = 0.5;
+  private diveGoCount = 1.5;
+  private diveGoCountReset = 1.5;
   private diveCount = 2;
   private diveCountReset = 2;
+  private diveBackCount = 3;
+  private diveBackCountReset = 3;
   private laserCount = 4;
   private laserPrepareCountReset = 1;
   private laserCountReset = 4;
@@ -151,10 +153,14 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.fightStart1Rect.x < x && x < this.fightStart1Rect.x + this.fightStart1Rect.width &&
             this.fightStart1Rect.y < y && y < this.fightStart1Rect.y + this.fightStart1Rect.height) {
               this.state = 'anim';
+              let gameScene = <Game>this.game.state.getCurrentState();
+              gameScene.bossBgm.play('', 0, 1, true);
             }
-        if (this.fightStart2Rect.x < x && x < this.fightStart2Rect.x + this.fightStart2Rect.width &&
+        else if (this.fightStart2Rect.x < x && x < this.fightStart2Rect.x + this.fightStart2Rect.width &&
             this.fightStart2Rect.y < y && y < this.fightStart2Rect.y + this.fightStart2Rect.height) {
               this.state = 'anim';
+              let gameScene = <Game>this.game.state.getCurrentState();
+              gameScene.bossBgm.play('', 0, 1, true);
             }
         /*if (CrystalObject.greenCount === 1) {
           this.state = 'anim';
@@ -205,7 +211,7 @@ export default class EagleEnemyObject extends EnemyObject {
       case 'dive':
         this.diveCount -= this.game.time.elapsed / 1000;
         if (this.diveCount <= 0) {
-          this.diveCount = this.diveCountReset;
+          this.diveBackCount = this.diveCountReset;
           this.resetCD();
 		  this.state = 'diveComeback';
 		  this.enemy.animations.play('idle');
@@ -215,8 +221,8 @@ export default class EagleEnemyObject extends EnemyObject {
         this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.015;
         break;
       case 'diveComeback':
-        this.diveCount -= this.game.time.elapsed / 1000;
-        if (this.diveCount <= 0) {
+        this.diveBackCount -= this.game.time.elapsed / 1000;
+        if (this.diveBackCount <= 0) {
           this.resetCD();
           this.state = 'idle';
         }
