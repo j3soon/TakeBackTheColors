@@ -26,7 +26,6 @@ export default class Ending extends Phaser.State {
     this.RABBITS = 12;
     this.CRYSTAL_RATE = 180
     this.crystal_counter = 0;
-    this.calls = 0;
     
     // Chain of eagle events
     this.prepareCrystal();
