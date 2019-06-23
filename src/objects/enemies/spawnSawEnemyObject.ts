@@ -55,10 +55,10 @@ export default class SpawnSawEnemyObject extends Phaser.Sprite {
       }
       return;
     }
-    if (EagleEnemyObject.enemyStage <= 1 && this.x <= 200) {
+    if (EagleEnemyObject.enemyStage <= 1 && this.spawnPoint.x <= 200) {
       // Upper saw spawner. appear in stage 2.
       return;
-    } else if (EagleEnemyObject.enemyStage <= 0 && this.x > 200) {
+    } else if (EagleEnemyObject.enemyStage <= 0 && this.spawnPoint.x > 200) {
       // Lower saw spawner. appear in stage 1.
       return;
     }

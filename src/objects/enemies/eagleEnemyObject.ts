@@ -276,6 +276,8 @@ export default class EagleEnemyObject extends EnemyObject {
       }
       console.log('stage', EagleEnemyObject.enemyStage);
     }
+    if (EagleEnemyObject.enemyStage === 3)
+      return;
     this.changeState();
     // Change direction
   }
