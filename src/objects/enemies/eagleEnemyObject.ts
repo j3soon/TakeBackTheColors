@@ -68,9 +68,9 @@ export default class EagleEnemyObject extends EnemyObject {
 
   }
   public shootIce() {
-	this.ice.play();
-    new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
-    this.enemy.bringToTop();
+    // this.ice.play();
+    // new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
+    // this.enemy.bringToTop();
     if (this.game.rnd.integerInRange(0, 10) < 3)
       this.dockLeft = !this.dockLeft;
   }
@@ -120,7 +120,8 @@ export default class EagleEnemyObject extends EnemyObject {
         else if (r <= 7)
           this.dive();
         else
-          this.shootLaser();
+          this.dive();
+          // this.shootLaser();
       }
     }
   }
