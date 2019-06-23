@@ -276,6 +276,11 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/collectibles/silver.png'); }
     }
+    export class ImagesCongrats {
+        static getName(): string { return 'congrats'; }
+
+        static getPNG(): string { return require('assets/images/congrats.png'); }
+    }
     export class ImagesEnemiesCloud {
         static getName(): string { return 'cloud'; }
 

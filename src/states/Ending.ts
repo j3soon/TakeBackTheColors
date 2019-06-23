@@ -11,6 +11,7 @@ export default class Ending extends Phaser.State {
   private crystal_counter: number;
   private allWhite: Phaser.Sprite;
   private bgm: any;
+  private title: Phaser.Sprite;
   public preload(): void {
     if (this.debugTools)
       this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
@@ -26,7 +27,7 @@ export default class Ending extends Phaser.State {
     this.RABBITS = 12;
     this.CRYSTAL_RATE = 180
     this.crystal_counter = 0;
-    
+
     // Chain of eagle events
     this.prepareCrystal();
     /**/
@@ -38,9 +39,12 @@ export default class Ending extends Phaser.State {
     this.allWhite = this.game.add.sprite(0, 0, Assets.Images.ImagesAllWhite.getName());
     this.allWhite.alpha = 1;
     this.bgm.play('', 0, 1, true);
+
+    this.title = this.game.add.sprite(1920/2, 450, Assets.Images.ImagesCongrats.getName());
+    this.title.anchor.setTo(0.5);
   }
   prepareCrystal() {
-    
+
     for (var i = 0; i < 5; i++) {
       var c = this.game.add.sprite(1920/2, 1135, Assets.Spritesheets.SpritesheetsCrystalsCrystal27336420.getName());
       c.anchor.setTo(0.5, 1);
@@ -72,8 +76,8 @@ export default class Ending extends Phaser.State {
       let index = this.game.rnd.integerInRange(0, 8);
       let state = 'idle';
       r.animations.play(`color${index}_idle`);
-      
-      
+
+
       // random direction
       r.scale.x = this.game.rnd.integerInRange(0, 1) == 1 ? 0.8 : -0.8;
       // random size
@@ -84,7 +88,7 @@ export default class Ending extends Phaser.State {
       // random speed
       let speed = this.game.rnd.realInRange(0.25, 0.8) * speedBase * rndScale;
       this.rbt.push({r: r, i: index, s: state, speed: speed});
-      
+
   }
   updateRbt(rbt: any) {
     if(rbt.s == 'walk') {
@@ -109,6 +113,7 @@ export default class Ending extends Phaser.State {
     }
   }
   update(): void {
+  this.title.alpha = 0.5 * Math.abs(Math.sin(this.game.time.now / 500)) + 0.5;
 	this.allWhite.alpha = Math.max(0, this.allWhite.alpha - 0.02);
     for(var i = 0; i < this.RABBITS; i++) this.updateRbt(this.rbt[i]);
     this.updateCrystal();
