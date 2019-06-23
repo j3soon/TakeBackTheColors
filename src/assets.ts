@@ -389,6 +389,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsEagleBoss80070018 {
+        static getName(): string { return 'eagle_boss.[800,700,18,0,0]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/eagle_boss.[800,700,18,0,0].png'); }
+        static getFrameWidth(): number { return 800; }
+        static getFrameHeight(): number { return 700; }
+        static getFrameMax(): number { return 18; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
     export class SpritesheetsEnemiesExplosion64636 {
         static getName(): string { return 'explosion.[64,63,6,0,0]'; }
 
