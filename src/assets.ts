@@ -21,6 +21,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/background_template.png'); }
     }
+    export class ImagesBeamSmall {
+        static getName(): string { return 'beam-small'; }
+
+        static getPNG(): string { return require('assets/images/beam-small.png'); }
+    }
+    export class ImagesBeam {
+        static getName(): string { return 'beam'; }
+
+        static getPNG(): string { return require('assets/images/beam.png'); }
+    }
     export class ImagesBgLayer0 {
         static getName(): string { return 'layer0'; }
 

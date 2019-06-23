@@ -13,6 +13,8 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDownReset = 6;
   private dockLeft = true;
   private ab: any;
+  private diveCount = 2;
+  private diveCountReset = 2;
 
   // 0: ice
   // 1: dive
@@ -30,8 +32,8 @@ export default class EagleEnemyObject extends EnemyObject {
 	this.fightStart2Rect = fightStart2Rect;
 	
     this.player = player;
-	//this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
-	this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
+    //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
+    this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
     // this.enemy.animations.add('take-off', [0, 1, 2, 3], 12, true);
     this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
@@ -39,7 +41,7 @@ export default class EagleEnemyObject extends EnemyObject {
     this.enemy.animations.play('idle');
     this.enemy.anchor.setTo(0.5);
 	this.enemy.scale.set(1);
-	
+
     game.physics.enable(this.enemy);
 	this.enemy.body.setSize(400, 350, 200, 175);
 	// this.enemy.body.gravity.y = gravity;
@@ -48,10 +50,19 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public shootIce() {
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
+    this.enemy.bringToTop();
+    if (this.game.rnd.integerInRange(0, 10) < 3)
+      this.dockLeft = !this.dockLeft;
   }
   public dive() {
+    this.dockLeft = !this.dockLeft;
+    this.state = 'dive';
+    this.diveCount = this.diveCountReset;
   }
   public shootLaser() {
+  }
+  public resetCD() {
+    this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
   }
   public calcAttack() {
     if (this.state !== 'idle') {
@@ -59,30 +70,43 @@ export default class EagleEnemyObject extends EnemyObject {
     }
     this.coolDown -= this.game.time.elapsed / 1000;
     if (this.coolDown <= 0) {
-      this.coolDown = this.coolDownReset + this.game.rnd.frac() * 4;
+      this.resetCD();
       // Attack!!
       let r = this.game.rnd.integerInRange(0, 10);
       if (EagleEnemyObject.enemyStage === 0) {
         this.shootIce();
       } else if (EagleEnemyObject.enemyStage === 1) {
-        if (r <= 4)
+        if (r <= 7)
           this.shootIce();
         else
           this.dive();
       } else if (EagleEnemyObject.enemyStage === 2) {
-        if (r <= 3)
+        if (r <= 4)
           this.shootIce();
-        else if (r <= 6)
+        else if (r <= 7)
           this.dive();
         else
           this.shootLaser();
       }
-      this.dockLeft = !this.dockLeft;
     }
   }
   public changeState() {
 	let newScaleX = this.player.x < this.enemy.x ? 1 : -1;
-	if(newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
+  // For idle, dive
+  let target = new Phaser.Point();
+  target.y = this.game.camera.view.centerY - 500;
+  let newY = this.fightAreaRect.y + this.enemy.height / 2 - 150;
+  target.y = Math.max(target.y, newY);
+  if (this.dockLeft) {
+    target.x = this.game.camera.view.centerX - 700;
+    let newX = this.fightAreaRect.x + this.enemy.width / 2 + 50;
+    target.x = Math.max(target.x, newX);
+  } else {
+    target.x = this.game.camera.view.centerX + 700;
+    let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
+    target.x = Math.min(target.x, newX);
+  }
+	if (newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
     let x = this.player.x;
     let y = this.player.y;
     switch (this.state) {
@@ -112,23 +136,10 @@ export default class EagleEnemyObject extends EnemyObject {
       // Below are fights.
       case 'idle':
         // Want to stay at upper screen (left / right).
-        let target = new Phaser.Point();
-        target.y = this.game.camera.view.centerY - 300;
-        let newY = this.fightAreaRect.y + this.enemy.height / 2 + 50;
-        target.y = Math.max(target.y, newY);
-        if (this.dockLeft) {
-          target.x = this.game.camera.view.centerX - 700;
-          let newX = this.fightAreaRect.x + this.enemy.width / 2 + 50;
-          target.x = Math.max(target.x, newX);
-        } else {
-          target.x = this.game.camera.view.centerX + 700;
-          let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
-          target.x = Math.min(target.x, newX);
-        }
         // TODO: Move birdy here (move y slowly maybe within 0.5 sec?) YBing
         //       may swap left / right, can move x within 0.25 sec?
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
-        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.005;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
         this.calcAttack();
         break;
       /*case 'ice':
@@ -137,6 +148,24 @@ export default class EagleEnemyObject extends EnemyObject {
 		
 	    break;
       case 'dive':
+        this.diveCount -= this.game.time.elapsed / 1000;
+        if (this.diveCount <= 0) {
+          this.diveCount = this.diveCountReset;
+          this.resetCD();
+          this.state = 'diveComeback';
+        }
+        target.y = this.game.camera.view.centerY + 500;
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.015;
+        break;
+      case 'diveComeback':
+        this.diveCount -= this.game.time.elapsed / 1000;
+        if (this.diveCount <= 0) {
+          this.resetCD();
+          this.state = 'idle';
+        }
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.02;
         break;
       case 'laser':
         break;
