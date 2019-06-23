@@ -113,7 +113,7 @@ export default class CrystalObject extends Phaser.Sprite {
       EagleEnemyObject.nextStage = true;
     } else if (this.typeId === 4) {
       // White
-      // TODO: Win!!!!!!! YBing
+      this.game.state.start("Ending");
       console.log('win');
     }
     this.collectible.destroy();
