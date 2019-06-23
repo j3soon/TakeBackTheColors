@@ -674,6 +674,11 @@ export namespace Audio {
 
         static getWAV(): string { return require('assets/audio/eagle_cry.wav'); }
     }
+    export class AudioJuhaniJunkalaEpicBossBattleSeamlesslyLooping {
+        static getName(): string { return 'Juhani Junkala - Epic Boss Battle [Seamlessly Looping]'; }
+
+        static getWAV(): string { return require('assets/audio/Juhani Junkala - Epic Boss Battle [Seamlessly Looping].wav'); }
+    }
     export class AudioJump {
         static getName(): string { return 'jump'; }
 
