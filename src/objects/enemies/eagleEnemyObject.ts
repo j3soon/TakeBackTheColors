@@ -15,6 +15,8 @@ export default class EagleEnemyObject extends EnemyObject {
   private ab: any;
   private diveCount = 2;
   private diveCountReset = 2;
+  private ice: any;
+  private cry: any;
 
   // 0: ice
   // 1: dive
@@ -30,7 +32,8 @@ export default class EagleEnemyObject extends EnemyObject {
     this.fightAreaRect = moveRect;
     this.fightStart1Rect = fightStart1Rect;
 	this.fightStart2Rect = fightStart2Rect;
-	
+	this.ice = this.game.add.audio(Assets.Audio.AudioCloudAttack.getName());
+	this.cry = this.game.add.audio(Assets.Audio.AudioEagleCry.getName());
     this.player = player;
     //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
     this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
@@ -49,6 +52,7 @@ export default class EagleEnemyObject extends EnemyObject {
 	
   }
   public shootIce() {
+	this.ice.play();
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
     this.enemy.bringToTop();
     if (this.game.rnd.integerInRange(0, 10) < 3)
@@ -57,7 +61,8 @@ export default class EagleEnemyObject extends EnemyObject {
   public dive() {
     this.dockLeft = !this.dockLeft;
     this.state = 'dive';
-    this.diveCount = this.diveCountReset;
+	this.diveCount = this.diveCountReset;
+	this.cry.play();
   }
   public shootLaser() {
   }
