@@ -19,6 +19,7 @@ export default class Game extends Phaser.State {
   private checkpointObjs: CheckpointObject[];
   private collectibles: Phaser.Sprite[];
   private debugTools = false;
+  private bgm: any;
   // If entered from title scene.
   private firstEntrance = true;
 
@@ -28,6 +29,8 @@ export default class Game extends Phaser.State {
   }
 
   public create(): void {
+    this.bgm = this.game.add.audio(Assets.Audio.Audio8bitBossa.getName());
+    this.bgm.play('', 0, 1, true);
     // this.game.forceSingleUpdate = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     if (this.firstEntrance) {

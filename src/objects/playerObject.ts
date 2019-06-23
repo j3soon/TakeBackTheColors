@@ -14,6 +14,8 @@ export default class PlayerObject extends Phaser.Sprite {
   private animator: PlayerAnimation;
   private ropeObj: RopeObject;
   private dead: boolean;
+  private jump: any;
+  private bubble: any;
 
   public player: Phaser.Sprite;
   public spawnPoint: Phaser.Point;
@@ -58,6 +60,8 @@ export default class PlayerObject extends Phaser.Sprite {
     this.gravity = gravity;
     // Setup Constants.
     this.jumpPower = this.gravity / 3;
+    this.jump = this.game.add.audio(Assets.Audio.AudioJump.getName());
+    this.bubble = this.game.add.audio(Assets.Audio.AudioBubble.getName());
     // Inject this object to event loop.
     this.game.add.existing(this);
   }
@@ -88,6 +92,7 @@ export default class PlayerObject extends Phaser.Sprite {
         // Jump
         this.jumpBoostCount = this.jumpBoostCountMax;
         this.wallReleaseCount = 0;
+        this.jump.play();
       } else if (this.jumpBoostCount > 0) {
         // Jump boost (if holding space)
         this.jumpBoostCount--;
@@ -184,6 +189,8 @@ export default class PlayerObject extends Phaser.Sprite {
   public respawn() {
     // Reset to spawn point. (Can be used as checkpoint)
     if(this.dead) return;
+    this.bubble.play();
+    this.animator.playerComp.visible = false;
     this.dead = true;
     this.game.time.events.add(Phaser.Timer.SECOND * 2, this.RealRespawn, this);
     this.player.alpha = 0;

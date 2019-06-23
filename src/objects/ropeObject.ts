@@ -24,6 +24,7 @@ export default class RopeObject extends Phaser.Sprite {
   private shrinkCoef: number;
   private cheating = false;
   private positionCompensate = false;
+  private shoot: any;
 
   // Abilities.
   public ropeEnabled = false;
@@ -68,6 +69,7 @@ export default class RopeObject extends Phaser.Sprite {
     this.speedAnchor = this.gravity * 1.2;
     this.speedAnchorShrink = this.gravity / 20;
     this.jumpPower = this.gravity / 2;
+    this.shoot = this.game.add.audio(Assets.Audio.AudioShootRope.getName());
     // Inject this object to event loop.
     this.game.add.existing(this);
   }
@@ -88,6 +90,7 @@ export default class RopeObject extends Phaser.Sprite {
       if (ms.leftButton.isDown === false) {
         this.ropeState = 'idle';
       } else if (this.ropeEnabled){
+        this.shoot.play();
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
         this.ropeAnchor.position.copyFrom(this.player.position);
