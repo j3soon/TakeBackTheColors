@@ -52,7 +52,7 @@ export default class EagleEnemyObject extends EnemyObject {
     // this.enemy.animations.add('take-off', [0, 1, 2, 3], 12, true);
 	this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
 	this.enemy.animations.add('dive', [9, 10], 4, true);
-	this.enemy.animations.add('shock', [11, 14], 6, true);
+	this.enemy.animations.add('shock', [11, 14], 12, true);
 	this.enemy.animations.add('laser0', [12, 13], 1, false);
 	this.enemy.animations.add('laser1', [15, 16], 1, false);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
@@ -76,7 +76,8 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public eletric() {
     this.state = 'shock';
-    this.shockCount = this.shockCountReset;
+	this.shockCount = this.shockCountReset;
+	this.enemy.animations.play('shock');
   }
   public dive() {
     this.dockLeft = !this.dockLeft;
@@ -182,7 +183,8 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.shockCount <= 0) {
           this.shockCount = this.shockCountReset;
           this.resetCD();
-          this.state = 'idle';
+		  this.state = 'idle';
+		  this.enemy.animations.play('idle');
         }
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
         this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
@@ -261,7 +263,8 @@ export default class EagleEnemyObject extends EnemyObject {
     if (EagleEnemyObject.nextStage) {
       // Clear flag.
       EagleEnemyObject.nextStage = false;
-      // TODO: Play eagle hit anim. YBing
+	  // TODO: Play eagle hit anim. YBing
+	  this.eletric();
       // Kill player.
       let playerObj = (<Game>this.game.state.getCurrentState()).playerObj;
       playerObj.respawn();
