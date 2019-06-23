@@ -54,7 +54,7 @@ export default class EagleEnemyObject extends EnemyObject {
 	this.enemy.animations.add('dive', [9, 10], 4, true);
 	this.enemy.animations.add('shock', [11, 14], 12, true);
 	this.enemy.animations.add('laser0', [12, 13], 1, false);
-	this.enemy.animations.add('laser1', [15, 16], 1, false);
+	this.enemy.animations.add('laser1', [15], 1, false);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
     // this.enemy.animations.add('laser', [2, 3], 12, true);
     this.enemy.animations.play('idle');
@@ -140,7 +140,7 @@ export default class EagleEnemyObject extends EnemyObject {
     let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
     target.x = Math.min(target.x, newX);
   }
-	if (newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50) this.enemy.scale.x = newScaleX;
+	if (newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50 && this.state != 'laser') this.enemy.scale.x = newScaleX;
     let x = this.player.x;
     let y = this.player.y;
     switch (this.state) {
@@ -233,7 +233,7 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.laserCD <= 0) {
           this.laserCD = this.laserCDReset;
           this.resetCD();
-          let laser = new LaserObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.targetPoint);
+          let laser = new LaserObject(this.game, new Phaser.Point(this.enemy.x+75, this.enemy.y+200), this.targetPoint);
         }
         // Play neck back anim YBing
         break;
