@@ -18,6 +18,8 @@ export default class EagleEnemyObject extends EnemyObject {
   private laserCount = 4;
   private laserPrepareCountReset = 1;
   private laserCountReset = 4;
+  private shockCount = 2;
+  private shockCountReset = 2;
   private ice: any;
   private cry: any;
 
@@ -64,6 +66,10 @@ export default class EagleEnemyObject extends EnemyObject {
     this.enemy.bringToTop();
     if (this.game.rnd.integerInRange(0, 10) < 3)
       this.dockLeft = !this.dockLeft;
+  }
+  public eletric() {
+    this.state = 'shock';
+    this.shockCount = this.shockCountReset;
   }
   public dive() {
     this.dockLeft = !this.dockLeft;
@@ -162,7 +168,14 @@ export default class EagleEnemyObject extends EnemyObject {
       /*case 'ice':
 		break;*/
 	  case 'shock':
-
+        this.shockCount -= this.game.time.elapsed / 1000;
+        if (this.shockCount <= 0) {
+          this.shockCount = this.shockCountReset;
+          this.resetCD();
+          this.state = 'idle';
+        }
+        this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
+        this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
 	    break;
       case 'dive':
         this.diveCount -= this.game.time.elapsed / 1000;
