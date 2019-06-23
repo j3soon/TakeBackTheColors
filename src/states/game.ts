@@ -74,7 +74,6 @@ export default class Game extends Phaser.State {
 		// BOSS
 		this.ab.alpha = 1;
 		this.reveal = true;
-	  (<Game>this.game.state.getCurrentState()).bgm.stop();
 		this.bossBgm.play('', 0, 1, true);
 	} else {
 		this.ab.alpha = 0;
@@ -177,7 +176,11 @@ export default class Game extends Phaser.State {
 
 			// TODO: Use fade in fade out YBing
 			this.turnDark = true;
-            this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {MapObject.tileMapId = 'forestTop'; this.game.state.restart(true);}, this);
+            this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {
+              MapObject.tileMapId = 'forestTop';
+              (<Game>this.game.state.getCurrentState()).bgm.stop();
+              this.game.state.restart(true);
+            }, this);
           }
     }
   }

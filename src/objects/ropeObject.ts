@@ -1,5 +1,6 @@
 import * as Assets from '../assets';
 import Game from '../states/game';
+import { KeyCode } from 'phaser-ce';
 
 export default class RopeObject extends Phaser.Sprite {
   private gravity: number;
@@ -108,7 +109,7 @@ export default class RopeObject extends Phaser.Sprite {
     }
     // Move to clicked spot.
     // TODO: remove this cheat.
-    /*if (ms.rightButton.isDown && !this.cheating) {
+    if (keybd.isDown(KeyCode.C) && ms.rightButton.isDown && !this.cheating) {
       this.player.position.x = x;
       this.player.position.y = y;
       this.player.body.velocity.x = 0;
@@ -116,9 +117,10 @@ export default class RopeObject extends Phaser.Sprite {
       this.cheating = true;
     } else if (!ms.rightButton.isDown) {
       this.cheating = false;
-    }*/
+    }
     // Burst
-    if (this.ropeState === 'shrink' && keybd.isDown(Phaser.Keyboard.SPACEBAR)) {
+    // TODO: remove this cheat;
+    if (keybd.isDown(KeyCode.C) && this.ropeState === 'shrink' && keybd.isDown(Phaser.Keyboard.SPACEBAR)) {
       this.ropeState = 'burst';
 
       let rotation = Math.atan2(this.ropeAnchor.y - this.player.y, this.ropeAnchor.x - this.player.x);
