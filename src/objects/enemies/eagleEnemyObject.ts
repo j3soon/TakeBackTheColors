@@ -12,11 +12,14 @@ export default class EagleEnemyObject extends EnemyObject {
   private coolDown = 6;
   private coolDownReset = 6;
   private dockLeft = true;
+  private ab: any;
   private diveCount = 2;
   private diveCountReset = 2;
   private laserCount = 2;
   private laserPrepareCountReset = 1;
   private laserCountReset = 2;
+  private ice: any;
+  private cry: any;
 
   // 0: ice
   // 1: dive
@@ -31,7 +34,9 @@ export default class EagleEnemyObject extends EnemyObject {
     super(game, spawnPoint, gravity);
     this.fightAreaRect = moveRect;
     this.fightStart1Rect = fightStart1Rect;
-    this.fightStart2Rect = fightStart2Rect;
+	this.fightStart2Rect = fightStart2Rect;
+	this.ice = this.game.add.audio(Assets.Audio.AudioCloudAttack.getName());
+	this.cry = this.game.add.audio(Assets.Audio.AudioEagleCry.getName());
     this.player = player;
     //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
     this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
@@ -46,9 +51,11 @@ export default class EagleEnemyObject extends EnemyObject {
     game.physics.enable(this.enemy);
 	this.enemy.body.setSize(400, 350, 200, 175);
 	// this.enemy.body.gravity.y = gravity;
-    this.enemy.autoCull = true;
+	this.enemy.autoCull = true;
+
   }
   public shootIce() {
+	this.ice.play();
     new IceObject(this.game, new Phaser.Point(this.enemy.x, this.enemy.y), this.player);
     this.enemy.bringToTop();
     if (this.game.rnd.integerInRange(0, 10) < 3)
@@ -57,7 +64,8 @@ export default class EagleEnemyObject extends EnemyObject {
   public dive() {
     this.dockLeft = !this.dockLeft;
     this.state = 'dive';
-    this.diveCount = this.diveCountReset;
+	this.diveCount = this.diveCountReset;
+	this.cry.play();
   }
   public shootLaser() {
     this.state = 'laserPrepare';
@@ -146,7 +154,10 @@ export default class EagleEnemyObject extends EnemyObject {
         this.calcAttack();
         break;
       /*case 'ice':
-        break;*/
+		break;*/
+	  case 'shock':
+
+	    break;
       case 'dive':
         this.diveCount -= this.game.time.elapsed / 1000;
         if (this.diveCount <= 0) {
