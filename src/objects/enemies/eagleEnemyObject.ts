@@ -14,6 +14,9 @@ export default class EagleEnemyObject extends EnemyObject {
   private dockLeft = true;
   private diveCount = 2;
   private diveCountReset = 2;
+  private laserCount = 2;
+  private laserPrepareCountReset = 1;
+  private laserCountReset = 2;
 
   // 0: ice
   // 1: dive
@@ -57,6 +60,9 @@ export default class EagleEnemyObject extends EnemyObject {
     this.diveCount = this.diveCountReset;
   }
   public shootLaser() {
+    this.state = 'laserPrepare';
+    this.laserCount = this.laserPrepareCountReset;
+    // TODO: Play neck forward anim YBing
   }
   public resetCD() {
     this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
@@ -161,7 +167,30 @@ export default class EagleEnemyObject extends EnemyObject {
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
         this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.02;
         break;
+      case 'laserPrepare':
+        this.laserCount -= this.game.time.elapsed / 1000;
+        if (this.laserCount <= 0) {
+          this.laserCount = this.laserCountReset;
+          this.resetCD();
+          this.state = 'laser';
+        }
+        // TODO: Play neck hold anim YBing
+        break;
       case 'laser':
+        this.laserCount -= this.game.time.elapsed / 1000;
+        if (this.laserCount <= 0) {
+          this.laserCount = this.laserPrepareCountReset;
+          this.resetCD();
+          this.state = 'laserComeback';
+        }
+        // TODO: Play neck back anim YBing
+        break;
+      case 'laserComeback':
+        this.laserCount -= this.game.time.elapsed / 1000;
+        if (this.laserCount <= 0) {
+          this.resetCD();
+          this.state = 'idle';
+        }
         break;
     }
   }
