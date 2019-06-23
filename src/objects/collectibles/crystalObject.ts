@@ -75,10 +75,10 @@ export default class CrystalObject extends Phaser.Sprite {
       this.playerObj.setRopeEnabled();
     } else if (this.typeId === 1) {
       // Green
-      if (CrystalObject.greenCount === 0) {
+      /*if (CrystalObject.greenCount === 0) {
         CrystalObject.greenCount = 1;
         CrystalObject.loP = new Phaser.Point(this.collectible.x, this.collectible.y);
-      } else {
+      } else {*/
         // Green
         // Kick player back.
         if (this.playerObj.player.x > this.collectible.x)
@@ -90,7 +90,7 @@ export default class CrystalObject extends Phaser.Sprite {
         CrystalObject.spawn = true;
         // new CrystalObject(this.game, CrystalObject.hiP, 2, this.playerObj);
         EagleEnemyObject.nextStage = true;
-      }
+      /*}*/
     } else if (this.typeId === 2) {
       // Blue
       // Kick player back.

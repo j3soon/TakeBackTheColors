@@ -123,17 +123,6 @@
          "objects":[
                 {
                  "height":0,
-                 "id":188,
-                 "name":"GreenCrystal",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":910.666666666667,
-                 "y":1598
-                }, 
-                {
-                 "height":0,
                  "id":190,
                  "name":"WhiteCrystal",
                  "rotation":0,

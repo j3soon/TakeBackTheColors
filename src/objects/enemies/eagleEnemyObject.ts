@@ -78,17 +78,17 @@ export default class EagleEnemyObject extends EnemyObject {
     let y = this.player.y;
     switch (this.state) {
       case 'stop':
-        /*if (this.fightStart1Rect.x < x && x < this.fightStart1Rect.x + this.fightStart1Rect.width &&
+        if (this.fightStart1Rect.x < x && x < this.fightStart1Rect.x + this.fightStart1Rect.width &&
             this.fightStart1Rect.y < y && y < this.fightStart1Rect.y + this.fightStart1Rect.height) {
               this.state = 'anim';
             }
         if (this.fightStart2Rect.x < x && x < this.fightStart2Rect.x + this.fightStart2Rect.width &&
             this.fightStart2Rect.y < y && y < this.fightStart2Rect.y + this.fightStart2Rect.height) {
               this.state = 'anim';
-            }*/
-        if (CrystalObject.greenCount === 1) {
+            }
+        /*if (CrystalObject.greenCount === 1) {
           this.state = 'anim';
-        }
+        }*/
         break;
       case 'anim':
         // TODO: Pause and animate! YBing
