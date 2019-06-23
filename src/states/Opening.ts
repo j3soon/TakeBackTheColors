@@ -21,8 +21,6 @@ export default class Opening extends Phaser.State {
   private cry: any;
   private bgm: any;
   public preload(): void {
-    if (this.debugTools)
-      this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
   }
 
   public create(): void {
@@ -40,7 +38,7 @@ export default class Opening extends Phaser.State {
     this.crystal_counter = 0;
     this.eagleState = 'nothing';
     this.calls = 0;
-    
+
     // Chain of eagle events
     this.setUpEagleBack();
     this.prepareCrystal();
@@ -69,16 +67,16 @@ export default class Opening extends Phaser.State {
     this.eagle.animations.add('dive', [9, 10], 10, true, true);
     this.eagle.animations.add('fly', [5, 6, 7, 8], 8, true, true);
     this.eagle.animations.add('idle', [0], 1, true, true);
-    
+
     this.eagle.animations.add('flyaway', [0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8], 8, false, true); // 讓我不顧一切 無止盡追尋~~~~
     this.eagle.animations.play('dive');
     this.game.time.events.add(Phaser.Timer.SECOND * 8, function () { this.eagleState = 'dive1' }, this);
   }
   EagleUpdate() {
-    
+
     if(this.eagleState == 'dive1') {
       //var sec = 1 / this.game.time.elapsed;
-      
+
       this.eagle.x -= 2600 / 70;
       this.eagle.y += 300 / 70;
       if(this.calls == 0) {
@@ -88,10 +86,10 @@ export default class Opening extends Phaser.State {
     } else if (this.eagleState == 'dive2') {
       this.cry.play();
       this.eagleState = 'dive3';
-      this.eagle.x = -150; 
+      this.eagle.x = -150;
       this.eagle.y = 0;
       this.eagle.scale.setTo(-1, 1);
-      
+
     } else if (this.eagleState == 'dive3') {
       var tgx = 1000; var tgy = 1185;
       this.eagle.x += (tgx - this.eagle.x) * 0.04;
@@ -129,7 +127,7 @@ export default class Opening extends Phaser.State {
         let newColor = [3, 7, 8];
         this.rbt[i].i = newColor[ this.game.rnd.integerInRange(0, 2) ];
         this.rbt[i].r.animations.play(`color${this.rbt[i].i}_${this.rbt[i].s}`);
-        
+
       }
       // change bg
       this.pale_bg.visible = true;
@@ -176,7 +174,7 @@ export default class Opening extends Phaser.State {
     this.eagleFront.animations.frame = this.eagle.animations.frame;
   }
   prepareCrystal() {
-    
+
     for (var i = 0; i < 5; i++) {
       var c = this.game.add.sprite(1920/2, 1135, Assets.Spritesheets.SpritesheetsCrystalsCrystal27336420.getName());
       c.anchor.setTo(0.5, 1);
@@ -208,8 +206,8 @@ export default class Opening extends Phaser.State {
       let index = this.game.rnd.integerInRange(0, 8);
       let state = 'idle';
       r.animations.play(`color${index}_idle`);
-      
-      
+
+
       // random direction
       r.scale.x = this.game.rnd.integerInRange(0, 1) == 1 ? 0.8 : -0.8;
       // random size
@@ -220,7 +218,7 @@ export default class Opening extends Phaser.State {
       // random speed
       let speed = this.game.rnd.realInRange(0.25, 0.8) * speedBase * rndScale;
       this.rbt.push({r: r, i: index, s: state, speed: speed});
-      
+
   }
   updateRbt(rbt: any) {
     if(rbt.s == 'walk') {

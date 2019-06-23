@@ -51,7 +51,7 @@ module.exports = {
             path.join(__dirname, 'dist')
         ]),
         new HtmlWebpackPlugin({
-            title: 'Take Back the Colors! v1.0',
+            title: 'Take Back the Colors! v1.1',
             template: path.join(__dirname, 'templates/index.ejs')
         })
     ],

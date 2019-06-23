@@ -13,8 +13,6 @@ export default class Ending extends Phaser.State {
   private bgm: any;
   private title: Phaser.Sprite;
   public preload(): void {
-    if (this.debugTools)
-      this.game.add.plugin(new Phaser.Plugin.Debug(this.game, this.game.plugins));
   }
 
   public create(): void {
