@@ -94,7 +94,7 @@ export default class EagleEnemyObject extends EnemyObject {
         // TODO: Pause and animate! YBing
         // On finish:
         // Kick player back.
-        this.player.x += 200;
+        // this.player.x += 200;
         this.enemy.x = this.player.x - 600;
         this.enemy.y = this.spawnPoint.y;
         // Start boss fight!
