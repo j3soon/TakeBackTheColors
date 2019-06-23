@@ -108,7 +108,7 @@ export default class RopeObject extends Phaser.Sprite {
     }
     // Move to clicked spot.
     // TODO: remove this cheat.
-    if (ms.rightButton.isDown && !this.cheating) {
+    /*if (ms.rightButton.isDown && !this.cheating) {
       this.player.position.x = x;
       this.player.position.y = y;
       this.player.body.velocity.x = 0;
@@ -116,7 +116,7 @@ export default class RopeObject extends Phaser.Sprite {
       this.cheating = true;
     } else if (!ms.rightButton.isDown) {
       this.cheating = false;
-    }
+    }*/
     // Burst
     if (this.ropeState === 'shrink' && keybd.isDown(Phaser.Keyboard.SPACEBAR)) {
       this.ropeState = 'burst';
