@@ -48,18 +48,18 @@ export default class RopeObject extends Phaser.Sprite {
     // TODO: Make certain tilemap dynamic. (for boss)
     super(game, 0, 0);
     this.gravity = gravity;
-	this.player = player;
-	// Init chain group
-	this.chains = this.game.add.group();
-	this.chains.createMultiple(this.numchains, Assets.Images.ImagesChain.getName(), 0, true);
-	this.chains.setAll('anchor.x', 0.5);
-	this.chains.setAll('anchor.y', 0);
+  this.player = player;
+  // Init chain group
+  this.chains = this.game.add.group();
+  this.chains.createMultiple(this.numchains, Assets.Images.ImagesChain.getName(), 0, true);
+  this.chains.setAll('anchor.x', 0.5);
+  this.chains.setAll('anchor.y', 0);
     // Init Rope Anchor
     this.ropeAnchor = this.game.add.sprite(0, 0, Assets.Images.ImagesClaw.getName());
     this.ropeAnchor.visible = false;
     this.ropeAnchor.anchor.setTo(0.5, 0.5);
-	this.game.physics.enable(this.ropeAnchor);
-	this.ropeAnchor.body.setSize(22, 30, 0, 0);
+  this.game.physics.enable(this.ropeAnchor);
+  this.ropeAnchor.body.setSize(22, 30, 0, 0);
     // this.ropeAnchor.body.onCollide = new Phaser.Signal();
     // this.ropeAnchor.body.onCollide.add(this.ropeLocked_, this);
     // Init Rope
@@ -91,7 +91,7 @@ export default class RopeObject extends Phaser.Sprite {
     if (ms.leftButton.isDown !== this.leftMouse) {
       if (ms.leftButton.isDown === false) {
         this.ropeState = 'idle';
-      } else if (this.ropeEnabled){
+      } else if (this.ropeEnabled) {
         this.shoot.play();
         this.ropeState = 'extend';
         this.ropeAnchor.body.gravity.y = this.gravity;
@@ -216,11 +216,11 @@ export default class RopeObject extends Phaser.Sprite {
     this.player.y + this.player.body.velocity.y / 8);
     this.hud.endFill();*/
     if (this.ropeState === 'idle') {
-	  for(var i = 0; i < this.numchains; i++) {
-		var chain: any = this.chains.getAt(i);
-		chain.visible = false;
-	  }
-	  return;
+    for (let i = 0; i < this.numchains; i++) {
+    let chain: any = this.chains.getAt(i);
+    chain.visible = false;
+    }
+    return;
     }
     // Draw rope
     if (this.ropeState === 'extend') {
@@ -232,27 +232,27 @@ export default class RopeObject extends Phaser.Sprite {
     }
     // this.hud.moveTo(this.player.x, this.player.y);
     // this.hud.lineTo(this.ropeAnchor.x, this.ropeAnchor.y);
-	// this.hud.endFill();
-	// Draw chains
-	var vec = {x: this.player.x - this.ropeAnchor.x, y: this.player.y - this.ropeAnchor.y};
-	var distance = Math.sqrt((vec.x * vec.x) + (vec.y * vec.y));
-	var rotation = Math.atan2(vec.y, vec.x);
-	vec.x /= distance; vec.y /= distance;
-	for(var i = 0; i < this.numchains; i++) {
-		var chain: any = this.chains.getAt(i);
-		chain.x = this.ropeAnchor.x + (i+1) * vec.x * 30;
-		chain.y = this.ropeAnchor.y + (i+1) * vec.y * 30;
-		chain.rotation = rotation + Math.PI / 2;
-		chain.visible = true;
-		if(i * 30 + 30 > distance) {
-			for (; i < this.numchains; i++) {
-				chain = this.chains.getAt(i);
-				chain.visible = false;
-			}
-			break;
-		}
-	}
-	// Adjust rotation for anchor
-	if(this.ropeState == 'extend') this.ropeAnchor.rotation = rotation + Math.PI / 2;
+  // this.hud.endFill();
+  // Draw chains
+  let vec = {x: this.player.x - this.ropeAnchor.x, y: this.player.y - this.ropeAnchor.y};
+  let distance = Math.sqrt((vec.x * vec.x) + (vec.y * vec.y));
+  let rotation = Math.atan2(vec.y, vec.x);
+  vec.x /= distance; vec.y /= distance;
+  for (let i = 0; i < this.numchains; i++) {
+    let chain: any = this.chains.getAt(i);
+    chain.x = this.ropeAnchor.x + (i + 1) * vec.x * 30;
+    chain.y = this.ropeAnchor.y + (i + 1) * vec.y * 30;
+    chain.rotation = rotation + Math.PI / 2;
+    chain.visible = true;
+    if (i * 30 + 30 > distance) {
+      for (; i < this.numchains; i++) {
+        chain = this.chains.getAt(i);
+        chain.visible = false;
+      }
+      break;
+    }
+  }
+  // Adjust rotation for anchor
+  if (this.ropeState === 'extend') this.ropeAnchor.rotation = rotation + Math.PI / 2;
   }
 }

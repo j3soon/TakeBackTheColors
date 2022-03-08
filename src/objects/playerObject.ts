@@ -37,7 +37,7 @@ export default class PlayerObject extends Phaser.Sprite {
   * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
   */
   private ClickBurstTest(pointer) {
-    console.log("burst!")
+    console.log('burst!');
     this.emitter.start(true, 750, null, 50);
   }
   constructor(game: Phaser.Game, spawnPoint: Phaser.Point, gravity: number) {
@@ -52,7 +52,7 @@ export default class PlayerObject extends Phaser.Sprite {
     this.emitter.setAlpha(0.8, 0, 500);
     this.emitter.setScale(1.1, 0.2, 1.1, 0.2, 500);
     this.emitter.setXSpeed(-150, 150);
-    //this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
+    // this.player = this.game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Images.ImagesPlayer.getName());
     this.player.anchor.setTo(0.5);
     this.player.scale.setTo(0.4);
     this.game.physics.enable(this.player);
@@ -73,7 +73,7 @@ export default class PlayerObject extends Phaser.Sprite {
     const keybd = this.game.input.keyboard;
     this.emitter.x = this.player.x;
     this.emitter.y = this.player.y;
-    if(this.dead) {
+    if (this.dead) {
       this.player.body.velocity.x = 0;
       this.player.body.velocity.y = 0;
       return;
@@ -153,13 +153,13 @@ export default class PlayerObject extends Phaser.Sprite {
     // Air friction
     this.player.body.velocity.x *= 0.99;
     this.player.body.velocity.y *= 0.99;
-    var moving = keybd.isDown(Phaser.Keyboard.D) || keybd.isDown(Phaser.Keyboard.A);
-    var onground = this.player.body.blocked.down;
-    var leaning = !onground && (this.player.body.blocked.left || this.player.body.blocked.right);
-    if(this.animator.Update(moving, onground, leaning, String(this.ropeObj.ropeState), this.player.body.velocity.x, this.player.body.velocity.y, this.player.x, this.player.y, this.player.scale.x, this.player.scale.y, this.player)) this.player.animations.play(this.animator.State());
+    let moving = keybd.isDown(Phaser.Keyboard.D) || keybd.isDown(Phaser.Keyboard.A);
+    let onground = this.player.body.blocked.down;
+    let leaning = !onground && (this.player.body.blocked.left || this.player.body.blocked.right);
+    if (this.animator.Update(moving, onground, leaning, String(this.ropeObj.ropeState), this.player.body.velocity.x, this.player.body.velocity.y, this.player.x, this.player.y, this.player.scale.x, this.player.scale.y, this.player)) this.player.animations.play(this.animator.State());
     this.player.scale.setTo((this.player.body.velocity.x > 0 ? -1 : 1) * Math.abs(this.player.scale.x), this.player.scale.y);
     // Motion
-    if(this.animator.State() == 'run')
+    if (this.animator.State() === 'run')
       this.player.body.velocity.x *= moveSpeedFractionX[this.player.animations.frame % 5];
   }
   public getPlayer(): Phaser.Sprite {
@@ -172,20 +172,20 @@ export default class PlayerObject extends Phaser.Sprite {
     return this.ropeObj;
   }
   private BurstDeath() {
-    console.log("burst!")
+    console.log('burst!');
     this.emitter.start(true, 750, null, 50);
   }
   private RealRespawn() {
     this.player.x = this.spawnPoint.x;
     this.player.y = this.spawnPoint.y;
     // Add respawn effect.
-    let respawn = this.game.add.sprite(this.player.x, this.player.y, Assets.Spritesheets.SpritesheetsRespawn25625625.getName())
+    let respawn = this.game.add.sprite(this.player.x, this.player.y, Assets.Spritesheets.SpritesheetsRespawn25625625.getName());
     respawn.anchor.setTo(0.5);
     respawn.scale.set(0.6, 0.6);
     respawn.animations.add('anim', null, 24, true);
     respawn.animations.play('anim', null, false, true);
     this.player.alpha = 1;
-    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, ()=>this.dead=false, this);
+    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => this.dead = false, this);
     // Spawn crystal if needed
     if (CrystalObject.spawn) {
       // Clear flag.
@@ -199,7 +199,7 @@ export default class PlayerObject extends Phaser.Sprite {
   }
   public respawn() {
     // Reset to spawn point. (Can be used as checkpoint)
-    if(this.dead) return;
+    if (this.dead) return;
     this.bubble.play();
     this.animator.playerComp.visible = false;
     this.dead = true;

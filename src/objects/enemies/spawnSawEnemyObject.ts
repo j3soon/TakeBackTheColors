@@ -24,7 +24,7 @@ export default class SpawnSawEnemyObject extends Phaser.Sprite {
     this.enemies = enemies;
     this.effect = [];
     for (let i = 0; i < 4; i++) {
-      let eff = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsWaterEffect1501505.getName())
+      let eff = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsWaterEffect1501505.getName());
       this.effect.push(eff);
       eff.animations.add('anim', [i], 0, true);
       eff.animations.play('anim');

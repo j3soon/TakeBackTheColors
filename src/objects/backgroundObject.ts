@@ -60,7 +60,7 @@ export default class BackgroundObject extends Phaser.Sprite {
     for (let i = 0; i < layers.length; i++) {
       let tile = this.game.add.tileSprite(0, 0, w, h, layers[i]);
       tile.fixedToCamera = true;
-      if (layers[i].includes("forest-top")) {
+      if (layers[i].includes('forest-top')) {
         tile.tileScale.x = 2;
         tile.tileScale.y = 2;
       } else {
@@ -101,7 +101,7 @@ export default class BackgroundObject extends Phaser.Sprite {
       if (MapObject.tileMapId === 'forest') {
         // Hacky way to hide bg.
         tile.visible = (tile.tilePosition.y <= deltaY1 + 793 / 2/* * tile.tileScale.y *//*- this.game.camera.view.height / tile.tileScale.y*/);
-        tile.tilePosition.y = deltaY1 + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; //this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
+        tile.tilePosition.y = deltaY1 + (9000 - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i] / this.yMove; // this.tilesDeltaY[i] (- this.game.camera.view.height - this.game.camera.view.centerY) / tile.tileScale.y / this.tilesMove[i];
         tile.tilePosition.x = -this.game.camera.view.centerX / tile.tileScale.x / this.tilesMove[i] / this.yMove;
         if (i !== 10) {
           tile.visible = true;

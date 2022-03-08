@@ -47,28 +47,28 @@ export default class EagleEnemyObject extends EnemyObject {
     super(game, spawnPoint, gravity);
     this.fightAreaRect = moveRect;
     this.fightStart1Rect = fightStart1Rect;
-	this.fightStart2Rect = fightStart2Rect;
-	this.ice = this.game.add.audio(Assets.Audio.AudioCloudAttack.getName());
-	this.cry = this.game.add.audio(Assets.Audio.AudioEagleCry.getName());
+  this.fightStart2Rect = fightStart2Rect;
+  this.ice = this.game.add.audio(Assets.Audio.AudioCloudAttack.getName());
+  this.cry = this.game.add.audio(Assets.Audio.AudioEagleCry.getName());
     this.player = player;
-    //this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
+    // this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEnemiesPropeller1221396.getName());
     this.enemy = game.add.sprite(0, 0, Assets.Spritesheets.SpritesheetsEagleBoss80070018.getName());
     // this.enemy.animations.add('take-off', [0, 1, 2, 3], 12, true);
-	this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
-	this.enemy.animations.add('dive', [9, 10], 4, true);
-	this.enemy.animations.add('shock', [11, 14], 12, true);
-	this.enemy.animations.add('laser0', [12, 13], 1, false);
-	this.enemy.animations.add('laser1', [15], 1, false);
+  this.enemy.animations.add('idle', [5, 6, 7, 8], 8, true);
+  this.enemy.animations.add('dive', [9, 10], 4, true);
+  this.enemy.animations.add('shock', [11, 14], 12, true);
+  this.enemy.animations.add('laser0', [12, 13], 1, false);
+  this.enemy.animations.add('laser1', [15], 1, false);
     // this.enemy.animations.add('dive', [4, 5], 12, true);
     // this.enemy.animations.add('laser', [2, 3], 12, true);
     this.enemy.animations.play('idle');
     this.enemy.anchor.setTo(0.5);
-	this.enemy.scale.set(1);
+  this.enemy.scale.set(1);
 
     game.physics.enable(this.enemy);
-	this.enemy.body.setSize(400, 350, 200, 175);
-	// this.enemy.body.gravity.y = gravity;
-	this.enemy.autoCull = true;
+  this.enemy.body.setSize(400, 350, 200, 175);
+  // this.enemy.body.gravity.y = gravity;
+  this.enemy.autoCull = true;
 
   }
   public shootIce() {
@@ -80,24 +80,24 @@ export default class EagleEnemyObject extends EnemyObject {
   }
   public eletric() {
     this.state = 'shock';
-	this.shockCount = this.shockCountReset;
-	this.enemy.animations.play('shock');
+  this.shockCount = this.shockCountReset;
+  this.enemy.animations.play('shock');
   }
   public dive() {
     this.dockLeft = !this.dockLeft;
     this.state = 'diveGo';
-	this.diveGoCount = this.diveGoCountReset;
-	this.enemy.animations.play('dive');
-	this.cry.play();
+  this.diveGoCount = this.diveGoCountReset;
+  this.enemy.animations.play('dive');
+  this.cry.play();
   }
   public shootLaser() {
     this.state = 'laserPrepare';
     this.laserCount = this.laserPrepareCountReset;
     this.laserCD = this.laserCDReset;
-	//  Play neck forward anim YBing
+  //  Play neck forward anim YBing
   this.enemy.animations.play('laser0');
-  this.targetPoint.x = this.player.x
-  this.targetPoint.y = this.player.y
+  this.targetPoint.x = this.player.x;
+  this.targetPoint.y = this.player.y;
   }
   public resetCD() {
     this.coolDown = this.coolDownReset + this.game.rnd.frac() * 8;
@@ -130,7 +130,7 @@ export default class EagleEnemyObject extends EnemyObject {
     }
   }
   public changeState() {
-	let newScaleX = this.player.x < this.enemy.x ? 1 : -1;
+  let newScaleX = this.player.x < this.enemy.x ? 1 : -1;
   // For idle, dive
   let target = new Phaser.Point();
   target.y = this.game.camera.view.centerY - 500;
@@ -145,7 +145,7 @@ export default class EagleEnemyObject extends EnemyObject {
     let newX = this.fightAreaRect.x + this.fightAreaRect.width - this.enemy.width / 2 - 50;
     target.x = Math.min(target.x, newX);
   }
-	if (newScaleX != this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50 && this.state != 'laser') this.enemy.scale.x = newScaleX;
+  if (newScaleX !== this.enemy.scale.x && Math.abs(this.enemy.x - this.player.x) > 50 && this.state !== 'laser') this.enemy.scale.x = newScaleX;
     let x = this.player.x;
     let y = this.player.y;
     switch (this.state) {
@@ -186,18 +186,18 @@ export default class EagleEnemyObject extends EnemyObject {
         this.calcAttack();
         break;
       /*case 'ice':
-		break;*/
-	  case 'shock':
+    break;*/
+    case 'shock':
         this.shockCount -= this.game.time.elapsed / 1000;
         if (this.shockCount <= 0) {
           this.shockCount = this.shockCountReset;
           this.resetCD();
-		  this.state = 'idle';
-		  this.enemy.animations.play('idle');
+      this.state = 'idle';
+      this.enemy.animations.play('idle');
         }
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
         this.enemy.y = this.enemy.y + (target.y - this.enemy.y) * 0.1;
-	    break;
+      break;
       case 'diveGo':
         this.diveGoCount -= this.game.time.elapsed / 1000;
         if (this.diveGoCount <= 0) {
@@ -213,8 +213,8 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.diveCount <= 0) {
           this.diveBackCount = this.diveCountReset;
           this.resetCD();
-		  this.state = 'diveComeback';
-		  this.enemy.animations.play('idle');
+      this.state = 'diveComeback';
+      this.enemy.animations.play('idle');
         }
         target.y = this.game.camera.view.centerY + 500;
         this.enemy.x = this.enemy.x + (target.x - this.enemy.x) * 0.02;
@@ -234,8 +234,8 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.laserCount <= 0) {
           this.laserCount = this.laserCountReset;
           this.resetCD();
-		  this.state = 'laser';
-		  this.enemy.animations.play('laser1');
+      this.state = 'laser';
+      this.enemy.animations.play('laser1');
         }
         // Play neck hold anim YBing
         break;
@@ -244,15 +244,15 @@ export default class EagleEnemyObject extends EnemyObject {
         if (this.laserCount <= 0) {
           this.laserCount = this.laserPrepareCountReset;
           this.resetCD();
-		  this.state = 'laserComeback';
-		  this.enemy.animations.play('idle');
+      this.state = 'laserComeback';
+      this.enemy.animations.play('idle');
         }
         // Shoot
         this.laserCD -= this.game.time.elapsed / 1000;
         if (this.laserCD <= 0) {
           this.laserCD = this.laserCDReset;
           this.resetCD();
-          let laser = new LaserObject(this.game, new Phaser.Point(this.enemy.x+75, this.enemy.y+200), this.targetPoint);
+          let laser = new LaserObject(this.game, new Phaser.Point(this.enemy.x + 75, this.enemy.y + 200), this.targetPoint);
         }
         // Play neck back anim YBing
         break;
@@ -282,15 +282,15 @@ export default class EagleEnemyObject extends EnemyObject {
     if (EagleEnemyObject.nextStage) {
       // Clear flag.
       EagleEnemyObject.nextStage = false;
-	  // TODO: Play eagle hit anim. YBing
-	  this.eletric();
+    // TODO: Play eagle hit anim. YBing
+    this.eletric();
       // Kill player.
       let playerObj = (<Game>this.game.state.getCurrentState()).playerObj;
       playerObj.respawn();
       EagleEnemyObject.enemyStage++;
       if (EagleEnemyObject.enemyStage === 3) {
         // TODO: Dead animation? (Dead and fall down)
-        this.state = 'dead'
+        this.state = 'dead';
         this.openGates();
       }
       console.log('stage', EagleEnemyObject.enemyStage);

@@ -24,7 +24,7 @@ export default class SpawnCloudEnemyObject extends Phaser.Sprite {
     this.enemies = enemies;
     this.effect = [];
     for (let i = 0; i < 3; i++) {
-      let eff = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsCosmicTimeEffect1501505.getName())
+      let eff = game.add.sprite(spawnPoint.x, spawnPoint.y, Assets.Spritesheets.SpritesheetsCosmicTimeEffect1501505.getName());
       this.effect.push(eff);
       eff.animations.add('anim', [i], 0, true);
       eff.animations.play('anim');

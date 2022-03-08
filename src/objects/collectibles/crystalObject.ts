@@ -120,7 +120,7 @@ export default class CrystalObject extends Phaser.Sprite {
       gameScene.turnDark = true;
       let game = this.game;
       this.game.time.events.add(Phaser.Timer.SECOND * 2, function() {
-        game.state.start("Ending");
+        game.state.start('Ending');
         console.log('win');
       }, this);
     }

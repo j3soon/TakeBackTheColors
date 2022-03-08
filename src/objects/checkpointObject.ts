@@ -20,7 +20,7 @@ export default class CheckpointObject extends Phaser.Sprite {
   public setUsed() {
     this.used = true;
     this.checkpoint.body.destroy();
-    this.checkpoint.loadTexture(Assets.Spritesheets.SpritesheetsRedflag20232410.getName())
+    this.checkpoint.loadTexture(Assets.Spritesheets.SpritesheetsRedflag20232410.getName());
     this.checkpoint.animations.add('anim');
     this.checkpoint.animations.play('anim', 24, true);
   }
