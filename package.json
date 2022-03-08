@@ -31,7 +31,7 @@
   "homepage": "https://github.com/rroylance/phaser-ce-npm-webpack-typescript-starter-project#readme",
   "dependencies": {
     "@types/node": "^10.12.12",
-    "@types/webfontloader": "^1.6.29",
+    "@types/webfontloader": "^1.6.34",
     "clean-webpack-plugin": "^1.0.0",
     "commander": "^2.19.0",
     "copy-webpack-plugin": "^4.6.0",
